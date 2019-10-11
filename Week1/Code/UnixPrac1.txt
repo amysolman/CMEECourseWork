@@ -1,8 +1,10 @@
+# Unix Practical 1 - Fasta Exercise
+# Author: Amy Solman amy.solman19@imperial.ac.uk
+# Date: October 2019
+
 #1 Count how many lines are in each file
 
-wc -l Documents/TheMulQuaBio/data/fasta/407228326.fasta
-wc -l Documents/TheMulQuaBio/data/fasta/407228412.fasta
-wc -l Documents/TheMulQuaBio/data/fasta/E.coli.fasta
+wc -l Documents/TheMulQuaBio/data/fasta/*.*
 
 #2 Print everything starting from the second line for the E. coli genome
 
@@ -18,4 +20,4 @@ tail -n +2 Documents/TheMulQuaBio/data/fasta/E.coli.fasta | tr -d '\n' | grep -c
 
 #5 Compute the AT/GC ratio. That is, the (A+T)/(G+C) ratio. This is a summary measure of base composition of double-stranded DNA. DNA from different organisms and lineages has different ratios of the A-to-T and G-to-C base pairs. For example DNA from organisms that live in hot springs have a higher GC content, which takes advantage of the increased thermal stability of the GC base pair (google Chargaff's rule)
 
-tail -n +2 Documents/TheMulQuaBio/data/fasta/E.coli.fasta | tr -d '\n' <Documents/TheMulQuaBio/data/fasta/E.coli.fasta 
+AT=`tail -n +2 Documents/TheMulQuaBio/data/fasta/E.coli.fasta | tr -d '\n' | grep -o "A\|T" | wc -l` && GC=`tail -n +2 Documents/TheMulQuaBio/data/fasta/E.coli.fasta | tr -d '\n' | grep -o "G\|C" | wc -l` && echo "$AT/$GC" | bc -l

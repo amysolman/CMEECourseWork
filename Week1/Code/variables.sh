@@ -1,4 +1,8 @@
 #!/bin/bash
+# Author: Amy Solman amy.solman@imperial.ac.uk
+# Script: variables.sh
+# Desc: Prints string, asks for and prints new string. Asks for two numbers, adds and prints result.
+# Date: Oct 2019
 
 #Shows the use of variables
 MyVar='some string'

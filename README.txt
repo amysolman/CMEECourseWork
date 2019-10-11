@@ -6,4 +6,8 @@ Work is divided into week-specified subdirectories (Week1/Week2...).
 
 WEEK 1
 
-Practicals using command line and shell scripting only. Sandbox contains practice files. Code contains shell scripts. Data contains data files used with shell scripts.
+Practicals using command line and shell scripting only. Sandbox contains practise files. Code contains shell scripts. Data contains data files used with shell scripts.
+
+WEEK 2
+
+Biological computing in Python I. Including: using data structures, writing code, control flow tools, comprehensions, debugging etc.

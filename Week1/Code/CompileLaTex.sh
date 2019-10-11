@@ -1,4 +1,8 @@
 #!/bin/bash
+# Author: Amy Solman amy.solman@imperial.ac.uk
+# Script: CompileLaTex.sh
+# Desc: Compiles LaTex document with citation and produces pdf file
+# Date: Oct 2019
 pdflatex $1.tex
 pdflatex $1.tex
 bibtex $1
