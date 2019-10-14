@@ -8,7 +8,7 @@ __version__ = '0.0.1'
 
 import csv
 
-f = open('../code/align_seq_data.csv', 'r')
+f = open('../Data/align_seq_data.csv', 'r')
 
 csvread = csv.reader(f)
 seq2 = ""
@@ -72,7 +72,7 @@ print(my_best_align)
 print(s1)
 print("Best score:", my_best_score)
 
-f = open('../code/align_seq_result.txt', 'w')
-print(my_best_align, s1, my_best_score, file=f)
+f = open('../Results/align_seq_result.txt', 'w')
+print(my_best_align, s1, my_best_score, file = f)
 
 f.close()

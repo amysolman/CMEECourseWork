@@ -31,9 +31,10 @@ def main(argv): # define a function
     f = open('../data/TestOaksData.csv','r') # open testoaksdata to read
     g = open('../data/JustOaksData.csv','w') # open a new file  justoaksdata to write
     taxa = csv.reader(f) # the variable (taxa) is applied to the testoaksdata file
+    next(taxa, None)
     csvwrite = csv.writer(g) # the variable (csvwrite) is applied to the justoaksdata file
     oaks = set() # create a new set called oaks
-
+    
     for row in taxa: # for each thing in testoaksdata
         print(row) # print that thing
         print ("The genus is: ") # print 'the genus is'
@@ -41,6 +42,8 @@ def main(argv): # define a function
         if is_an_oak(row[0]): 
             print('FOUND AN OAK!\n')
             csvwrite.writerow([row[0], row[1]])    
+    
+
 
     return 0
 
