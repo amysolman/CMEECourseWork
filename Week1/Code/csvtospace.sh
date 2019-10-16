@@ -6,6 +6,8 @@
 # Arguments: 1-> comma delimited file
 # Date: Oct 2019
 
+"""Creates new space seperated file from csv file"""
+
 echo "Creating a space seperated values version of $1 ..."
 cat $1 | tr -s "," "\t" >> $1.txt
 echo "Done!"

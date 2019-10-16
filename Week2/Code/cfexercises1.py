@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
+# Date: Oct 2019
 
 __appname__ = 'cfexercises1.py'
 __version__ = '0.0.1'
 
 """In shell either run cfexercises1.py (for ipython)
 or python3 cfexercises1.py. Script will generate several different functions
-using different conditionals.""" 
+using different conditionals. Sys module means functions can be called 
+for use with other scripts.""" 
 
 import sys 
 
@@ -31,6 +33,13 @@ def foo_3(x, y, z):
         z = y
         y = tmp
     return [x, y, z]
+
+# Here is an alterntaive script that sorts three integers
+# def foo_3(x, y, z):
+#     a = min(x, y, z)
+#     b = max(x, y, z)
+#     c = (x + y + z) - (a + b)
+#     return [a, c, b]
 
 # Factoria of 4 = (4x1) + (4x2) + (4x3) = 24
 def foo_4(x):

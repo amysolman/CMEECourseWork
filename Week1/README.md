@@ -20,14 +20,12 @@ This week we were introduced to the UNIX system and shell scripting. We covered 
 # Code
 
   - File - FirstBiblio.bib: Imported citation from Google Scholar for FirstExample.tex
-  - File - FirstExample.bbl: Generated while compiling LaTex pdf for FirstExample.tex
-  - File - FirstExample.blg: Generated while compiling LaTex pdf for FirstExample.tex
   - File - FirstExample.tex: LaTex example created in VS code
   - File - FirstEample.pdf: Output of LaTex generated paper plus imported citation
   - File - boilerplate.sh: Gives example of basic shell script format and prints "This is a shell script!" into terminal
   - File - CompileLaTex.sh: Bash script to compile LaTex with Bibtex
   - File - Csvtospace.sh: Bash script that takes comma separated values and converts to space separated values. Results in ..Week1/Data/Temperatures
-  - File - tabtocsv.sh: Bash script that takes tab deliminated values and converts to comma separated values 
+  - File - tabtocsv.sh: Bash script that takes tab delimited values and converts to comma separated values 
   - File - variables.sh: Bash script showing how to add a string to a variable, then read multiple values and calculate the sum
   - File - MyExampleScript.sh: Prints two variables (Hello and username), then prints Hello and username again
   - File - CountLines.sh: Counts the number of lines in a file

@@ -4,6 +4,9 @@
 # Desc: Prints string, asks for and prints new string. Asks for two numbers, adds and prints result.
 # Date: Oct 2019
 
+"""Enter a string and it is assigned to a variable.
+Enter two integers and they are added together"""
+
 #Shows the use of variables
 MyVar='some string'
 echo 'the current value of the variable is' $MyVar

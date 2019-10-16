@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-# Tells the computer where to look for python
-# Determines scripts ability to execute when part of a program
+# Date: Oct 2019
 
 """Some functions exemplifying the use of control statements"""
 #docstrings are considered part of the running code (normal comments
 # are stripped). Hence, you can access your docstrings at run time.
 
-__appname__ = '[countrol_flow.py]'
+__appname__ = 'countrol_flow.py'
 __author__ = 'Samraat Pawar (s.pawar@imperial.ac.uk)'
 __version__ = '0.0.1'
 

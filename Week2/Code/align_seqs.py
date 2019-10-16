@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Date: Oct 2019
 
 """Script to take two DNA sequences from csv file, align, score and output to txt file"""
 
@@ -73,6 +74,6 @@ print(s1)
 print("Best score:", my_best_score)
 
 f = open('../Results/align_seq_result.txt', 'w')
-print(my_best_align, s1, my_best_score, file = f)
+f.write(str(my_best_align) + "\n" + str(s1) + "\n" + str(my_best_score))
 
 f.close()

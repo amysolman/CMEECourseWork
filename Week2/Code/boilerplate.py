@@ -11,10 +11,7 @@
     You can use several lines"""
 # __ signal "internal" variables. Special variable names reserved
 # By python for its own purposes
-__appname__ = '[Boilerplate]'
-__author__ = 'Amy Solman (amy.solman19@imperial.ac.uk)'
-__version__ = '0.0.1'
-__license__ = "License for this code/program"
+
 
 ## imports ##
 import sys # module to interface our program with the operating system

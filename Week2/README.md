@@ -26,7 +26,7 @@ All work was completed used Mac OS Mojave version 10.14.6, Python 3.7.4_1 and th
   - File - basic_io2.py: Script for saving integers in range 0-100 to new file testout.text.  
   - File - basic_io3.py: Script for pickle dumping (serializing/de-serializing) data from dictionary to testp.p.
   - File - basic_csv.py: Script for taking tabular data and turning into turples within a list. Also creating new csv file with only species name and body mass.
-  - File - cfexercises1.py: Script containing six functions. 1) Calculates the square root of a variable. 2) Determins which of two variables is bigger. 3) Re-orders three variables. 4,5 and 6) Three different ways of finding factorials of a variable. Function 5 (foo_5) is a recursive function, calling itself.
+  - File - cfexercises1.py: Script containing six functions. 1) Calculates the square root of a variable. 2) Determines which of two variables is bigger. 3) Re-orders three variables. 4,5 and 6) Three different ways of finding factorials of a variable. Function 5 (foo_5) is a recursive function, calling itself. These foo functions are modules that take arguments from the user.
   - File - loops.py: Script containing fife loops. 1) Prints integers within range(5). 2) Generates and prints a list. 3)Creates list of integers and loops through, adding them to total, printing and generating new total variable. 4) 'While' loop prints variable + 1 and applies output to new variable while variable is < 100. 5) Applies boolean statement to variable and prints message while statement is true.
   - File - cfexercises2.py: Four short scripts combining loops and conditionals. 1) For each value in range(12). When the value divided by 3 has no remainder, print 'hello'. 2) For each value in range(15). When the value is divided by 5 with a remainder of 3 print 'hello', else if the value divided by four has a remainder of 3, print 'hello'. 3) While the value is not equal to 15 print 'hello'. Add three to variable and loop. 4) While the value of the variable is less than 100, if the variable is equal to 31 print 'hello' in range(7). Else if the variable is equal to 18, print 'hello'. Add 1 to variable and loop.
   - File - oaks.py: Four short scripts compairing the creation of sets from previous list/function using for loops and list comprehensions.
@@ -41,9 +41,10 @@ All work was completed used Mac OS Mojave version 10.14.6, Python 3.7.4_1 and th
   - File - tuple.py: Takes tuple or tuples (bird species latin, common names and mass) and prints each tuple on a seperate line.
   - File - test_control_flow.py: Script importing doctest module to run test functions on a piece of code.
   - File - debugme.py: Short script with erroneous function for use in debugging.
-  - File - align_seqs.py: Takes two DNA sequences from csv file and saves best alignment with corresponding score to seperate txt file (.../Week2/Code/align_seq_result.txt).
-  - File - oaks_debugme.py: Oak species search script, bugs removed.
+  - File - align_seqs.py: Takes two DNA sequences from csv file and saves best alignment with corresponding score to seperate txt file (.../Week2/Results/align_seq_result.txt).
+  - File - oaks_debugme.py: Oak species search script, bugs removed. Includes doctest.
   - File - test_oaks_debugme.py: Oak species search script with doctest for function.
+  - File - align_seqs_fasta.py: Compares DNA sequences of two fasta files.
 
 # Data
  - File - testcsv.csv: Species data taked from TheMulQuaBio's data directory for manipulation in basic_csv.py script (../Week2/Code)
