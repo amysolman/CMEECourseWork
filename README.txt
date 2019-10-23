@@ -11,3 +11,7 @@ Practicals using command line and shell scripting only. Sandbox contains practis
 WEEK 2
 
 Biological computing in Python I. Including: using data structures, writing code, control flow tools, comprehensions, debugging etc.
+
+Week 3
+
+Biological computing in R. Including: Variable types, data structures, manipulating data, control flow tools, vectorisation, data management and visualisation.

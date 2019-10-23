@@ -1,0 +1,76 @@
+\documentclass[final,3p]{CSP}
+\usepackage{amssymb}
+\usepackage{changepage}
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Autocorrelation in Weather: Are temperatures of one year significantly correlated with the next year (successive years), across years in a given location?}
+
+\author{Amy Solman \\% <-this % stops a space
+Msc. Computational Methods in Ecology and Evolution - 2019\\
+Imperial College London\\
+Biological Computing in R}
+
+
+\end{frontmatter}
+
+\section{Introduction}
+\label{}
+\noindent
+This report examines mean temperature data taken from Key West, Florida, US, between 1901 and 2000. We asked: do temperatures of one year significantly correlate with the next year (successive year), across years at our given location? Using the coding language R we calculated the lag-1 coefficient correlation for the data set. We then repeated the calculation 10000 times while randomly permuting the data set and compared the random control results with our initial findings. The following report provides our source code, as well as an interpretation of the results.
+
+\section{Source Code}
+\begin{verbatim}
+# Amy Solman amy.solman19@imperial.ac.uk
+# 18th October 2019
+# TAutoCorr.R
+
+load("../Data/KeyWestAnnualMeanTemperature.Rdata") #load script
+
+plot(ats$Year, ats$Temp) 
+
+x_t0 <- ats$Temp[-1]
+x_t1 <- ats$Temp[-100]
+head(cbind(x_t0, x_t1)) # Confirm that these vectors are the right pairs
+plot(x_t0, x_t1) # plot the vectors
+correlation <- cor(x_t0, x_t1)
+
+correlation_multi <- function(x_t0, x_t1){ 
+  x_t0 <- sample(ats$Temp, 99, replace = FALSE)
+  x_t1 <- sample(ats$Temp, 99, replace = FALSE)
+  return(cor(x_t0, x_t1))
+}
+correlation_loop <- function(x_t0, x_t1){
+  result <- vector(,1000) #Preallocate expected size
+  for(i in 1:1000){
+    result[i] <- correlation_multi()
+  }
+  return(result)
+}
+loop_result <- correlation_loop(x_t0, x_t1)
+
+z <- loop_result > correlation 
+x <- length(z[z==TRUE])
+y <- length(z[z==FALSE])
+p_value = x/y
+p_value 
+\end{verbatim}
+
+\section{Results}
+After running the above source code repeatedly we calculated a p-value $<$ 0.001. This indicates a highly statistically significant result, therefore we reject the null hypothesis.
+
+\section{Discussion}
+The results indicate a highly significant correlation between temperatures of successive years in Key West, Florida. These findings support previous studies that show spacial and temporal autocorrelation of temperature is present in historical data  \cite{GraceJ.DiCecco2018Isat}. Understanding spacial and temporal variation in temperatures is essential in predicting the effects of climate change on ecological communities. Previous studies have shown an increase in autocorrelated temperature through the later half of the 20th Century \cite{DillonMichaelE.2016LitF}. If this trend continues there may be increased environmental homogenization globally \cite{LixinWu2012Ewot}.
+
+\section{Conclusion}
+Our investigation found autocorrelation of temperatures in Key West, Florida. This supports previous studies that have found increasing correlation of temperatures across successive years. This homogenization of global temperatures risks destabilising both terrestrial and marine ecological communities. Serious action to cut carbon emissions must be taken to mitigate the harmful impact of temperature rise on biodiversity.
+
+\bibliographystyle{bibft}\it
+\bibliography{bibfile}
+
+
+ \label{}
+
+\end{document}
+

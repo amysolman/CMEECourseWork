@@ -1,6 +1,6 @@
 # Amy Solman amy.solman19@imperial.ac.uk
 # 15th October 2019
-# Example of control flow tools
+# control_flow.R: Example of control flow tools
 
 ## if statements
 a <- TRUE
@@ -29,6 +29,7 @@ for(species in c('Heliodoxa rubinoides',
 #strings and 
 # concatenates them
 }
+
 ## for loop using a vector
 v1 <- c("a", "bc", "def")
 for (i in v1){
