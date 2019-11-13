@@ -1,0 +1,74 @@
+%\documentclass[handout]{beamer}
+\documentclass[presentation]{beamer}
+
+\usecolortheme{Imperial}
+ 
+\usepackage[utf8]{inputenc}
+\usepackage[UKenglish]{babel}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+
+% complying UK date format, i.e. 1 January 2001
+\usepackage{datetime}
+\let\dateUKenglish\relax
+\newdateformat{dateUKenglish}{\THEDAY~\monthname[\THEMONTH] \THEYEAR}
+
+% Imperial College Logo, not to be changed!
+\institute{\includegraphics[height=0.7cm]{Imperial_1_Pantone_solid.eps}}
+
+% -----------------------------------------------------------------------------
+
+%Information to be included in the title page:
+\title{Genomics and Bioinformatics}
+
+\subtitle{Introduction to population genetics}
+
+\author{Matteo Fumagalli}
+
+\date{\today}
+
+
+\begin{document}
+ 
+\frame{\titlepage}
+
+\begin{frame}
+        \frametitle{Populations and genetics}
+
+        \begin{block}{What is population genetics?}
+                The study of of genetic variation in populations. It is both:
+                \begin{itemize}
+                        \item \textbf{retrospective}: understanding what determined the current composition of a population
+                        \item \textbf{predictive}: predicting the future composition of a population from its current composition
+                \end{itemize}
+        \end{block}
+
+\end{frame}
+
+\include{alleles}
+
+\include{drift}
+
+\include{mutation}
+
+\include{coalescence}
+
+\include{subdivision}
+
+\include{demography}
+
+\begin{frame}{!}
+
+	Please do not redistribute. Some material may be protected by copyright.
+
+\end{frame}
+
+ 
+\end{document}
+
