@@ -1,0 +1,3 @@
+running
+  '/usr/local/Cellar/r/3.6.1_1/lib/R/bin/R --slave --no-restore --file=NonExistScript.R'
+

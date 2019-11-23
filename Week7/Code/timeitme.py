@@ -4,10 +4,10 @@
 
 iters = 1000000
 
-import timeit 
+import timeit #import the timeit module
 
-from profileme import my_squares as my_squares_loops
-from profileme2 import my_squares as my_squares_lc
+from profileme import my_squares as my_squares_loops #from our first script import the slower module
+from profileme2 import my_squares as my_squares_lc #from our second script import the faster module
 
 # %timeit my_squares_loops(iters)
 # %timeit my_squares_lc(iters)
@@ -24,14 +24,3 @@ from profileme2 import my_join as my_join
 # %timeit(my_join_join(iters, mystring))
 # %timeit(my_join(iters, mystring))
 
-#Of course a simple approach would have been to time the cuntions like this:
-
-import time
-
-start = time.time()
-my_squares_loops(iters)
-print("my_squares_loops takes %f s to run" % (time.time() - start))
-
-start = time.time()
-my_squares_lc(iters)
-print("my_squares_lc %f s to run." (time.time() - start))

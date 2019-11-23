@@ -14,7 +14,7 @@ to variable and prints message while statement is true."""
 
 # FOR loops in Python
 # Prints all numbers up to range (5)
-for i in range(5):
+for i in range(5): 
     print(i)
 
 # Prints list
@@ -27,14 +27,14 @@ total = 0
 summands = [0, 1, 11, 111, 1111]
 for s in summands:
     total = total + s
-    print(total)
+print(total)
 
 # WHILE loops in Python
 # Prints numbers 1 to 100
 z = 0
 while z < 100:
     z = z + 1
-    print(z)
+print(z)
 
 # Prints infinite loop of string
 b = True

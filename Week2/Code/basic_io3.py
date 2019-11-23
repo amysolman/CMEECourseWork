@@ -17,16 +17,16 @@ my_dictionary = {"a key": 10, "another key": 11}
 
 # pickle module implements binary protocols for serializing/
 # de-serializing an object structure. 
-# Converts an object in memory to a byte stream than can be stored or dsent over network.
+# Converts an object in memory to a byte stream than can be stored or sent over network.
 import pickle
 
 f = open('../sandbox/testp.p', 'wb') ## note the b: accept binary files
-pickle.dump(my_dictionary, f)
+pickle.dump(my_dictionary, f) #put the binary version of my dictionary into the file
 f.close()
 
 ## Load the data again
 f = open('../sandbox/testp.p', 'rb')
-another_dictionary = pickle.load(f)
+another_dictionary = pickle.load(f) #load the binary data from the file into another_dictionary
 f.close()
 
 print(another_dictionary)

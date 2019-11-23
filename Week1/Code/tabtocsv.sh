@@ -4,7 +4,7 @@
 # Desc: substitue the tabs in the files with commas
 # saves the output into a .csv file
 # Arguments: 1-> tab delimited file
-# Date: Oct 2018
+# Date: Oct 2019
 
 """This script creates a csv version of a tab deliminated file"""
 

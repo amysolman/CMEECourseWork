@@ -112,7 +112,7 @@ match.group()
 # then any combination of ab repeatedly, then a space, then a tab, then a number
 
 #r'^\d{1,2}\/\d{1,2}\/\d{4}$' Search at the start of the string for 1 to 2 numbers,
-#then a /, then 1 to 2 numbers, then a /, then 4 numbers at the end of the string
+#then a /, then 1 to 2 numbers, then a /, then 4 numbers at the end of the string - A DATE!
 
 #r'\s*[a-zA-z,\s]+\s*' #Search for a space zero or more times, followed by lowercase/
 #uppercase letters, commas and spaces in any order, multiple times, followed by a space zero or more times
@@ -124,11 +124,13 @@ match.group()
 
 right_date = '19901112'
 wrong_date = '39901172'
+otherdate = '294746583930300'
 match = re.search(r'^[1|2][0-9][0-9][0-9][0-1][0-9][0-3][0-9]$', right_date)
 if match:
     print('Correct format date:', match.group())
-else:
-    print('Incorrect formatting')
+#elif: 
+#    print("fail")
+
 
 #Grouping regex patterns
 
@@ -232,7 +234,7 @@ for match in regex2.finditer(My_Data):
 ####ASK ABOUT THIS IN THE MORNING
 #Grouping to seperate title from first and second names
 #Extracting names that have unexpected characters (e.g. "O'Gorman", which are currently not being matched properly)
-pattern3= r"(Prof\s+[\w+'*\s+\w+]|Dr\s+[\w+'*\s+\w+])(?!.*\1)"
+pattern3= r"(Prof\s+[\w+'*\s+\w+\-]|Dr\s+[\w+'*\s+\w+\-])(?!.*\1)"
 regex3 = re.compile(pattern2)
 for match in regex3.finditer(My_Data):
     print(match.group())

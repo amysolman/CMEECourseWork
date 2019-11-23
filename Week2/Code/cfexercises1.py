@@ -14,9 +14,15 @@ import sys
 # What does each of foo_x do?
 # This take the square root
 def foo_1(x):
-    return x ** 0.5
+    return x ** 0.5 
 
 # Takes two numbers, prints the largest
+def foo_2(x, y):
+    if x > y:
+        return x
+    if x < y:
+        return y
+
 def foo_2(x, y):
     if x > y:
         return x

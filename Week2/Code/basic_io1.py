@@ -15,8 +15,8 @@ __version__ = '0.0.1'
 f = open('../sandbox/test.txt', 'r')
 # use "implicit" for loop:
 # if the object is a file, python will cycle over lines
-for line in f:
-    print(line)
+for line in f: #for each line in file
+    print(line) #print the line
 
 # close the file
 f.close()
@@ -26,8 +26,8 @@ but with lines removed. """
 
 # Same example, skip blank lines
 f = open('../sandbox/test.txt', 'r') # r for read
-for line in f:
-    if len(line.strip()) > 0:
-        print(line)
+for line in f: #for each line in the file
+    if len(line.strip()) > 0: #if the number of characters in the line (after removing trailing characters) is greater than zero
+        print(line) #print the line
 
 f.close()

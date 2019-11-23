@@ -1051,3 +1051,527 @@ n<-length(alb$wt)
 list(lin=signif(sum(resid(alb.lin)^2)/(n-2*2), 3),
      log=signif(sum(resid(alb.log)^2)/(n-2*2), 3),
      vb=signif(sum(resid(alb.vb)^2)/(n-2*2), 3))
+
+#Aedes aegypti fecundity
+#Now let's actually look at a disease vector example. These data measure
+#the response of Aedes aegypti fecundity
+#to temperature. First load and visualize the data:
+
+aedes<-read.csv(file="../data/aedes_fecund.csv")
+
+plot(aedes$T, aedes$EFD, xlab="temperature (C)", ylab="Eggs/day")
+
+#The TPC models
+#Let's define some models first:
+quad1 <- function(T, T0, Tm, c){
+  c*(T-T0)*(T-Tm)*as.numeric(T<Tm)*as.numeric(T>T0)
+}
+
+briere <- function(T, T0, Tm, c) {
+  c*T*(T-T0)*(abs(Tm-T)^(1/2))*as.numeric(T<Tm)*as.numeric(T>T0)
+}
+
+#Instead of using the inbuilt quadratic function in R, we define our own to make it easier
+#to choose starting values, and so that we can force the function to be equal to zero
+#above and below the minimum and maximum temperature thresholds.
+#The Briere function is a commonly used model for tempoeratuire dependent of insect traits.
+#As in the case of the albatross growth data, we will also compare these two with a straight line
+#again this is a linear model, so we can just use lm() wihtout needing to define a functionf or it.
+
+#Now fit all three models using least squares. Although it's not necessary here 
+#(as the data don't have as large values as the albatross example)
+#we will again scale the data first:
+
+scale <- 20
+
+aed.lin <- lm(EFD/scale~T, data=aedes)
+
+aed.quad <- nlsLM(EFD/scale~quad1(T, T0, Tm, c), start=list(T0=10, Tm=40, c=0.01), data=aedes)
+aed.quad <- nlsLM(EFD/scale~quad1(T, T0, Tm, c), start=list(T0=10, Tm=40, c=0.01), data=aedes)
+
+aed.br <- nlsLM(EFD/scale~briere(T, T0, Tm, c), start=list(T0=10, Tm=40, c=0.1), data=aedes)
+
+#EXERCISES
+#Complete the Aedes data analysis by fitting model, calculating predictions and
+#then comparing models. Write a single, self standing script for it. Which model fits best? By what measure?
+
+#Let's start by calculating predictions for each of the models across a range of temperatures
+
+temp<-seq(0,40,length=100) #create a vector with 100 values ranging from 1 to 40 %>% 
+
+pred.lm<-predict(aed.lin, newdata = list(T=temp))*scale
+pred.quad<-predict(aed.quad, newdata = list(T=temp))*scale
+pred.br<-predict(aed.br, newdata = list(T=temp))*scale
+
+#So here, for each model, we have created a vector of values that can be plotted 
+#as regression lines against our real data
+#For each model we have asked them to runt he model (predict) with some new data,
+#in this case using the vector 'temp' that we made to fill the parameter of T in each model
+#multiplying that prediction by 20 to scale our temp by eggs
+
+#And finally plot the data with the fits:
+
+plot(aedes$T, aedes$EFD, xlab="temperature (C)", ylab="eggs/day", xlim=c(0,40))
+lines(temp, pred.lm, col=2, lwd=2)
+lines(temp, pred.quad, col=3, lwd=2)
+lines(temp, pred.br, col=4, lwd=2)
+
+legend("topleft", legend = c("linear", "quad1", "briere"), lwd=2, lty=1, col=2:4)
+
+#Next examine the residuals between the 3 models:
+
+par(mfrow=c(3,1), bty="n")
+plot(aedes$T, resid(aed.lin), main="LM resids", xlim=c(0,40))
+plot(aedes$T, resid(aed.quad), main="Quad1 resids", xlim=c(0,40))
+plot(aedes$T, resid(aed.br), main="Briere resids", xlim=c(0,40))
+
+#Finally, let's compare the 3 models using a simpler approach than the AIC/BIC one that we
+#used above by calculating the adjusted Sums of Squared Errors (SSEs):
+
+n<-length(aedes$EFD) #Create a vector with the number of wt observations
+list(lin=signif(sum(resid(aed.lin)^2)/(n-2*2), 3),
+     quad=signif(sum(resid(aed.quad)^2)/(n-2*2), 3),
+     br=signif(sum(resid(aed.br)^2)/(n-2*2), 3))
+
+#The quad model has the lowest adjusted SSE, so it's the best by this measure.
+#It is also, visually, a better fit.
+
+#Use AIC/BIC to perform model selection on the Aedes data
+AIC(aed.lin) - AIC(aed.quad) # 4.232 (Quad model is the best fit)
+AIC(aed.quad) - AIC(aed.br) # -2.352 (Quad model is the best fit)
+
+#ABUNDANCES AS AN EXAMPLE
+#Fluctuation in the abundance (density) of single populations may play a crucial role
+#in ecosystem dynamics and emergent functional characteristics, such as rates of carbon fixation or disease transmission.
+#For example, if vector population densities or their traits change at the same or shorter timescales
+#than the rate of disease transmission, then (vector) abundance fluctuations
+#can cause significant fluctuations in disease transmission rates. Indeed, most disease vectors
+#are small ectotherms with short generation times and greater sensitivity to environmental conditions than 
+#their (invariably larger, longer-lived, and often endothermic) hosts. So understanding how vector pops.
+#vary over time, space, and with respect to environmental variables such as
+#temperature and precipitation is key. 
+#We will look at fitting models to the growth of a single population here.
+
+#POPULATION GROWTH RATE EXAMPLE
+#A population grows exponentially white it's abundance is low and resources are not limiting (the Malthusian
+#principle). This growth then slows and eventually stops as resoruces become limiting. There may also be a time lag 
+#before the population growth really takes off at the start. We will focus on microbial (specifically bacterial) growth rates,
+#Bacterial growth in batch culture follows a distinct set of phases; lag phase, exponential phase and stationary phase.
+#During the lag phase a suite of transcriptional machinery is activated, including genes involved in nutrient uptake and 
+#metabolic changes, as bacteria prepare for growth. During the exponential growth phase, bacterial divide at a constant rate, 
+#the pop. doubling with each generation. Whent eh carrying capacity of the media is reached, growth slows and the number of cells
+#in the culture stabilises, beginning the stationary phase.
+#Traditionally, microbial growth rates were measured by plotting cell numbers of culture density against time on a semi-log graph
+#and fitting a straight line through the exponential growth phase - the slope of the line gives the maximum growth rate (rmax).
+#Models have since been developed which we can use to describe the whole sigmodial bacterial growth curve (e.g. using NLLS).
+
+#Let's first generate some "data" on the number of bacterial cells as a function of time that we can play with:
+
+time <- c(0, 2, 4, 6, 8, 10, 12, 16, 20, 24) #timepoints in hours
+log_cells <- c(3.62, 3.62, 3.62, 4.12, 5.23, 6.27, 7.57, 8.38, 8.70, 8.69) #logged cell counts - more on this below
+
+set.seed(1234) #set seed to ensure you always get the same random sequence of fluctuations
+
+data <- data.frame(time, log_cells + rnorm(length(time), sd=.1)) #add some random error
+
+names(data) <- c("t", "LogN")
+
+head(data)
+
+#We have added a vector of normally distributed errors to emulate random "sampling errors".
+#Note also that the assumption of normality of errors underlies the statistical analysis of Ordinary NLLS fits, 
+#just as it underlies Ordinary Least Squares (your standard linear modelling).
+#In this case, we are talking about log-normality because we are using logged cell counts. Why log them?
+#Because NLLS often converges better if you linearize the data (and correspondingly, the model -
+#see how the models are specified below).
+
+#Plot the data:
+
+ggplot(data, aes(x = t, y = LogN)) + geom_point()
+
+#We will fit three growth models, all of which are known to fit such population growth data, especially in microbes.
+#These are a modified Gompertz model, the Barannyi model, and the Buchanan model
+#(or three-phase logistic model). Given a set of cell numbers (N) and times (t), each growth model
+#can be described in terms of:
+#N0 - initial cell culture (population) density (number of cells per unit volume)
+#Nmax - Maximum culture density (aka carrying capacity)
+#rmax - Maximum growth rate
+#tlag - Duration of the lag phase before the population starts growing exponentially
+
+#First let's specify the model functions:
+
+baranyi_model <- function(t, r_max, N_max, N_0, t_lag){ #Baryani model
+  return(N_max + log10((-1+exp(r_max*t_lag) + exp(r_max*t))/(exp(r_max*t) - 1 + exp(r_max*t_lag) * 10^(N_max-N_0))))
+}
+
+buchanan_model <- function(t, r_max, N_max, N_0, t_lag){ # Buchanan model - three phase logistic (Buchanan 1997)
+  return(N_0 + (t >= t_lag) * (t <= (t_lag + (N_max - N_0) * log(10)/r_max)) * r_max * (t - t_lag)/log(10) +
+           (t >= t_lag) * (t > (t_lag + (N_max - N_0) * log(10)/r_max)) * (N_max - N_0))
+}  
+
+gompertz_model <- function(t, r_max, N_max, N_0, t_lag){ # Modified gompertz growth model
+  return(N_0 + (N_max - N_0) * exp(-exp(r_max * exp(1) * (t_lag - t)/((N_max - N_0) * log(10)) + 1)))
+}
+
+#It is important to note that we have written the function in log (to the base 10 - can also be base 2 or natural log)
+#scale because we want to do the fitting in log scale (both model and data linearized). The interpretation of each of the 
+#estimated/fitted parametrs does not change if we take a log of the model's equation.
+
+#Now let's generate some starting values for the NLLS fitting. We did not pay much attention to what starting values we used 
+#in the above example on fitting an allometric model because the power-law model is easy to fit using NLLS, and starting 
+#far from the optimal paramaters does not matter too muchl. Here, we derive the starting values by using the actual data:
+
+N_0_start <- min(data$LogN)
+N_max_start <- max(data$LogN)
+t_lag_start <- data$t[which.max(diff(diff(data$LogN)))]
+r_max_start <- max(diff(data$LogN))/mean(diff(data$t))
+
+#Now fit the models:
+
+fit_baranyi <- nlsLM(LogN ~ baranyi_model(t = t, r_max, N_max, N_0, t_lag), data,
+                     list(t_lag=t_lag_start, r_max=r_max_start, N_0 = N_0_start, N_max = N_max_start))
+
+fit_buchanan <- nlsLM(LogN ~ buchanan_model(t = t, r_max, N_max, N_0, t_lag), data,
+                      list(t_lag = t_lag_start, r_max = r_max_start, N_0 = N_0_start, N_max = N_max_start))
+
+fit_gompertz <- nlsLM(LogN ~ gompertz_model(t = t, r_max, N_max, N_0, t_lag), data,
+                      list(t_lag = t_lag_start, r_max = r_max_start, N_0 = N_0_start, N_max = N_max_start))
+
+
+#You might get a warning that one or more of the models generated some NaNs during the fitting procedure 
+#for the given data. You can ignore the warning in this case. But not always – sometimes these NaNs mean 
+#that the equation is wrongly written, or that it generates NaNs across the whole range of the x-values, 
+#in which case the model is inappropriate for these data.
+
+#Get the model summaries:
+
+summary(fit_baranyi)
+summary(fit_buchanan)
+summary(fit_gompertz)
+
+#And see how the fits look:
+
+timepoints <- seq(0, 24, 0.1)
+
+baranyi_points <- baranyi_model(t = timepoints, r_max = coef(fit_baranyi)["r_max"], N_max = coef(fit_baranyi)["N_max"], N_0 = coef(fit_baranyi)["N_0"], t_lag = coef(fit_baranyi)["t-lag"])
+buchanan_points <- buchanan_model(t = timepoints, r_max = coef(fit_buchanan)["r_max"], N_max = coef(fit_buchanan)["N_max"], N_0 = coef(fit_buchanan)["N_0"], t_lag = coef(fit_buchanan)["t_lag"])
+gompertz_points <- gompertz_model(t = timepoints, r_max = coef(fit_gompertz)["r_max"], N_max = coef(fit_gompertz)["N_max"], N_0 = coef(fit_gompertz)["N_0"], t_lag = coef(fit_gompertz)["t_lag"])
+
+df1 <- data.frame(timepoints, baranyi_points)
+df1$model <- "Baranyi"
+names(df1) <- c("t", "LogN", "model")
+
+df2 <- data.frame(timepoints, buchanan_points)
+df2$model <- "Buchanan"
+names(df2) <- c("t", "LogN", "model")
+
+df3 <- data.frame(timepoints, gompertz_points)
+df3$model <- "Gompertz"
+names(df3) <- c("t", "LogN", "model")
+
+model_frame <- rbind(df1, df2, df3)
+
+ggplot(data, aes(x = t, y = LogN)) +
+  geom_point(size = 3) +
+  geom_line(data = model_frame, aes(x = t, y = LogN, col = model), size = 1) +
+  theme_bw() + #make the background white
+  theme(aspect.ratio=1) + #make the plot square
+  labs(x = "Time", y = "log(Abundance)")
+
+
+#EXERCISES
+#(a) Calculate the confidence intervals on the parameters of each of the three fitted models, 
+#and use model selection (using AIC and/or BIC) as you did before to see if you can determine 
+#the best-fitting model among the three.
+
+confint(fit_baranyi) 
+confint(fit_buchanan)
+confint(fit_gompertz)
+
+AIC(fit_baranyi) - AIC(fit_buchanan) # 1.637 no statistically significant different
+AIC(fit_buchanan) - AIC(fit_gompertz) # 2.075 fit_gompertz has a significantly better fit
+AIC(fit_gompertz) - AIC(fit_baranyi) # -3.712 fit_gompertz has a significanlty better fit
+
+BIC(fit_baranyi) - BIC(fit_buchanan) # 1.637 no statistically significant different
+BIC(fit_buchanan) - BIC(fit_gompertz) # 2.075 fit_gompertz has a significantly better fit
+BIC(fit_gompertz) - BIC(fit_baranyi) # -3.712 fit_gompertz has a significanlty better fit
+
+#(b) Alternatively, for a different random sequence of fluctuations, one or more of the models 
+#may fail to fit (a singular gradiant matrix error). Try repeating the above fitting with a different 
+#random seed (change the integers given to the random.seed( ) function), or increase the sampling 
+#error by increasing the standard deviationand see if it happens. If/when the NLLS optimization 
+#does fail to converge (the RSS minimum was not found), you can try to fix it by chaging the starting values.
+
+set.seed(4321)
+data <- data.frame(time, log_cells + rnorm(length(time), sd=.1))
+names(data) <- c("t", "LogN")
+
+ggplot(data, aes(x = t, y = LogN)) + geom_point()
+
+baranyi_model <- function(t, r_max, N_max, N_0, t_lag){ #Baryani model
+  return(N_max + log10((-1+exp(r_max*t_lag) + exp(r_max*t))/(exp(r_max*t) - 1 + exp(r_max*t_lag) * 10^(N_max-N_0))))
+}
+
+buchanan_model <- function(t, r_max, N_max, N_0, t_lag){ # Buchanan model - three phase logistic (Buchanan 1997)
+  return(N_0 + (t >= t_lag) * (t <= (t_lag + (N_max - N_0) * log(10)/r_max)) * r_max * (t - t_lag)/log(10) +
+           (t >= t_lag) * (t > (t_lag + (N_max - N_0) * log(10)/r_max)) * (N_max - N_0))
+}  
+
+gompertz_model <- function(t, r_max, N_max, N_0, t_lag){ # Modified gompertz growth model
+  return(N_0 + (N_max - N_0) * exp(-exp(r_max * exp(1) * (t_lag - t)/((N_max - N_0) * log(10)) + 1)))
+}
+
+N_0_start <- min(data$LogN)
+N_max_start <- max(data$LogN)
+t_lag_start <- data$t[which.max(diff(diff(data$LogN)))]
+r_max_start <- max(diff(data$LogN))/mean(diff(data$t))
+
+fit_baranyi <- nlsLM(LogN ~ baranyi_model(t = t, r_max, N_max, N_0, t_lag), data,
+                     list(t_lag=t_lag_start, r_max=r_max_start, N_0 = N_0_start, N_max = N_max_start))
+
+fit_buchanan <- nlsLM(LogN ~ buchanan_model(t = t, r_max, N_max, N_0, t_lag), data,
+                      list(t_lag = t_lag_start, r_max = r_max_start, N_0 = N_0_start, N_max = N_max_start))
+
+fit_gompertz <- nlsLM(LogN ~ gompertz_model(t = t, r_max, N_max, N_0, t_lag), data,
+                      list(t_lag = t_lag_start, r_max = r_max_start, N_0 = N_0_start, N_max = N_max_start))
+
+summary(fit_baranyi)
+summary(fit_buchanan)
+summary(fit_gompertz)
+
+timepoints <- seq(0, 24, 0.1)
+
+baranyi_points <- baranyi_model(t = timepoints, r_max = coef(fit_baranyi)["r_max"], N_max = coef(fit_baranyi)["N_max"], N_0 = coef(fit_baranyi)["N_0"], t_lag = coef(fit_baranyi)["t-lag"])
+buchanan_points <- buchanan_model(t = timepoints, r_max = coef(fit_buchanan)["r_max"], N_max = coef(fit_buchanan)["N_max"], N_0 = coef(fit_buchanan)["N_0"], t_lag = coef(fit_buchanan)["t_lag"])
+gompertz_points <- gompertz_model(t = timepoints, r_max = coef(fit_gompertz)["r_max"], N_max = coef(fit_gompertz)["N_max"], N_0 = coef(fit_gompertz)["N_0"], t_lag = coef(fit_gompertz)["t_lag"])
+
+df1 <- data.frame(timepoints, baranyi_points)
+df1$model <- "Baranyi"
+names(df1) <- c("t", "LogN", "model")
+
+df2 <- data.frame(timepoints, buchanan_points)
+df2$model <- "Buchanan"
+names(df2) <- c("t", "LogN", "model")
+
+df3 <- data.frame(timepoints, gompertz_points)
+df3$model <- "Gompertz"
+names(df3) <- c("t", "LogN", "model")
+
+model_frame <- rbind(df1, df2, df3)
+
+ggplot(data, aes(x = t, y = LogN)) +
+  geom_point(size = 3) +
+  geom_line(data = model_frame, aes(x = t, y = LogN, col = model), size = 1) +
+  theme_bw() + #make the background white
+  theme(aspect.ratio=1) + #make the plot square
+  labs(x = "Time", y = "log(Abundance)")
+
+confint(fit_baranyi) 
+confint(fit_buchanan)
+confint(fit_gompertz)
+
+AIC(fit_baranyi) - AIC(fit_buchanan) # -2.270 fit_baranyi better
+AIC(fit_buchanan) - AIC(fit_gompertz) # 6.188 fit_gompertz better
+AIC(fit_gompertz) - AIC(fit_baranyi) # -3.918 Fit_gompertz better
+
+BIC(fit_baranyi) - BIC(fit_buchanan) # as above
+BIC(fit_buchanan) - BIC(fit_gompertz) # as above
+BIC(fit_gompertz) - BIC(fit_baranyi) # as above
+
+AIC_Bar <- AIC(fit_baranyi)
+AIC_Buch <- AIC(fit_buchanan)
+AIC_Gom <- AIC(fit_gompertz)
+
+if (AIC_Bar < AIC_Buch) {
+  if (AIC_Bar < AIC_Gom) {
+    print("The Baranyi model has the best fit!")
+    AIC_Bar_Total = 0
+    AIC_Bar_Total <- c(AIC_Bar_Total + 1)
+  }
+}
+
+if (AIC_Gom < AIC_Bar) {
+  if (AIC_Gom < AIC_Buch) {
+    print("The Gompertz model has the best fit!")
+    AIC_Gom_Total = 0
+    AIC_Gom_Total <- c(AIC_Gom_Total + 1)
+  }
+}
+
+if (AIC_Buch < AIC_Bar) {
+  if (AIC_Buch < AIC_Gom) {
+    print("The Buchanan model has the best fit!")
+    AIC_Buch_Total = 0
+    AIC_Buch_Total <- c(AIC_Buch_Total + 1)
+  }
+}
+
+
+  
+    
+
+
+#(c) Repeat the model comparison exercise 1000 times (You will have to write a loop), and determine 
+#if/whether one model generally wins more often than the others. Note that each run will generate a 
+#slightly different dataset, because we are adding a vector of random errors every time the "data" are 
+#generated. This may result in failure of the NLLS fitting to converge, in which case you will need 
+#to use the try() or tryCatch functions.
+
+AIC_Buch_Total = 0
+AIC_Gom_Total = 0
+AIC_Bar_Total = 0
+
+
+AIC_scores <- function(x){ #create a new function
+  popn <- rnorm(length(time))
+  data <- data.frame(time, log_cells + popn, sd=.1) #create a data set with some random error
+  names(data) <- c("t", "LogN") 
+  N_0_start <- min(data$LogN)
+  N_max_start <- max(data$LogN)
+  t_lag_start <- data$t[which.max(diff(diff(data$LogN)))]
+  r_max_start <- max(diff(data$LogN))/mean(diff(data$t))
+  
+  fit_baranyi <- nlsLM(LogN ~ baranyi_model(t = t, r_max, N_max, N_0, t_lag), data,
+                       list(t_lag=t_lag_start, r_max=r_max_start, N_0 = N_0_start, N_max = N_max_start))
+  
+  fit_buchanan <- nlsLM(LogN ~ buchanan_model(t = t, r_max, N_max, N_0, t_lag), data,
+                        list(t_lag = t_lag_start, r_max = r_max_start, N_0 = N_0_start, N_max = N_max_start))
+  
+  fit_gompertz <- nlsLM(LogN ~ gompertz_model(t = t, r_max, N_max, N_0, t_lag), data,
+                        list(t_lag = t_lag_start, r_max = r_max_start, N_0 = N_0_start, N_max = N_max_start))
+  
+  AIC_Bar <- AIC(fit_baranyi)
+  AIC_Buch <- AIC(fit_buchanan)
+  AIC_Gom <- AIC(fit_gompertz)
+  
+  if (AIC_Bar < AIC_Buch) {
+    if (AIC_Bar < AIC_Gom) {
+      print(paste("The Baranyi model has the best fit:", AIC_Bar))
+      AIC_Bar_Total <<- AIC_Bar_Total + 1
+    }
+  }
+  
+  if (AIC_Gom < AIC_Bar) {
+    if (AIC_Gom < AIC_Buch) {
+      print(paste("The Gompertz model has the best fit:", AIC_Gom))
+
+      AIC_Gom_Total <<- AIC_Gom_Total + 1
+    }
+  }
+
+
+  if (AIC_Buch < AIC_Bar) {
+    if (AIC_Buch < AIC_Gom) {
+      print(paste("The Buchanan model has the best fit:", AIC_Buch))
+      AIC_Buch_Total <<- AIC_Buch_Total + 1
+      }
+  }
+}
+
+
+AIC_result <- lapply(1:1000, function(i) try(AIC_scores(popn), FALSE))
+
+AIC_Bar_Total
+AIC_Buch_Total
+AIC_Gom_Total
+
+print(paste("Total wins for Baranyi:", AIC_Bar_Total))
+
+#(d) Repeat (b), but increase the error by increasing the standard deviation of the normal error 
+#distributon, and see if there are differences in the robustness of the models to sampling/experimental 
+#errors. You may also want to try changing the distribution of the errors to some non-normal distribution 
+#and see what happens.
+
+set.seed(5678)
+data <- data.frame(time, log_cells + rnorm(length(time), sd=.3))
+names(data) <- c("t", "LogN")
+
+ggplot(data, aes(x = t, y = LogN)) + geom_point()
+
+baranyi_model <- function(t, r_max, N_max, N_0, t_lag){ #Baryani model
+  return(N_max + log10((-1+exp(r_max*t_lag) + exp(r_max*t))/(exp(r_max*t) - 1 + exp(r_max*t_lag) * 10^(N_max-N_0))))
+}
+
+buchanan_model <- function(t, r_max, N_max, N_0, t_lag){ # Buchanan model - three phase logistic (Buchanan 1997)
+  return(N_0 + (t >= t_lag) * (t <= (t_lag + (N_max - N_0) * log(10)/r_max)) * r_max * (t - t_lag)/log(10) +
+           (t >= t_lag) * (t > (t_lag + (N_max - N_0) * log(10)/r_max)) * (N_max - N_0))
+}  
+
+gompertz_model <- function(t, r_max, N_max, N_0, t_lag){ # Modified gompertz growth model
+  return(N_0 + (N_max - N_0) * exp(-exp(r_max * exp(1) * (t_lag - t)/((N_max - N_0) * log(10)) + 1)))
+}
+
+N_0_start <- min(data$LogN)
+N_max_start <- max(data$LogN)
+t_lag_start <- data$t[which.max(diff(diff(data$LogN)))]
+r_max_start <- max(diff(data$LogN))/mean(diff(data$t))
+
+fit_baranyi <- nlsLM(LogN ~ baranyi_model(t = t, r_max, N_max, N_0, t_lag), data,
+                     list(t_lag=t_lag_start, r_max=r_max_start, N_0 = N_0_start, N_max = N_max_start))
+
+fit_buchanan <- nlsLM(LogN ~ buchanan_model(t = t, r_max, N_max, N_0, t_lag), data,
+                      list(t_lag = t_lag_start, r_max = r_max_start, N_0 = N_0_start, N_max = N_max_start))
+
+fit_gompertz <- nlsLM(LogN ~ gompertz_model(t = t, r_max, N_max, N_0, t_lag), data,
+                      list(t_lag = t_lag_start, r_max = r_max_start, N_0 = N_0_start, N_max = N_max_start))
+
+summary(fit_baranyi)
+summary(fit_buchanan)
+summary(fit_gompertz)
+
+timepoints <- seq(0, 24, 0.1)
+
+baranyi_points <- baranyi_model(t = timepoints, r_max = coef(fit_baranyi)["r_max"], N_max = coef(fit_baranyi)["N_max"], N_0 = coef(fit_baranyi)["N_0"], t_lag = coef(fit_baranyi)["t-lag"])
+buchanan_points <- buchanan_model(t = timepoints, r_max = coef(fit_buchanan)["r_max"], N_max = coef(fit_buchanan)["N_max"], N_0 = coef(fit_buchanan)["N_0"], t_lag = coef(fit_buchanan)["t_lag"])
+gompertz_points <- gompertz_model(t = timepoints, r_max = coef(fit_gompertz)["r_max"], N_max = coef(fit_gompertz)["N_max"], N_0 = coef(fit_gompertz)["N_0"], t_lag = coef(fit_gompertz)["t_lag"])
+
+df1 <- data.frame(timepoints, baranyi_points)
+df1$model <- "Baranyi"
+names(df1) <- c("t", "LogN", "model")
+
+df2 <- data.frame(timepoints, buchanan_points)
+df2$model <- "Buchanan"
+names(df2) <- c("t", "LogN", "model")
+
+df3 <- data.frame(timepoints, gompertz_points)
+df3$model <- "Gompertz"
+names(df3) <- c("t", "LogN", "model")
+
+model_frame <- rbind(df1, df2, df3)
+
+ggplot(data, aes(x = t, y = LogN)) +
+  geom_point(size = 3) +
+  geom_line(data = model_frame, aes(x = t, y = LogN, col = model), size = 1) +
+  theme_bw() + #make the background white
+  theme(aspect.ratio=1) + #make the plot square
+  labs(x = "Time", y = "log(Abundance)")
+
+confint(fit_baranyi) 
+confint(fit_buchanan)
+confint(fit_gompertz)
+
+AIC(fit_baranyi) - AIC(fit_buchanan) # -2.268 fit_baranyi better
+AIC(fit_buchanan) - AIC(fit_gompertz) # -2.509 fit_buchana better
+AIC(fit_gompertz) - AIC(fit_baranyi) # -3.918 fit_baranyi better
+
+BIC(fit_baranyi) - BIC(fit_buchanan) # -2.268 fit_baranyi better
+BIC(fit_buchanan) - BIC(fit_gompertz) # -2.509 fit_buchanan better
+BIC(fit_gompertz) - BIC(fit_baranyi) # 4.778 fit_baranyi better
+
+if (AIC_Bar < AIC_Buch) {
+  if (AIC_Bar < AIC_Gom) {
+    print(paste("The Baranyi model has the best fit:", AIC_Bar))
+  }
+}
+
+if (AIC_Gom < AIC_Bar) {
+  if (AIC_Gom < AIC_Buch) {
+    print(paste("The Gompertz model has the best fit:", AIC_Gom))
+  }
+}
+
+if (AIC_Buch < AIC_Bar) {
+  if (AIC_Buch < AIC_Gom) {
+    print(paste("The Buchanan model has the best fit:", AIC_Buch))
+  }
+}
