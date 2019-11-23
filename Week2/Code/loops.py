@@ -4,7 +4,7 @@ __appname__ = 'loops.py'
 __version__ = '0.0.1'
 
 """In shell either run loops.py (for ipython)
-or python3 cfexerciseloops.py. Script contains five loops.
+or python3 loops.py. Script contains five loops.
 First loop will print integers within range(5). 
 Second generates and print a list. Third creates list of
 integers and loops through, adding them to total, printing and generating 

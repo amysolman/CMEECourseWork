@@ -4,8 +4,8 @@
 __appname__ = 'Ic2.py'
 __version__ = '0.0.1'
 
-"""In shell either run Ic2.py (for ipython)
-or python3 Ic2.py. Script contains four modules. First two use list
+"""In shell either run lc2.py (for ipython)
+or python3 lc2.py. Script contains four modules. First two use list
 comprehension to pull high and low rainfall data.
 Second two modules serve the same function but using conventional loops.""" 
 
@@ -44,10 +44,12 @@ high_rainfall = []
 for row in rainfall:
     if row[1] > 100.0:
         high_rainfall.append(row)
+
 print(high_rainfall)
 
 low_rainfall = []
 for row in rainfall:
     if row[1] < 50.0:
         low_rainfall.append(row[0])
+        
 print(low_rainfall)

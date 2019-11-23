@@ -12,6 +12,11 @@
 # __ signal "internal" variables. Special variable names reserved
 # By python for its own purposes
 
+__appname__='[application name here]'
+__author__= 'Your Name (your@email.address)'
+__version__= '0.0.1'
+__license__= "License for this code/program"
+
 
 ## imports ##
 import sys # module to interface our program with the operating system

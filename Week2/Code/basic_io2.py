@@ -16,6 +16,6 @@ list_to_save = range(100) #remember this starts at 0
 
 f = open('../Sandbox/testout.txt', 'w') # w means write
 for i in list_to_save: #for each item in the vector (0-99)
-    f.write(str(i) + '\n')
+    f.write(str(i) + '\n') #Add a new line at the end
 
 f.close()

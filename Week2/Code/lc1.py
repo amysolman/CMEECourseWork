@@ -4,8 +4,8 @@
 __appname__ = 'Ic1.py'
 __version__ = '0.0.1'
 
-"""In shell either run Ic1.py (for ipython)
-or python3 Ic1.py. Script will contains six modules creating different
+"""In shell either run lc1.py (for ipython)
+or python3 lc1.py. Script will contains six modules creating different
 lists from the bird data provided. Created using list comprehension and
 loops.""" 
 
@@ -41,21 +41,21 @@ print(birds_bodymass)
 
 # Conventional loop printing birds latin names
 
-birds_latin = set()
+birds_latin = []
 for b in birds:
-    birds_latin.add(b[0])
+    birds_latin.append(b[0])
 print(birds_latin)
 
 # Conventional loop printing birds common names
 
-birds_common = set()
+birds_common = []
 for b in birds:
-    birds_common.add(b[1])
+    birds_common.append(b[1])
 print(birds_common)
 
 # Conventional loop printing birds mean body mass
 
-birds_bodymass = set()
+birds_bodymass = []
 for b in birds:
-    birds_bodymass.add(b[2])
+    birds_bodymass.append(b[2])
 print(birds_bodymass)

@@ -76,4 +76,5 @@ print("Best score:", my_best_score)
 f = open('../Results/align_seq_result.txt', 'w')
 f.write(str(my_best_align) + "\n" + str(s1) + "\n" + str(my_best_score))
 
+
 f.close()
