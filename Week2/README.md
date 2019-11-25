@@ -1,7 +1,7 @@
 # CMEE README WEEK 2
 
 CMEE Bootcamp Week2 (07/10/19-11/10/19)
-This week we were introduced to bioloigcal computing in Python. We covered topic areas including:
+This week we were introduced to biological computing in Python. We covered topic areas including:
  - Working in ipython
  - Variables
  - Operators
@@ -35,7 +35,7 @@ All work was completed used Mac OS Mojave version 10.14.6, Python 3.7.4_1 and th
   - File - using_name.py: Script illustrating the __name__/__main__ code that tells us if a file it being run directly or imported.
   - File - sysargv.py: Script demonstrating the use of sys.argv. Prints name of module, length of module and the arguments applied to it.
   - File - control_flow.py: Five functions exemplifying the use of control statements.
-  - File - Ic1.py: Script containing six short modules generated from a set list of birds with latin names, common names and mean body mass. 1) List comprehension containing birds latin names. 2) List comprehension containing birds common names. 3) List comprehension containing birds mean body mass. 4) Conventionl loops containing birds latin names. 5) Conventional loops containing birds common names. 4) Conventional loops containing birds mean body mass.
+  - File - Ic1.py: Script containing six short modules generated from a set list of birds with latin names, common names and mean body mass. 1) List comprehension containing birds latin names. 2) List comprehension containing birds common names. 3) List comprehension containing birds mean body mass. 4) Conventional loops containing birds latin names. 5) Conventional loops containing birds common names. 4) Conventional loops containing birds mean body mass.
   - File - Ic2.py: Script containing four modules. First two use list comprehension to pull high and low rainfall data. Second two modules serve the same function but using conventional loops.
   - File - dictionary.py: Takes list of tuples including species latin name and order. Converts these to keys (order) and values (species) and prints as dictionary list.
   - File - tuple.py: Takes tuple or tuples (bird species latin, common names and mass) and prints each tuple on a seperate line.
@@ -43,10 +43,12 @@ All work was completed used Mac OS Mojave version 10.14.6, Python 3.7.4_1 and th
   - File - debugme.py: Short script with erroneous function for use in debugging.
   - File - align_seqs.py: Takes two DNA sequences from csv file and saves best alignment with corresponding score to seperate txt file (.../Week2/Results/align_seq_result.txt).
   - File - oaks_debugme.py: Oak species search script, bugs removed. Includes doctest.
-  - File - test_oaks_debugme.py: Oak species search script with doctest for function.
   - File - align_seqs_fasta.py: Compares DNA sequences of two fasta files.
 
 # Data
  - File - testcsv.csv: Species data taked from TheMulQuaBio's data directory for manipulation in basic_csv.py script (../Week2/Code)
  - File - bodymass.csv: Species name and body mass data file output from basic_csv.py (../Week2/Code)
  - File - TestOaksData.csv: Oaks data for testing script (..Code/oaks_debugme.py)
+ - File - 407228326.fasta and 407228326.fasta: Fasta files for use in align_seqs_fasta.py
+ - File - align_seqs_data.csv: Seqence data for use in align_seqs.py
+ - File - JustOaksData.csv: Output data for oaks_debugme.py 

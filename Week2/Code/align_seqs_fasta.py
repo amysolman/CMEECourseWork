@@ -7,9 +7,6 @@ __appname__ = 'align_seqs_fasta.py'
 __author__ = 'Amy Solman (amy.solman19@imperial.ac.uk)'
 __version__ = '0.0.1'
 
-# Aware this script does not run as intendended
-# Difficulties integrating sys(argv) with the script
-
 import csv
 import sys
 

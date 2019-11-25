@@ -3,6 +3,8 @@
 # basic_io.R: A simple script to illustrate R input-output
 # Run line by line and check inputs, outputs, to understand what is happening
 
+#"""In shell Rscript basic_io.R will read in csv file, create new file, copy and append csv into new file.""" 
+
 MyData <- read.csv("../Data/trees.csv") # import with headers
 
 write.csv(MyData, "../Results/MyData.csv") # write it out as a new file

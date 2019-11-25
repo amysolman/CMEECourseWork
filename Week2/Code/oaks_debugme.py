@@ -24,10 +24,24 @@ import sys # to modularise functions within a script
 # part of the standard library within python - does lots of things!
 import doctest # to test arguments against a function
 
-#Define function
-def is_an_oak(name): # defines the function is_an_oak which will take the argument 'name'
-    """ Returns True if name is starts with 'quercus' """ 
-    return name.split()[0].lower() == 'quercus'
+
+def is_an_oak(name): # define a function
+    """ Returns True if name is starts with 'quercus'
+    Find whether a species is an oak or not.
+    doctest
+    >>> is_an_oak('Fraxinus excelsior')
+    False
+    
+    >>> is_an_oak('Pinus sylvestris')
+    False
+    
+    >>> is_an_oak('Quercus petraea')
+    True
+
+    """
+    return name.split()[0].lower() == 'quercus' # give me the variable in lowercase if it starts with 'quercs'
+
+
 
 def main(argv): # define's the main function that will take the argument value (argv)
 # argv is a list - first value is name of the value. Shows where you are in the file system
@@ -51,6 +65,8 @@ def main(argv): # define's the main function that will take the argument value (
     
 
     return 0
+
+doctest.testmod()
 
     
 if (__name__ == "__main__"):
