@@ -6,11 +6,11 @@
 
 rm(list=ls())
 len <- 2000
-setwd("/Users/amysolman/Documents/CMEECourseWork/Week6/Code")
+#setwd("/Users/amysolman/Documents/CMEECourseWork/Week6/Code")
 
-Haplotypes <- as.matrix(read.csv("../Data/mfumagal-genomics_and_bioinformatics-5f3653a066bc/Practicals/turtle.csv",
+Haplotypes <- as.matrix(read.csv("../Data/turtle.csv",
                                  stringsAsFactors = F, header = F, colClasses=rep("numeric", len)))
-Genotypes <- as.matrix(read.csv("../Data/mfumagal-genomics_and_bioinformatics-5f3653a066bc/Practicals/turtle.genotypes.csv",
+Genotypes <- as.matrix(read.csv("../Data/turtle.genotypes.csv",
                                 stringsAsFactors = F, header = F, colClasses = rep("numeric", len)))
 dim(Genotypes) #40 rows (individuals 0, 1 or 2) by 2000 polymorphic alleles
 

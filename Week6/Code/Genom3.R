@@ -48,14 +48,14 @@
 #"theta" using different estimators.
 
 rm(list=ls())
-setwd("/Users/amysolman/Documents/CMEECourseWork/Week6/Data")
+#setwd("/Users/amysolman/Documents/CMEECourseWork/Week6/Data")
 
 len <- 50000 #The number of basepairs 
 
 #Since the data is encoded as 0 and 1 it is better to store as a matrix
-North <- as.matrix(read.csv("../Data/mfumagal-genomics_and_bioinformatics-5f3653a066bc/Practicals/killer_whale_North.csv",
+North <- as.matrix(read.csv("../Data/killer_whale_North.csv",
                      stringsAsFactors = F, header = F, colClasses=rep("numeric", len)))
-South <- as.matrix(read.csv("../Data/mfumagal-genomics_and_bioinformatics-5f3653a066bc/Practicals/killer_whale_South.csv", 
+South <- as.matrix(read.csv("../Data/killer_whale_South.csv", 
                      stringsAsFactors=FALSE, header=FALSE, colClasses=rep("numeric", len)))
 
 ##########IT WAS NOT NECESSARY TO FIND THE POLYMORPHIC ALLELES BEFORE FINDING EFFECTIVE POPULATIONS SIZE##########

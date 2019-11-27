@@ -5,7 +5,7 @@
 
 rm(list=ls())
 
-data <- read.csv("/Users/amysolman/Documents/CMEECourseWork/Week6/Data/mfumagal-genomics_and_bioinformatics-5f3653a066bc/Practicals/bears.csv", stringsAsFactors=FALSE, colClasses=rep("character", 1000), header=FALSE)
+data <- read.csv("../Data/bears.csv", stringsAsFactors=FALSE, colClasses=rep("character", 1000), header=FALSE)
 
 dim(data)
 
@@ -132,7 +132,7 @@ for (i in 1:ncol(data)) {
   #frequency (of the second allele)
   freq <- length(which(data[,i]==alleles[2]))/nrow(data)
   #from the frequency, I can calculate the expected genotype counts under HWE
-  genotype_counts_expected <- c( (1-feq)^2, 2*freq*(1-freq), freq^2) * nsamples
+  genotype_counts_expected <- c( (1-freq)^2, 2*freq*(1-freq), freq^2) * nsamples
   #genotypes are Allele1/Allele1, Allele1/Allele2, Allele2/Allele2
   genotype_counts <- c(0, 0 , 0)
   for (j in 1:nsamples) {
@@ -168,7 +168,7 @@ for (i in nonHWE) {
   genotype_counts_expected <- c((1-freq)^2, 2*freq*(1-freq), freq^2) * nsamples
   #genotypes are Allele1/Allele1, Allele1/Allele2, Allele2/Allele2
   genotype_counts <- c(0, 0, 0)
-  for (j in 1:nsmaples) {
+  for (j in 1:nsamples) {
     #indexes of genotypes for individual j
   genotype_index <- c((j*2)-1, (j*2))
   #count the Allele2 instances
@@ -184,5 +184,5 @@ for (i in nonHWE) {
 }
 
 #plot
-hist(F)
-plot(F, type="h")
+#hist(F)
+#plot(F, type="h")

@@ -3,17 +3,17 @@
 #Genomics and Bioinformatics Day Two
 
 rm(list=ls())
-setwd("/Users/amysolman/Documents/CMEECourseWork/Week6/Data")
+#setwd("/Users/amysolman/Documents/CMEECourseWork/Week6/Data")
 
 #Load the three species genomic data files
 
-WestBand <- read.csv("../Data/mfumagal-genomics_and_bioinformatics-5f3653a066bc/Practicals/western_banded_gecko.csv", 
+WestBand <- read.csv("../Data/western_banded_gecko.csv", 
                  stringsAsFactors=FALSE, colClasses=rep("character", 1000), header=FALSE)
 dim(WestBand)
-BentToed <- read.csv("../Data/mfumagal-genomics_and_bioinformatics-5f3653a066bc/Practicals/bent-toed_gecko.csv", 
+BentToed <- read.csv("../Data/bent-toed_gecko.csv", 
                               stringsAsFactors=FALSE, colClasses=rep("character", 1000), header=FALSE)
 dim(BentToed)
-Leopard <- read.csv("../Data/mfumagal-genomics_and_bioinformatics-5f3653a066bc/Practicals/leopard_gecko.csv", 
+Leopard <- read.csv("../Data/leopard_gecko.csv", 
                      stringsAsFactors=FALSE, colClasses=rep("character", 1000), header=FALSE)
 dim(Leopard)
 
@@ -108,7 +108,7 @@ print(divergence_rate_BT_L) # 0.0091
 #divided by 2 x number of years since divergence
 
 mutation_rate_WB_L_per_my <- divergence_rate_WB_L/(2*30)
-print(mutation_rate_WB_L)
+print(mutation_rate_WB_L_per_my)
 
 mutation_rate_BT_L_per_my <- divergence_rate_BT_L/(2*30)
 print(mutation_rate_BT_L_per_my)

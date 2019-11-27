@@ -1,7 +1,0 @@
-\babel@toc {UKenglish}{}
-\beamer@sectionintoc {1}{Alleles and genotypes}{3}{0}{1}
-\beamer@sectionintoc {2}{Genetic drift}{58}{0}{2}
-\beamer@sectionintoc {3}{Mutation}{78}{0}{3}
-\beamer@sectionintoc {4}{Coalescence theory}{96}{0}{4}
-\beamer@sectionintoc {5}{Population subdivision}{151}{0}{5}
-\beamer@sectionintoc {6}{Demographic inference}{174}{0}{6}
