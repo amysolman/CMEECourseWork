@@ -142,7 +142,7 @@ uk_eire$area <- set_units(uk_eire$area, 'km^2')
 uk_eire$length <- set_units(uk_eire$length, 'km')
 
 #And it won't let you make silly errors like turning a length into a weight
-uk_eire$area <- set_unit(uk_eire, 'kg')
+#uk_eire$area <- set_unit(uk_eire, 'kg')
 
 #Or you can simply convert the units version to simple numbers 
 uk_eire$length <- as.numeric(uk_eire$length)

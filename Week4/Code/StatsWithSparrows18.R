@@ -6,9 +6,7 @@
 
 rm(list=ls())
 
-setwd("/Users/amysolman/Documents/SparrowStats/HandOutsandData'18")
-
-a <- read.table("ObserverRepeatability.txt", header=T)
+a <- read.table("../Data/ObserverRepeatability.txt", header=T)
 
 #We want to find out how much the measurement of tarsus and bill
 #width depends on different observers. We will use the ANOVA method to do that.

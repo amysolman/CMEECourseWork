@@ -8,10 +8,9 @@
 # Does hind leg length differ within sexes?
 
 rm(list=ls())
-setwd("/Users/amysolman/Documents/CMEECourseWork/Week5/StatisticsR")
 
 {#modifying the data for analysis
-a <- read.csv("rodents.csv", header=T, stringsAsFactors =F)
+a <- read.csv("../Data/rodents.csv", header=T, stringsAsFactors =F)
 head(a)
 str(a)
 
