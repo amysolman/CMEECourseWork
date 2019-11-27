@@ -3,7 +3,8 @@
 
 rm = (list=ls())
 
-setwd("/Users/amysolman/Documents/SparrowStats") # re-set working directory
+#setwd("/Users/amysolman/Documents/SparrowStats") # re-set working directory
+d <- read.table("../Data/SparrowSize.txt", header = TRUE)
 
 str(d)
 head(d)
@@ -27,17 +28,17 @@ hist(d$Tarsus, breaks=100, col="grey")
 #breaks in the data show the resolution (breaks) is greater than the resolution of the 
 #measuring device
 
-install.packages("modeest") #install doesn't work
-require(modeest)
+# install.packages("modeest") #install doesn't work
+# require(modeest)
 
-mlv(d$Tarsus) #should be in modeest package, this wouldn't work anyway
+#mlv(d$Tarsus) #should be in modeest package, this wouldn't work anyway
 #because we have to recode the dataset to deal with NA values
 
 d2 <- subset(d, d$Tarsus!='NA')
 length(d$Tarsus)
 length(d2$Tarsus)
 
-mlv(d2$Tarsus) #this would give us a mode
+#mlv(d2$Tarsus) #this would give us a mode
 
 #or we can use this function...
 
@@ -81,7 +82,7 @@ hist(znormal, breaks = 100)
 summary(znormal)
 
 qnorm(c(0.025, 0.975))
-pnorm(.Last.value)
+#pnorm(.Last.value)
 
 par(mfrow = c(1, 2)) #make a multi panel graph with 1 row and two columns
 hist(znormal, breaks = 100) # make a histogram of znormal with 100 breaks

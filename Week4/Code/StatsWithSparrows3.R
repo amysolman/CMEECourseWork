@@ -4,7 +4,7 @@
 
 rm = (list=ls())
 
-setwd("/Users/amysolman/Documents/SparrowStats") # re-set working directory
+d <- read.table("../Data/SparrowSize.txt", header = TRUE) # re-set working directory
 
 str(d)
 
@@ -15,7 +15,7 @@ hist(d$Bill)
 hist(d$Wing)
 hist(d$Mass)
 hist(d$Sex)
-hist(d$Sex.1)
+#hist(d$Sex.1)
 
 # How to draw Poisson distribution
 

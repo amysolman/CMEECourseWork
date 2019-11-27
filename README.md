@@ -18,4 +18,8 @@ Week 3
 
 Biological computing in R. Including: Variable types, data structures, manipulating data, control flow tools, vectorisation, data management and visualisation.
 
+Week 4
+
+Statistics in R. Including: Basic statistics for ecology and evolution, with a focus on applicability. Mostly parametric tests (descriptive statistics, t-test, ANOVA, correlations, linear models, hypothesis testing).
+
 

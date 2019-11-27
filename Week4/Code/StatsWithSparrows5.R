@@ -9,8 +9,7 @@
 
 rm(list=ls())
 
-setwd("/Users/amysolman/Documents/SparrowStats/HandOutsandData'18")
-d <- read.table("SparrowSize.txt", header = TRUE)
+d <- read.table("../Data/SparrowSize.txt", header = TRUE)
 
 boxplot(d$Mass~d$Sex.1, col=c("red", "blue"), ylab="Body mass (g)")
 

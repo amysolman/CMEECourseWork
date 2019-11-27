@@ -1,6 +1,8 @@
 # Amy Solman amy.solman19@imperial.ac.uk
 # 18th October 2019
 # TAutoCorr.R
+# Autocorrelation in weather: Are temperatures of one year significantly correlated
+#with the next year (successive years), across years in a given location?
 
 # Null hypothesis: There is no significant correlation between the temperatures of 
 # one year with the next year in a given location (Key West)

@@ -1,6 +1,8 @@
 # Amy Solman amy.solman19@imperial.ac.uk
 # 18th October 2019
 # Ricker.R
+# Run the Ricker model, a classic discrete population model
+#introduced in 1954 by Ricker to model recruitment of stock in fisheries.
 
 rm(list=ls()) 
 

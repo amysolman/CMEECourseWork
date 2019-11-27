@@ -6,9 +6,9 @@
 
 rm = (list=ls())
 
-getwd() # check which working directory we're in
-setwd("/Users/amysolman/Documents/SparrowStats") # re-set working directory
-getwd() # check what we did worked
+# getwd() # check which working directory we're in
+# setwd("/Users/amysolman/Documents/SparrowStats") # re-set working directory
+# getwd() # check what we did worked
 
 2*2+1
 
@@ -69,11 +69,11 @@ pi
 
 ##########LECTURE TWO##########
 
-setwd("/Users/amysolman/Documents/SparrowStats")
+#setwd("/Users/amysolman/Documents/SparrowStats")
 
-d <- read.table("/Users/amysolman/Documents/SparrowStats/HandOutsandData'18/SparrowSize.txt", header=TRUE)
-str(d)
-head(d)
+d <- read.table("../Data/SparrowSize.txt", header=TRUE)
+# str(d)
+# head(d)
 
 averages <- c(1, 2, 3, 3, 3, 4, 5, 5, 5, 20)
 
@@ -88,9 +88,9 @@ getmode <- function(v) {
 }
 
 result <- getmode(averages)
-print(result)
-
-print(d)
+# print(result)
+# 
+# print(d)
 
 
 
@@ -114,7 +114,7 @@ hist(d$Bill, breaks=60)
 hist(d$Mass, breaks=60)
 hist(d$Wing, breaks=60) 
 
-install.packages("modeest")
+#install.packages("modeest")
 
 
 

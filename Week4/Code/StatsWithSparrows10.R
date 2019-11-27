@@ -6,8 +6,7 @@
 
 rm(list=ls()) #clear environment
 
-setwd("/Users/amysolman/Documents/SparrowStats/HandOutsandData'18") #set working directory
-d <- read.table("SparrowSize.txt", header = TRUE) #read in data
+d <- read.table("../Data/SparrowSize.txt", header = TRUE)
 str(d) #structure of data
 
 #plot mass/tarsus scatterplot with labels

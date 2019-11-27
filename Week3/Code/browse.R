@@ -1,6 +1,8 @@
 # Amy Solman amy.solman19@imperial.ac.uk
 # 18th October 2019
 # browse.R
+#Inserts a breakpoint within the script, to then step through
+#the code
 
 Exponential <- function(N0 = 1, r = 1, generations = 10){
   # Runs a simulation of exponential growth

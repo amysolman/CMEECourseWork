@@ -1,7 +1,7 @@
 # Amy Solman amy.solman19@imperial.ac.uk
 # 17th October 2019
-# TreeHeigh.R: This function calculates heights of trees given distance of each tree
-# from its case and angle to its top, using the trigonometric formula
+# TreeHeigh.R: This function calculates heights of trees given distance to each tree
+# base and angle to its top, using the trigonometric formula
 #
 # height = distance + tan(radians)
 #

@@ -1,6 +1,6 @@
 # CMEE README WEEK 3
 
-Biological Computing in R and Data management, exploration and visualization (21/10/19 - 25/10/19)
+Biological Computing in R and Data management, exploration and visualization (14/10/19 - 18/10/19)
 This week we focused on biological computing and data management in R. Topics included:
  - R basics
  - Variable types

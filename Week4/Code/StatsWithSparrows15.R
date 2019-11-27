@@ -6,8 +6,8 @@
 
 rm(list=ls())
 
-setwd("/Users/amysolman/Documents/SparrowStats/HandOutsandData'18")
-daphnia <- read.delim("daphnia.txt")
+
+daphnia <- read.delim("../Data/daphnia.txt")
 summary(daphnia)
 head(daphnia)
 
@@ -128,7 +128,7 @@ plot(daphniaModHSD)
 par(mfrow=c(2,2))
 plot(daphniaMod)
 
-timber <- read.delim("timber.txt")
+timber <- read.delim("../Data/timber.txt")
 summary(timber)
 
 par(mfrow = c(2,2))

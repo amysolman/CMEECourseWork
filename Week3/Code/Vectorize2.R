@@ -1,7 +1,8 @@
 # Amy Solman amy.solman19@imperial.ac.uk
 # 18th October 2019
 # Vectorize2.R
-# Runs the stochastic (with gaussian fluctuations) Ricker Eqn .
+# Runs the stochastic (with gaussian fluctuations) Ricker Eqn
+# followed by a vectorized version of the same equation
 
 rm(list=ls()) # remove all objects from the current workspace
 
@@ -33,10 +34,6 @@ stochrick<-function(p0=runif(1000,.5,1.5),r=1.2,K=1,sigma=0.2,numyears=100) # as
 print("Stochastic Ricker takes:")
 print(system.time(res2<-stochrick()))
 
-# Amy Solman amy.solman19@imperial.ac.uk
-# 18th October 2019
-# Vectorize2.R
-# Runs the stochastic (with gaussian fluctuations) Ricker Eqn .
 
 rm(list=ls()) # remove all objects from the current workspace
 
