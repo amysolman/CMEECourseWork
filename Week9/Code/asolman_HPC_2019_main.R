@@ -291,6 +291,46 @@ question_16 <- function()  {
 # Question 17
 cluster_run <- function(speciation_rate, size, wall_time, interval_rich, interval_oct, burn_in_generations, output_file_name)  {
   
+  community <- init_community_min(size) #set initial community
+  j <- 1 #initialise value for j for appending to lists
+  i <- 1 #initialise value of i for counting number of generations
+  species_richness_list <- list() #create empty list for species_richness
+  species_octaves_list <- list() #create empty list for species_octaves
+  
+  ptm <- proc.time()[3] #set start of timer
+  
+  while (proc.time()[3] - ptm < wall_time*60){ #while the third element in proc.time minus starting time is less than wall_time
+    
+    community <- neutral_generation_speciation(community, speciation_rate)#run the simulation
+    
+    if (i <= burn_in_generations) { #if the number of loops is less/equal to the number of burn_generations
+      if (i %% interval_rich == 0) { #if generation number divided by interval_rich has no remainder 
+        a <- species_richness(community) #save species richness of the current community to a
+        species_richness_list[[as.character(j)]] <- a #append a to species_richness_list
+      }
+    }
+    
+    if (i %% interval_oct == 0) { #if generation number divided by interval_oct has no remainder
+      c <- species_abundance(community) #save species abundance of current community to a
+      d <- octaves(c) #calculate octaves
+      species_octaves_list[[as.character(j)]] <- d #append octaves to species_octave_list
+      
+    }
+    
+    j <- j + 1 #add 1 to j to update count of loops (generations)
+    i <- i + 1 #add 1 to i to update count of loops (generations)
+    
+  }
+  
+  #save to file
+  
+  total_time <- proc.time()[3] - ptm
+  
+  save(community, species_richness_list, species_octaves_list, total_time, 
+       speciation_rate, size, interval_oct, interval_rich, burn_in_generations,
+       file = output_file_name)
+  
+  
 }
 
 # Questions 18 and 19 involve writing code elsewhere to run your simulations on the cluster
