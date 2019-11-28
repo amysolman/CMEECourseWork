@@ -1,3 +1,6 @@
+# Amy Solman amy.solman19@imperial.ac.uk
+# 20th November 2019
+# plot_analysis.R
 #Final plotting and analysis scipt
 
 #Next, you can import the results from the previous step and plot every curve with the two 

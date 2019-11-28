@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# Date: 14th November 2019
+
+"""Blackbird practical for Python II"""
+
+__appname__ = 'blackbirds.py'
+__author__ = 'Amy Solman (amy.solman19@imperial.ac.uk'
+__version__ = '0.0.1'
 import re
 
 # Read the file (using a different, more python 3 way, just for fun!)
@@ -6,8 +14,7 @@ import re
 
 f = open('../Data/blackbirds.txt', 'r')
 blackbirds = f.read()
-
-
+print(blackbirds)
 # replace \t's and \n's with a spaces:
 #text = text.replace('\t',' ')
 #text = text.replace('\n',' ')

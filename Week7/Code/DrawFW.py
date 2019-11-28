@@ -1,3 +1,12 @@
+#!/usr/bin/env python3
+# Date: 13th November 2019
+
+"""Script generating synthetic food web"""
+
+__appname__ = 'DrawFW.py'
+__author__ = 'Amy Solman (amy.solman19@imperial.ac.uk'
+__version__ = '0.0.1'
+
 import networkx as nx
 import scipy as sc 
 import matplotlib.pylab as p 

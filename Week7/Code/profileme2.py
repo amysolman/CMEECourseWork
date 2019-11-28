@@ -1,3 +1,12 @@
+#!/usr/bin/env python3
+# Date: 11th November 2019
+
+"""Script profiling functions"""
+
+__appname__ = 'profileme2.py'
+__author__ = 'Amy Solman (amy.solman19@imperial.ac.uk'
+__version__ = '0.0.1'
+
 def my_squares(iters):
     out = [i ** 2 for i in range(iters)] #loops has been converted to list comprehension
     return out

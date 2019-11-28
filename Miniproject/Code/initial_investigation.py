@@ -1,3 +1,12 @@
+#!/usr/bin/env python3
+# Date: 19th November 2019
+
+"""Miniproject initial investigation script"""
+
+__appname__ = 'initial_investigation.py'
+__author__ = 'Amy Solman (amy.solman19@imperial.ac.uk'
+__version__ = '0.0.1'
+
 #########Python using Population Growth Data#########
 
 #Some imports to explore the datasets

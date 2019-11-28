@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# Date: 11th November 2019
+
+"""Script for profiling functions/"""
+
+__appname__ = 'profileme.py'
+__author__ = 'Amy Solman (amy.solman19@imperial.ac.uk'
+__version__ = '0.0.1'
 
 def my_squares(iters): #create a function that takes the argument 'iters'
     out = [] #create empty vector

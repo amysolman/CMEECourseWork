@@ -11,6 +11,8 @@ import scipy as sc
 
 import scipy.integrate as integrate
 
+import matplotlib.pylab as p
+
 #Now define a function that returns the growth rate of consumer and resource population at any give time step.
 def dCR_dt(pops, t=0):
 
@@ -61,8 +63,6 @@ infodict['hu']
 #To visualize the results of your numerical simulations in Python (or for data exploration/analyses),
 #you can use matplotlib which uses Matlab like plotting syntax.
 #First let's import the package:
-
-import matplotlib.pylab as p
 
 #Now open an empty figure object (analogous to an R graphics object)
 

@@ -1,3 +1,12 @@
+#!/usr/bin/env python3
+# Date: 19th November 2019
+
+"""Miniproject data preparation script"""
+
+__appname__ = 'data_prep.py'
+__author__ = 'Amy Solman (amy.solman19@imperial.ac.uk'
+__version__ = '0.0.1'
+
 #Data Preparation script
 
 #This script imports the data and prepares it for NLLS fitting

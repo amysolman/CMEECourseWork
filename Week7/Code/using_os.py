@@ -1,4 +1,11 @@
-""" This is blah blah"""
+#!/usr/bin/env python3
+# Date: 15th November 2019
+
+"""Subprocess practical for Python II"""
+
+__appname__ = 'using_os.py'
+__author__ = 'Amy Solman (amy.solman19@imperial.ac.uk'
+__version__ = '0.0.1'
 
 # Use the subprocess.os module to get a list of files and directories 
 # in your ubuntu home directory 

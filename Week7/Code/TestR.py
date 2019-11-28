@@ -1,3 +1,12 @@
+#!/usr/bin/env python3
+# Date: 14th November 2019
+
+"""Using subprocess to use R and python together"""
+
+__appname__ = 'TestR.py'
+__author__ = 'Amy Solman (amy.solman19@imperial.ac.uk'
+__version__ = '0.0.1'
+
 #RUNNING R
 #R is likely an importatn part of your project's analusis and data visualization components in particular
 #For example for statistical analyses and pretty plotting (ggplot2)

@@ -1,4 +1,12 @@
-#Runs fmr.R to generate the desired result
+#!/usr/bin/env python3
+# Date: 15th November 2019
+
+"""Runs fmr.R to generate desired pdf plot"""
+
+__appname__ = 'run_fmr_R.py'
+__author__ = 'Amy Solman (amy.solman19@imperial.ac.uk'
+__version__ = '0.0.1'
+
 
 import subprocess
 

@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# Date: 11th November 2019
+
+"""Script for timing functions"""
+
+__appname__ = 'timeitme.py'
+__author__ = 'Amy Solman (amy.solman19@imperial.ac.uk'
+__version__ = '0.0.1'
 ###########################################################
 # loops vs. list comprehension: which is faster?
 ###########################################################
