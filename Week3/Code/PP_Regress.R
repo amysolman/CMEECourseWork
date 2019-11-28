@@ -7,6 +7,9 @@
 #combination — not a multivariate linear model with these two as separate covariates!
 
 require(ggplot2)
+require(dplyr)
+install.packages("broom")
+require(broom)
 
 ##########OPEN DATASET TO READ - PUT INTO DATAFRAME##########
 MyDF <- read.csv("../Data/EcolArchives-E089-51-D1.csv")
@@ -24,16 +27,8 @@ pdf("../Results/PP_Regress.pdf", 5, 9)
 print(p)
 dev.off()
 
-
-
 My_Data <- MyDF[c("Predator.lifestage", "Type.of.feeding.interaction", "Predator.mass", "Prey.mass")]
 head(My_Data)
-
-require(dplyr)
-
-install.packages("broom")
-
-require(broom)
 
 My_Data %>%
   group_by(Type.of.feeding.interaction, Predator.lifestage) %>%

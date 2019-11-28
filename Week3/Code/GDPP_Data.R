@@ -1,11 +1,12 @@
 # Amy Solman amy.solman19@imperial.ac.uk
 # 22nd October 2019
 # Mapping.R
-
+rm(list=ls())
+graphics.off()
 load("../Data/GPDDFiltered.RData")
 gpdd
 
-install.packages("maps")
+#install.packages("maps")
 
 require(maps)
 
