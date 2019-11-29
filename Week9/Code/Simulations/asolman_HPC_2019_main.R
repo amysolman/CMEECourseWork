@@ -344,38 +344,18 @@ process_cluster_results <- function()  {
 
 # Question 21
 question_21 <- function()  {
-  x <- list()
-  x[1] <- log(8)/log(3)
-  x[2] <- "To find fractal dimensions we divide the log(number of pieces we are dividing into) by the log(magnification factor)." 
-  return(x)
+  return("type your written answer here")
 }
 
 # Question 22
 question_22 <- function()  {
-  x <- list()
-  x[1] <- log(24)/log(3)
-  x[2] <- "To find this fractal dimension we divided the log(number of pieces = 8x3) by log(magnification factor)."
-  return(x)
+  return("type your written answer here")
 }
 
 # Question 23
 chaos_game <- function()  {
   # clear any existing graphs and plot your graph within the R window
-  graphics.off()
-  plot(1, type="n", xlab="", ylab="", xlim=c(0, 4), ylim=c(0, 4), cex=0.2)
-  A <- c(0,0)
-  B <- c(3,4)
-  C <- c(4,1)
-  ABC <- rbind(A=A, B=B, C=C)
-  X <- as.numeric(A)
-  points(X[1], X[2], cex = 0.2) #plot X
-  
-  for (i in 1:10000) {
-    p <- as.numeric(ABC[sample(nrow(ABC), 1), ])
-    x <- ((x + p[1])/2)
-    y <- ((y + p[2])/2)
-    points(x, y, cex = 0.2) #plot X
-  }
+  return("type your written answer here")
 }
 
 # Question 24
