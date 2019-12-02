@@ -121,32 +121,21 @@ richness_5000 <- l1[lengths(l1) >  0]
   return(combined_results)
   
   
+  graphics.off()
+  plot(1, type="n", xlab="", ylab="", xlim=c(0, 4), ylim=c(0, 4), cex=0.2)
   
-  chaos_game <- function()  {
-    # clear any existing graphs and plot your graph within the R window
-    graphics.off()
-    plot(1, type="n", xlab="", ylab="", xlim=c(0, 3), ylim=c(0, 3), cex=0.2)
-    A <- c(0,0)
-    B <- c(3,4)
-    C <- c(4,1)
-    ABC <- rbind(A=A, B=B, C=C)
-    X <- as.numeric(A)
-    points(X[1], X[2], cex = 0.2) #plot X
-    
-    for (i in 1:10000){
-      p <- as.numeric(ABC[sample(nrow(ABC), 1), ]) 
-      x <- 0.5*(p[1]-X[1])
-      y <- 0.5*(p[2]-X[2])
-      points(x, y, cex = 0.2) #plot X
-      
-    for (i in 1:10000) {
-      p <- as.numeric(ABC[sample(nrow(ABC), 1), ]) 
-      x <- 0.5*(p[1]-x)
-      y <- 0.5*(p[2]-y)
-      points(x, y, cex = 0.2) #plot X
-      }
-    
-    return("type your written answer here")
+  turtle <- function(start_position, direction, length)  {
+    points(start_position[1], start_position[2], cex = 0.2) #start position
+    # add length to 
+    start_position <- c(1,2)
+    x <- start_position[1]
+    y <- start_position[2]
+    atan2(y, x)
+    return() # you should return your endpoint here.
   }
+  
+  
+  
+
   
 
