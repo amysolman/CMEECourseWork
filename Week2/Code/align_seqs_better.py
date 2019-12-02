@@ -90,28 +90,30 @@ def calculate_score(s1, s2, l1, l2, startpoint):
 my_best_align = None
 my_best_score = -1
 
-f = open('../Results/align_seq_result_better.p', 'wb')
+#f = open('../Results/align_seq_result_better.p', 'wb')
+
+results = []
 
 for i in range(l1): # Note that you just take the last alignment with the highest score
     z = calculate_score(s1, s2, l1, l2, i)
     if z >= my_best_score:
         my_best_align = "." * i + s2 # think about what this is doing!
-        pickle.dump(my_best_align, f)
         my_best_score = z 
-        pickle.dump(my_best_score, f)
+        results.append(my_best_align)
+        results.append(my_best_score)
 print(my_best_align)
 print(s1)
 print("Best score:", my_best_score)
 
 #f = open('../Results/align_seq_result_fasta.txt', 'w')
 #f.write(str(my_best_align) + "\n" + str(s1) + "\n" + str(my_best_score))
-f.close()
+#f.close()
 
-f = open('../Results/align_seq_result_better.p','rb')
-total_aligns = pickle.load(f)
-f.close()
+#f = open('../Results/align_seq_result_better.p','rb')
+#total_aligns = pickle.load(f)
+#f.close()
 
-print(total_aligns)
+print(results)
 
 def main(argv):
     print(fasta_align('../Data/407228326.fasta', '../Data/407228412.fasta'))

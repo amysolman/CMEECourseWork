@@ -14,18 +14,22 @@ load("../Data/KeyWestAnnualMeanTemperature.Rdata") #load script
 head(ats) 
 
 # There are no missing values in the data set so 'na.rm' and 'use' aren't needed
-
-plot(ats$Year, ats$Temp) # scatter plot of year (x-axis) and temp(y-axis)
+fit <- lm(Year~Temp, data = ats)
+pdf("../Results/TAutoPlot1.pdf")
+plot(ats$Year, ats$Temp, main = "Mean temperature per year in Key West, Florida",
+     xlab = "Year", ylab = "Temperature (°C)", abline(fit, col = "blue")) 
+dev.off()
+# scatter plot of year (x-axis) and temp(y-axis)
 # Visual assessment shows weak positive correlation between temperature and year
 
 # Get the correlation coefficientthen store it
 # Use autocorrelation/lagged correlations
 # First create two vecotrs each with length n-1 such that
 # the rows correspond to (x[t], x[t-1]) pairs or us
-x_t0 <- ats$Temp[-1]
-x_t1 <- ats$Temp[-100]
+x_t0 <- ats$Temp[-1] # Temps starting from the second
+x_t1 <- ats$Temp[-100] #Temps starting from the first
 head(cbind(x_t0, x_t1)) # Confirm that these vectors are the right pairs
-plot(x_t0, x_t1) # plot the vectors
+plot(x_t0, x_t1)
 correlation <- cor(x_t0, x_t1) # Compute the correlation coefficient 
 # and store it
 correlation
