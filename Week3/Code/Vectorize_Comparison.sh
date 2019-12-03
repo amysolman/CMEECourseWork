@@ -1,5 +1,7 @@
 #!/bin/bash
-#Bash script to run and time all four vectorization scripts 
+#Author: Amy Solman amy.solman@imperial.ac.uk
+#Script: VectorizeComparison.sh
+#Description:Bash script to run and time all four vectorization scripts 
 
 echo "Script comparison is beginning!"
 
