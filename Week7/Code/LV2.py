@@ -18,7 +18,9 @@ def dCR_dt(pops, t=0):
 
     R = pops[0]
     C = pops[1]
-    dRdt = r * R - a * R * C
+    dRdt_1 = r * R - a * R * C
+    K = r * R * ( 1 - R) / dRdt_1
+    dRdt = r * R * (1 - R /  K) - a * R * C
     dCdt = -z * C + e * a * R * C
 
     return sc.array([dRdt, dCdt])
@@ -36,12 +38,24 @@ pops, infodict = integrate.odeint(dCR_dt, RC0, t, full_output = True)
 
 f1 = p.figure()
 p.plot(t, pops[:,0], 'g-', label='Resource density') #Plot
-p.plot(t, pops[:,1], 'b-', label = 'Consumer densioty')
+p.plot(t, pops[:,1], 'b-', label = 'Consumer density')
 p.grid()
 p.legend(loc='best')
 p.xlabel('Time')
 p.ylabel('Population density')
 p.title('Consumer-Resource population dynamics')
+textstr = 'r=', r, 'a=', a, 'z=', z, 'e=', e,
+props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+p.text(0.05, 45, textstr, fontsize=12,
+        verticalalignment='top', bbox=props)
+Final_Pred_Pop = pops[:,0][-1]
+Final_Prey_Pop = pops[:,1][-1]
+textstr2 = '\n'.join((
+    r'$Final Pred Pop=%.2f$' % (Final_Pred_Pop, ),
+    r'$Final Prey Pop=%.2f$' % (Final_Prey_Pop, )))
+props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+p.text(0.05, 40, textstr2, fontsize=12,
+        verticalalignment='top', bbox=props)
 
 f1.savefig('../results/LV_model3.pdf') #save figure
 
@@ -51,4 +65,16 @@ p.grid()
 p.xlabel('Resource density')
 p.ylabel('Consumer density')
 p.title('Consumer-Resource population dynamics')
+textstr = 'r=', r, 'a=', a, 'z=', z, 'e=', e
+props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+p.text(5, 20, textstr, fontsize=12,
+        verticalalignment='top', bbox=props)
+Final_Pred_Pop = pops[:,0][-1]
+Final_Prey_Pop = pops[:,1][-1]
+textstr2 = '\n'.join((
+    r'$Final Pred Pop=%.2f$' % (Final_Pred_Pop, ),
+    r'$Final Prey Pop=%.2f$' % (Final_Prey_Pop, )))
+props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+p.text(5, 18, textstr2, fontsize=12,
+        verticalalignment='top', bbox=props)
 f2.savefig('../results/LV_model4.pdf')

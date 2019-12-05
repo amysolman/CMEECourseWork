@@ -124,14 +124,67 @@ richness_5000 <- l1[lengths(l1) >  0]
   graphics.off()
   plot(1, type="n", xlab="", ylab="", xlim=c(0, 4), ylim=c(0, 4), cex=0.2)
   
+  
+  
+  
+  # Question 24
+  #Create a function turtle in R to draw a line of a given length from a given point (defined as a vector)
+  #and in a given direction. So turtle will have three inputs: start_position, direction (measured in radians, 
+  #not degrees) and length. As well as drawing the line, turtle should return the end point of the line
+  #it just drew as a vector. Turtle should not open the plot, it should just draw the line on an already open plot.
+  #(Hint: you need to use sin and cos).
+  
+  radians <- degrees * pi / 180 # applies 'degrees' multiplied by pie divided by 180 to radians
+  #there are two radians in 360 degrees
+  
+  #first let's open a plot to test on:
+  plot(1, type="n", xlab="", ylab="", xlim=c(-4, 4), ylim=c(-4, 4), cex=0.2)
+  
+  turtle(start_position = c(1,1), direction = 0.5, length = 2)
+  
   turtle <- function(start_position, direction, length)  {
-    points(start_position[1], start_position[2], cex = 0.2) #start position
-    # add length to 
-    start_position <- c(1,2)
-    x <- start_position[1]
-    y <- start_position[2]
-    atan2(y, x)
-    return() # you should return your endpoint here.
+    #start position plus lenght plus direction = new point
+    x0 <- start_position[1]
+    y0 <- start_position[2]
+    points(x0,y0)
+    
+    x1 <- length*cos(direction) + x0
+    y1 <- length*sin(direction) + y0
+    points(x1,y1)
+    endpoint <- c(x1,y1)
+    #draw a line from position 1 to position 2
+    segments(x0, y0, x1 = x1, y1 = y1, col = 'blue')
+
+    return(endpoint) # you should return your endpoint here.
+  }
+  
+  #Now create another function elbow that calls turtle twice to draw a pair 
+  #of lines that join together with a given angle between them. As with turtle, 
+  #it should not open a new plot and should assume a suitable plot is already open.
+  #The function elbow should accept as an input: the starting point, direction 
+  #and length of the first line. The second point should start at the end point of the first line, 
+  #have a direction that is 45 degrees (pi*/4 radians) to the right of that first line and have 
+  #a length that is 0.95 times the length of the first line
+  
+  plot(1, type="n", xlab="", ylab="", xlim=c(-2, 8), ylim=c(0, 8), cex=0.2)
+  
+
+  
+  spiral(start_position = c(1,1), direction = 0.5, length = 2)
+  
+
+  
+  
+
+  
+  # Question 26
+  spiral <- function(start_position, direction, length)  {
+    
+    first_line <- turtle(start_position, direction, length)
+    
+    second_line <-spiral(start_position = first_line, direction = direction + (pi/4), length = length*0.95)
+    
+    return("type your written answer here")
   }
   
   

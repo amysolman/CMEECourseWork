@@ -14,16 +14,16 @@ import scipy.integrate as integrate
 import matplotlib.pylab as p
 
 #Now define a function that returns the growth rate of consumer and resource population at any give time step.
-def dCR_dt(pops, t=0):
+def dCR_dt(pops, t=0): #start with the pops and time at 0
 
-    R = pops[0]
-    C = pops[1]
-    dRdt = r * R - a * R * C
-    dCdt = -z * C + e * a * R * C
+    R = pops[0] #resource population
+    C = pops[1] #consumer population
+    dRdt = r * R - a * R * C #change in resource pop over time = growth rate of resource * resource pop - search rate for resource * resource pop * consumer pop 
+    dCdt = -z * C + e * a * R * C #change in consumer pop over time = minus mortality rate * consumer pop + consumer efficiency * serach rate for resource * resource pop * consumer pop
 
-    return sc.array([dRdt, dCdt])
+    return sc.array([dRdt, dCdt]) #return an array of the changes of both pops
 
-type(dCR_dt)
+type(dCR_dt) #this is a function
 
 #So dCR_dt has been stored as a function object in teh current Python session, all ready to go.
 #Now assign some parameter values:
@@ -35,20 +35,18 @@ e = 0.75 #consumers efficiency converting resource to consumer biomass
 
 #Define the time vector; let's integrate from time point 0 to 15, using 1000 sub-divisions of time:
 
-t = sc.linspace(0, 15, 1000) #sc.linspace = return evenly spaced numbers over a
-#specified interval from x to y with z subdivisions
-#Note that the units of time are arbitrary here.
+t = sc.linspace(0, 15, 1000) #t = 1000 evenly spaced numbers between 0 and 15
+
 #Set the initial conditions for the two populations (10 resources and 5 consumers per unit area)
 #and convert the two into an array (because our dCR_dt function takes an array as input)
-
-R0 = 10
-C0 = 5
-RC0 = sc.array([R0, C0])
+R0 = 10 #initial resource pop
+C0 = 5 #initial consumer pop
+RC0 = sc.array([R0, C0]) #populations as an array (so we can add to these with our function)
 
 #Now numerically integrate this system forward from those starting conditions:
-
-pops, infodict = integrate.odeint(dCR_dt, RC0, t, full_output = True)
+pops, infodict = integrate.odeint(dCR_dt, RC0, t, full_output = True) #run our function with the starting pop array and t 0-15
 pops
+
 #So pops contains the result (the population trajectories).
 #Also check what's in infodict (it's a dictionary with additional information).
 type(infodict)

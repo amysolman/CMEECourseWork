@@ -380,18 +380,38 @@ chaos_game <- function()  {
 
 # Question 24
 turtle <- function(start_position, direction, length)  {
-
-  return() # you should return your endpoint here.
+  #start position plus lenght plus direction = new point
+  x0 <- start_position[1]
+  y0 <- start_position[2]
+  
+  x1 <- length*cos(direction) + x0
+  y1 <- length*sin(direction) + y0
+  endpoint <- c(x1,y1)
+  #draw a line from position 1 to position 2
+  segments(x0, y0, x1 = x1, y1 = y1, col = 'blue')
+  
+  return(endpoint) # you should return your endpoint here.
 }
 
 # Question 25
 elbow <- function(start_position, direction, length)  {
   
+  first_line <- turtle(start_position, direction, length)
+  
+  second_line <-turtle(start_position = first_line, direction = (pi/4), length = length*0.95)
+  
 }
 
 # Question 26
 spiral <- function(start_position, direction, length)  {
-  return("type your written answer here")
+  
+  first_line <- turtle(start_position, direction, length)
+  
+  second_line <-spiral(start_position = first_line, direction = direction + (pi/4), length = length*0.95)
+  
+  x <- "This function uses turtle to draw the first line, then calls itself the draw proceeding lines from the last point, with direction angle + new angle, with gradually decreasing length."
+  
+  return(x) #get return to work
 }
 
 # Question 27
