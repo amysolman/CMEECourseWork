@@ -71,17 +71,17 @@ p.grid()
 p.legend(loc='best')
 p.xlabel('Time')
 p.ylabel('Population density')
-p.title('Consumer-Resource population dynamics')
+p.title('Consumer-Resource population dynamics \n r = 1, a = 0.1, z = 1.5, e = 0.75')
 
 #Finally, save the figure as a pdf:
 
-f1.savefig('../results/LV_model.pdf') #save figure
+f1.savefig('../results/LV1_model1.pdf') #save figure
 
 f2 = p.figure()
 p.plot(pops[:,0], pops[:,1], 'r-')
 p.grid()
 p.xlabel('Resource density')
 p.ylabel('Consumer density')
-p.title('Consumer-Resource population dynamics')
+p.title('Consumer-Resource population dynamics \n r = 1, a = 0.1, z = 1.5, e = 0.75')
 
-f2.savefig('../results/LV_model2.pdf')
+f2.savefig('../results/LV1_model2.pdf')

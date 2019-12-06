@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
-# Date: 3rd December 2019
+# Date: 6th December 2019
 
-"""Script ploting output of discrete-time version of Lokta-Volterra model"""
+"""Script ploting output of discrete-time version of Lokta-Volterra model
+with gaussian fluctuation in resource growth rate"""
 
 __appname__ = 'LV3.py'
 __author__ = 'Amy Solman (amy.solman19@imperial.ac.uk)'
 __version__ = '0.0.1'
 
 import scipy as sc
+
+from scipy import stats
 
 import matplotlib.pylab as p
 
@@ -21,6 +24,9 @@ e = 0.75 #consumers efficiency converting resource to consumer biomass
 R0 = 10 #starting resource pop
 C0 = 5 #starting consumer pop
 K = 30
+#sc.stats.norm.rvs(loc=1, scale=0.1)
+
+#np.random.normal(loc=0.0, scale=1.0, size=None) 
 
 #Define time vector from point 0 to 30 using 10 subdivisions
 timeseries = list(sc.linspace(0, 15, 1000))
@@ -30,9 +36,9 @@ RC = np.zeros([rows,2]) #create numpy array of zeros
 RC[:1] = sc.array([R0, C0]) #fill the first row of the array with the starting pops
 
 #Discrete-time version of the LV model
-
+    
 for t in range(0, len(timeseries) - 1):
-    RC[t+1][0] = RC[t][0] * (1 + (r * (1 - RC[t][0] / K)) - a * RC[t][1]) #fill first column of the next row with the new R pop
+    RC[t+1][0] = RC[t][0] * (1 + (r + (sc.stats.norm.rvs(loc=0, scale=0.1)) * (1 - RC[t][0] / K)) - a * RC[t][1]) #fill first column of the next row with the new R pop
     RC[t+1][1] = RC[t][1] * (1 - z + e * a * RC[t][0]) #fill first column of the next row with the new C pop
 
 f1 = p.figure()
@@ -46,7 +52,7 @@ p.title('Consumer-Resource population dynamics \n r = 1, a = 0.1, z = 1.5, e = 0
 
 #Finally, save the figure as a pdf:
 
-f1.savefig('../results/LV3_model1.pdf') #save figure
+f1.savefig('../results/LV4_model1.pdf') #save figure
 
 f2 = p.figure()
 p.plot(RC[:,0], RC[:,1], 'r-')
@@ -55,5 +61,4 @@ p.xlabel('Resource density')
 p.ylabel('Consumer density')
 p.title('Consumer-Resource population dynamics \n r = 1, a = 0.1, z = 1.5, e = 0.75')
 
-f2.savefig('../results/LV3_model2.pdf')
-
+f2.savefig('../results/LV4_model2.pdf')

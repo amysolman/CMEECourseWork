@@ -13,6 +13,7 @@ import networkx as nx
 import pandas as pd
 import scipy as sc
 import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 
 #Import CSV files
 links = pd.read_csv('../data/QMEE_Net_Mat_edges.csv')
@@ -44,4 +45,8 @@ f1 = plt.figure()
 nx.draw_networkx(G, pos, nodesize = NodSize, nodelist=['CEH', 'ZSL', 'CEFAS'], node_color='lawngreen', arrows=True)
 nx.draw_networkx(G, pos, nodesize = NodSize, nodelist=['UoR', 'ICL'], node_color='dodgerblue', arrows=True)
 nx.draw_networkx(G, pos, nodesize = NodSize, nodelist=['NonAc'], node_color='r', arrows=True)
+green_patch = mpatches.Patch(color='lawngreen', label = 'Hosting Partner')
+blue_patch = mpatches.Patch(color='dodgerblue', label = 'University')
+red_patch = mpatches.Patch(color='r', label = 'Non-Hosting Partner')
+plt.legend(handles=[green_patch, red_patch, blue_patch], loc='upper left')
 f1.savefig('../results/QMEENet.svg')

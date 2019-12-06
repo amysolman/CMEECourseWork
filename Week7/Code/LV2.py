@@ -43,11 +43,7 @@ p.grid()
 p.legend(loc='best')
 p.xlabel('Time')
 p.ylabel('Population density')
-p.title('Consumer-Resource population dynamics')
-textstr = 'r=', r, 'a=', a, 'z=', z, 'e=', e,
-props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-p.text(0.05, 45, textstr, fontsize=12,
-        verticalalignment='top', bbox=props)
+p.title('Consumer-Resource population dynamics \n r = 1, a = 0.1, z = 1.5, e = 0.75')
 Final_Pred_Pop = pops[:,0][-1]
 Final_Prey_Pop = pops[:,1][-1]
 textstr2 = '\n'.join((
@@ -57,18 +53,14 @@ props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
 p.text(0.05, 40, textstr2, fontsize=12,
         verticalalignment='top', bbox=props)
 
-f1.savefig('../results/LV_model3.pdf') #save figure
+f1.savefig('../results/LV2_model1.pdf') #save figure
 
 f2 = p.figure()
 p.plot(pops[:,0], pops[:,1], 'r-')
 p.grid()
 p.xlabel('Resource density')
 p.ylabel('Consumer density')
-p.title('Consumer-Resource population dynamics')
-textstr = 'r=', r, 'a=', a, 'z=', z, 'e=', e
-props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-p.text(5, 20, textstr, fontsize=12,
-        verticalalignment='top', bbox=props)
+p.title('Consumer-Resource population dynamics \n r = 1, a = 0.1, z = 1.5, e = 0.75')
 Final_Pred_Pop = pops[:,0][-1]
 Final_Prey_Pop = pops[:,1][-1]
 textstr2 = '\n'.join((
@@ -77,4 +69,4 @@ textstr2 = '\n'.join((
 props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
 p.text(5, 18, textstr2, fontsize=12,
         verticalalignment='top', bbox=props)
-f2.savefig('../results/LV_model4.pdf')
+f2.savefig('../results/LV2_model2.pdf')
