@@ -405,43 +405,82 @@ elbow <- function(start_position, direction, length)  {
 # Question 26
 spiral <- function(start_position, direction, length)  {
   
-  first_line <- turtle(start_position, direction, length)
+  if (length > 0.05) {
+    
+    first_line <- turtle(start_position, direction, length)
+    
+    second_line <-spiral(start_position = first_line, direction = direction + (pi/4), length = length*0.95)
+  }
   
-  second_line <-spiral(start_position = first_line, direction = direction + (pi/4), length = length*0.95)
-  
-  x <- "This function uses turtle to draw the first line, then calls itself the draw proceeding lines from the last point, with direction angle + new angle, with gradually decreasing length."
-  
-  return(x) #get return to work
-}
+  return("This function uses turtle to draw the first line, then calls itself to draw proceeding lines, with direction angle + new angle and decreasing line length.") #get return to work
+} 
 
 # Question 27
 draw_spiral <- function()  {
-  # clear any existing graphs and plot your graph within the R window
-  
+  graphics.off()
+  plot(1, type="n", xlab="", ylab="", xlim=c(-2, 8), ylim=c(0, 8), cex=0.2)
+  spiral(start_position = c(1,1), direction = 0.5, length = 2)
 }
 
 # Question 28
 tree <- function(start_position, direction, length)  {
   
-}
+  if (length > 0.05) {
+    
+    first_line <- turtle(start_position, direction, length)
+    
+    second_line <-tree(start_position = first_line, direction = direction + (pi/4), length = length*0.65)
+    
+    third_line <-tree(start_position = first_line, direction = direction - (pi/4), length = length*0.65) 
+  }
+} 
+
 draw_tree <- function()  {
-  # clear any existing graphs and plot your graph within the R window
+  graphics.off()
+  plot(1, type="n", xlab="", ylab="", xlim=c(-2, 8), ylim=c(0, 9), cex=0.2)
+  tree(start_position = c(1,1), direction = 1, length = 3)
 }
 
 # Question 29
 fern <- function(start_position, direction, length)  {
   
-}
+  if (length > 0.05) {
+    
+    first_line <- turtle(start_position, direction, length)
+    
+    second_line <-fern(start_position = first_line, direction = direction + (pi/4), length = length*0.38)
+    
+    third_line <-fern(start_position = first_line, direction = direction, length = length*0.87) 
+  }
+} 
+
 draw_fern <- function()  {
   # clear any existing graphs and plot your graph within the R window
+  graphics.off()
+  plot(1, type="n", xlab="", ylab="", xlim=c(0,10), ylim=c(0,14), cex=0.2)
+  fern(start_position = c(1,1), direction = 1, length = 2)
 }
 
 # Question 30
-fern2 <- function(start_position, direction, length)  {
+fern2 <- function(start_position, direction, length, dir)  {
   
-}
+  if (length > 0.005) {
+    
+    first_line <- turtle(start_position, direction, length)
+    
+    second_line <-fern2(start_position = first_line, direction = direction + (pi/4) * dir, length = length*0.38, dir = dir * -1)
+    
+    third_line <-fern2(start_position = first_line, direction = direction, length = length*0.87, dir = dir * -1) 
+    
+  } 
+} 
+
+
 draw_fern2 <- function()  {
   # clear any existing graphs and plot your graph within the R window
+  graphics.off()
+  plot(1, type="n", xlab="", ylab="", xlim=c(-3, 5), ylim=c(0, 16))
+  fern2(start_position = c(1,1), direction = 1.58, length = 2, dir = 1)
 }
 
 # Challenge questions - these are optional, substantially harder, and a maximum of 16% is available for doing them.  

@@ -172,20 +172,25 @@ richness_5000 <- l1[lengths(l1) >  0]
   
   spiral(start_position = c(1,1), direction = 0.5, length = 2)
   
+  
+  start_position = c(1,1)
+  direction = 0.5
+  length = 2
 
   
   
-
-  
-  # Question 26
   spiral <- function(start_position, direction, length)  {
     
-    first_line <- turtle(start_position, direction, length)
+    while (length > 0.1) {
+      
+      first_line <- turtle(start_position, direction, length)
+      
+      second_line <-spiral(start_position = first_line, direction = direction + (pi/4), length = length*0.95)
+    }
+      
+    return("This function uses turtle to draw the first line, then calls itself the draw proceeding lines from the last point, with direction angle + new angle, with gradually decreasing length.") #get return to work
+  } 
     
-    second_line <-spiral(start_position = first_line, direction = direction + (pi/4), length = length*0.95)
-    
-    return("type your written answer here")
-  }
   
   
   
