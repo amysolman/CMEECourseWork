@@ -1,0 +1,8 @@
+"","Model","R-Squared","AIC","BIC","Total"
+"1","Baranyi",31,27,22,80
+"2","Buchanan",12,14,15,41
+"3","Gompertz",95,45,51,191
+"4","Linear",0,19,16,35
+"5","Logistic",45,85,90,220
+"6","Polynomial",100,63,59,222
+"7","Quadratic",2,32,32,66

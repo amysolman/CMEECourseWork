@@ -28,8 +28,12 @@ data.insert(0, "ID", data.Species + "_" + data.Temp.map(str) + "_" + data.Medium
 #These are rather ungainly IDs, can we replaces them with numbers?
 data['ID'] = pd.factorize(data.ID)[0] + 1
 
+del data['X'] 
+
 #data[data.values.sum(axis=1) != 0]
 #data[(data.sum(axis=1) != 0.0)]
 
 #Save the modified data to a csv file:
-data.to_csv(r'../Data/modified_data.csv')
+data.to_csv('../Data/modified_data.csv')
+
+#data.to_csv(r'../Data/modified_data.csv') <previously had r before file saving, why?

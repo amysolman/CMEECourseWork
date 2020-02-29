@@ -2,15 +2,13 @@
 # 20th November 2019
 # NLLSfittingscript.R
 rm(list=ls())
-setwd("/Users/amysolman/Documents/CMEECourseWork/Week8/Code")
+# setwd("/Users/amysolman/Documents/CMEECourseWork/Miniproject/Code")
 graphics.off()
 
-#remove unneccesary packages!!!!!
-
-library("minpack.lm")
 library("dplyr")
-library("data.table")
 library("readr")
+library("minpack.lm")
+
 
 #Open the (new, modified dataset from previous step)
 
@@ -65,8 +63,11 @@ N_max_start <- max(DataID$LogN) #Maximum culture density (aka "carrying capacity
 
 ###############DEFINE MODEL NLLS MODEL FUNCTIONS###############
 
-#Here's the function for the Gompterz model
-gompertz_model <- function(t, r_max, N_max, N_0, t_lag){ # Modified gompertz growth model
+logistic_model <- function(t, r_max, N_max, N_0) { #Logistic model
+  return(N_0 * N_max * exp(r_max * t)/(N_max + N_0 * (exp(r_max * t) - 1)))
+}
+
+gompertz_model <- function(t, r_max, N_max, N_0, t_lag){ # Gompertz model
   return(N_0 + (N_max - N_0) * exp(-exp(r_max * exp(1) * (t_lag - t)/((N_max - N_0) * log(10)) + 1)))
 }
 
@@ -79,7 +80,10 @@ buchanan_model <- function(t, r_max, N_max, N_0, t_lag){ # Buchanan model - thre
            (t >= t_lag) * (t > (t_lag + (N_max - N_0) * log(10)/r_max)) * (N_max - N_0))
 }  
 
-###############FIT THE FIVE MODELS###############
+###############FIT THE SEVEN MODELS###############
+
+fit_logistic <- try(nlsLM(LogN ~ logistic_model(t = t, r_max, N_max, N_0), DataID,
+                         list(r_max = r_max_start, N_0 = N_0_start, N_max = N_max_start)), silent=T)
 
 fit_gompertz <- try(nlsLM(LogN ~ gompertz_model(t = t, r_max, N_max, N_0, t_lag), DataID,
                           list(t_lag = t_lag_start, r_max = r_max_start, N_0 = N_0_start, N_max = N_max_start)), silent=T)
@@ -110,6 +114,31 @@ timepoints <- seq(0, max(DataID$t), 0.5)
 ################STATISTICAL MEASURES###############
 
 #Calculate AIC, BIC, R$^{2}$, and other statistical measures of model fit (you decide what you want to include)
+
+if(class(fit_logistic) !="try-error"){
+  RSS_Log <- sum(residuals(fit_logistic)^2) #Residual sum of squares of our NLLS model
+  TSS_Log <- sum((DataID$LogN - mean(DataID$LogN))^2) #Total sum of squares 
+  RSq_Log <- 1 - (RSS_Log/TSS_Log)
+  AIC_Log <- AIC(fit_logistic)
+  BIC_Log <- BIC(fit_logistic)
+  df_Log_stats <- data.frame(RSq_Log, AIC_Log, BIC_Log, ID)
+  df_Log_stats$Model <- "Logistic"
+  names(df_Log_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Model")
+  
+  logistic_points <- logistic_model(t = timepoints, r_max = coef(fit_logistic)["r_max"], N_max = coef(fit_logistic)["N_max"], 
+                                    N_0 = coef(fit_logistic)["N_0"])
+  df_Log_points <- data.frame(ID, timepoints, logistic_points)
+  df_Log_points$Model <- "Logistic"
+  names(df_Log_points) <- c("ID", "t", "LogN", "Model")
+  
+} else {
+  df_Log_stats <- data.frame(RSq_Log = NA, AIC_Log = NA, BIC_Log = NA,ID = ID, Model = "Logistic")
+  names(df_Log_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Model")
+  
+  df_Log_points <- data.frame(ID, timepoints = NA, logistic_points = NA)
+  df_Log_points$Model <- "Logistic"
+  names(df_Log_points) <- c("ID", "t", "LogN", "Model")
+}
 
 if(class(fit_gompertz) !="try-error"){
   RSS_Gom <- sum(residuals(fit_gompertz)^2) #Residual sum of squares of our NLLS model
@@ -260,8 +289,8 @@ if(class(fit_lin) !="try-error"){
 
 #Bind results as dataframe
 
-stats_results <- rbind(df_Gom_stats, df_Bar_stats, df_Buc_stats, df_Qua_stats, df_Pol_stats, df_Lin_stats)
-plot_results <- rbind(df_Gom_points, df_Bar_points, df_Buc_points, df_Qua_points, df_Pol_points, df_Lin_points)
+stats_results <- rbind(df_Log_stats, df_Gom_stats, df_Bar_stats, df_Buc_stats, df_Qua_stats, df_Pol_stats, df_Lin_stats)
+plot_results <- rbind(df_Log_points, df_Gom_points, df_Bar_points, df_Buc_points, df_Qua_points, df_Pol_points, df_Lin_points)
 
 ###############EXPORT RESULTS TO CSV FILE###############
 
@@ -271,6 +300,8 @@ write.csv(plot_results, paste0("../results/plot_results_",i,".csv"))
 
 
 }
+
+#This is where we use the readr package 
 
 stats_results <- list.files(path = "../results/", pattern=glob2rx("stats*.csv"), full.names = TRUE) %>% 
   lapply(read_csv) %>% 

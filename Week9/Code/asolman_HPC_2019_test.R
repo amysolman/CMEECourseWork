@@ -1,133 +1,51 @@
-# clear any existing graphs and plot your graph within the R window
-rm(list=ls())
+# Challenge question A
+Challenge_A <- function() {
+  # clear any existing graphs and plot your graph within the R window
 graphics.off()
-
-
-octave_500 <- list()
-octave_1000 <- list()
-octave_2500 <- list()
-octave_5000 <- list()
-
-
-##########LOAD SPECIES OCTAVES AND RICHNESS BY SIMULATION SIZE###########
-for (i in 1:100) {
-  loaded <- load(paste0("simulation_",i,".rda"))
-  if (size == 500) {
-    octave_500[[i]] <- species_octaves_list
-  } else {
-    if (size == 1000) {
-      octave_1000[[i]] <- species_octaves_list
-    } else {
-      if (size == 2500) {
-        octave_2500[[i]] <- species_octaves_list
-      } else {
-        if (size == 5000) {
-          octave_5000[[i]] <- species_octaves_list
-        }
-      }
-    }
+  
+  #define two initial communities
+  community_max <- init_community_max(100)
+  community_min <- init_community_min(100)
+  speciation_rate <- 0.1
+  
+  #THIS IS ONE SIMULATION - WE NEED TO RUN THIS FOR MULTIPLE SIMULATIONS AND FIND THE AVERAGE
+  
+  #run the neutral_generation_speciation function for 200 generations for the two communities
+  #for each generation record the mean species richness for the simulation up to that point
+  
+  #CREATE MATRIX WITH 100 ROWS - EACH ROW REPRESENTS A SIMULATION
+  
+  species_diversity_max <- list()
+  max_matrix <- c(length(unique(community_max)))
+  
+  species_diversity_min <- list()
+  species_diversity_min <- c(length(unique(community_min)))
+  
+  max_matrix <- matrix(, nrow = 100, ncol = n.columns)
+  for(columns in 1:n.columns) {
+    max_matrix[,column] <-  species_diversity_max #add each generation of the 100 simulations as a column to the matrix
   }
+
   
-}
+  for (i in 2:1000) { 
+    new_com_max <- neutral_generation_speciation(community_max, speciation_rate) #advance one generation with speciation
+    species_diversity_max[[i]] <- species_richness(new_com_max)
+    
+    new_com_min <- neutral_generation_speciation(community_min, speciation_rate) #advance one generation with speciation
+    species_diversity_min[[i]] <- species_richness(new_com_min)
+    }
 
-##########REMOVE NULL VALUES#########
-
-l1 <- lapply(octave_1000, function(x) x[lengths(x) > 0])
-octave_1000 <- l1[lengths(l1) >  0]
-
-l1 <- lapply(octave_2500, function(x) x[lengths(x) > 0])
-octave_2500 <- l1[lengths(l1) >  0]
-
-l1 <- lapply(octave_500, function(x) x[lengths(x) > 0])
-octave_500 <- l1[lengths(l1) >  0]
-
-l1 <- lapply(octave_5000, function(x) x[lengths(x) > 0])
-octave_5000 <- l1[lengths(l1) >  0]
-
-#For octave_500 we need to work out the average species abundance octaves AFTER 4000 generations
-
-#for simulation 1-25 in octave_5000 we want to save only results after 4000 generations (column 1)
-
-#removes species abundance octaves before burn in time
-for (i in 1:25) {
-  octave_500[[i]][1:80] <- NULL
-  octave_1000[[i]][1:80] <- NULL
-  octave_2500[[i]][1:80] <- NULL
-  octave_5000[[i]][1:80] <- NULL
-}
-
-###use octave_500, octave_1000, octave_2500 and octave_5000 to create four bar charts of average species abundance 
-
-i <- 1 #assign value of 1 to i
-x <- octave_500[[1]][i]
-y <- octave_500[[1]][i+1]
-x <- sum_vect(x[[1]], y[[1]])
-
-for (i in 2:25) {
-  y <- octave_500[[1]][i+1]
-  x <- sum_vect(x[[1]], y[[1]])
+  x <- 1:length(species_diversity_max)
+  y <- species_diversity_max
+  plot(y~x, pch=20, col = "blue", type = "l", xlab = "Number of Generations", 
+       ylab = "Species diversity (number of species)",
+       main = "Neutral Theory Simulation with Speciation (0.1)", ylim = c(0, 100))
   
+  x <- 1:length(species_diversity_min)
+  y <- species_diversity_min
+  lines(y~x, pch=20, col = "red")
+  legend('topright', pch = c(2,2), c('Initial maximum diversity', 'Initial minimum diversity'), col = c("blue", "red"))
 }
-
-oct_500_total <- x/(length(octave_500)) #divide the totalled octave values by the number of octave values
-
-i <- 1 #assign value of 1 to i
-x <- octave_1000[[1]][i]
-y <- octave_1000[[1]][i+1]
-x <- sum_vect(x[[1]], y[[1]])
-
-for (i in 2:25) {
-  y <- octave_1000[[1]][i+1]
-  x <- sum_vect(x[[1]], y[[1]])
   
-}
+  }
 
-oct_1000_total <- x/(length(octave_1000)) 
-
-i <- 1 #assign value of 1 to i
-x <- octave_2500[[1]][i]
-y <- octave_2500[[1]][i+1]
-x <- sum_vect(x[[1]], y[[1]])
-
-for (i in 2:25) {
-  y <- octave_2500[[1]][i+1]
-  x <- sum_vect(x[[1]], y[[1]])
-  
-}
-
-oct_2500_total <- x/(length(octave_2500)) 
-
-i <- 1 #assign value of 1 to i
-x <- octave_5000[[1]][i]
-y <- octave_5000[[1]][i+1]
-x <- sum_vect(x[[1]], y[[1]])
-
-for (i in 2:25) {
-  y <- octave_5000[[1]][i+1]
-  x <- sum_vect(x[[1]], y[[1]])
-  
-}
-
-oct_5000_total <- x/(length(octave_5000)) 
-
-
-graphics.off() 
-
-par(mfcol=c(2,2)) #initialize multi-paneled plot
-par(mfg = c(1,1)) #specify which subplot to use first
-barplot(oct_500_total,
-        xlab = "octaves", ylab = "Count", col = "blue", border = "pink",
-        main = 'Community Size 500') #Add title
-par(mfg = c(1,2)) #Second sub-plot
-barplot(oct_1000_total, xlab = "octaves", ylab = "Count", col = "green", 
-        border = "pink", main = 'Community Size 1000')
-par(mfg = c(2,1)) #Second sub-plot
-barplot(oct_2500_total, xlab = "octaves", ylab = "Count", col = "red", 
-        border = "pink", main = 'Community Size 2500')
-par(mfg = c(2,2)) #Second sub-plot
-barplot(oct_5000_total, xlab = "octaves", ylab = "Count", col = "yellow", 
-        border = "pink", main = 'Community Size 5000')
-
-
-combined_results <- list(oct_500_total, oct_1000_total, oct_2500_total, oct_5000_total) #create your list output here to return
-return(combined_results)

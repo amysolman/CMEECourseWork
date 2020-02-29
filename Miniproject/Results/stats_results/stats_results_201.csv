@@ -1,7 +1,0 @@
-"","R-Squared","AIC Score","BIC Score","ID","Model"
-"1",NA,NA,NA,201,"Gompertz"
-"2",NA,NA,NA,201,"Baranyi"
-"3",NA,NA,NA,201,"Buchanan"
-"4",1,-Inf,-Inf,201,"Quadratic"
-"5",NA,NA,NA,201,"Polynomial"
-"6",0.973653375088211,7.96683756464656,5.26267443065089,201,"Linear"
