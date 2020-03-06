@@ -14,8 +14,6 @@ __version__ = '0.0.1'
 
 import pandas as pd
 
-#Measurements of change in biomass/number of cells of microbes over time
-
 #Load the data using pandas
 data = pd.read_csv("../data/LogisticGrowthData.csv")
 
@@ -30,10 +28,5 @@ data['ID'] = pd.factorize(data.ID)[0] + 1
 
 del data['X'] 
 
-#data[data.values.sum(axis=1) != 0]
-#data[(data.sum(axis=1) != 0.0)]
-
 #Save the modified data to a csv file:
 data.to_csv('../Data/modified_data.csv')
-
-#data.to_csv(r'../Data/modified_data.csv') <previously had r before file saving, why?

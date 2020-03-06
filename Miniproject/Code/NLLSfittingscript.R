@@ -2,15 +2,13 @@
 # 20th November 2019
 # NLLSfittingscript.R
 rm(list=ls())
-# setwd("/Users/amysolman/Documents/CMEECourseWork/Miniproject/Code")
 graphics.off()
 
-library("dplyr")
-library("readr")
+library("plyr")
 library("minpack.lm")
 
 
-#Open the (new, modified dataset from previous step)
+#Open the (new, modified dataset from previous step) 
 
 data <- read.csv('../data/modified_data.csv')
 
@@ -19,6 +17,8 @@ data<-data[complete.cases(data$PopBio),]
 data <- data[data$PopBio >= 0, ]
 data <- data[data$Time >= 0, ]
 
+statistics <- list()
+plots <- list()
 
 ###############SUBSET THE DATA###############
 
@@ -26,6 +26,8 @@ for (i in 1:(length(unique(data$ID))-1)) { #minus 1 because length = 286, but nu
   DataID<-data[which(data$ID==i),]
   print(paste0("Generating results for dataset: ",i))
   ID <- unique(DataID$ID)
+  Species <- unique(DataID$Species)
+  Temp <- unique(DataID$Temp)
 
 DataID$LogN <- log(DataID$PopBio)
 DataID$t <- DataID$Time
@@ -41,7 +43,7 @@ repeat {
   if(length(new_data$t) < (length(DataID$t)/10)) {break} #break if the number of values for t in new data is less than 
   b <- lm(log(PopBio) ~ t, data = new_data) #run second linear model with new_data
   b <- summary(b)$coefficients  #store coefficients second linear model in b_s
-  a <- b # assign second linear model to a_s
+  a <- b # assign next linear model to a
   new_data<-new_data[-which(new_data$t > (max(new_data$t)*.95)),] #reduce the new_data by 5%
   
 }
@@ -121,9 +123,9 @@ if(class(fit_logistic) !="try-error"){
   RSq_Log <- 1 - (RSS_Log/TSS_Log)
   AIC_Log <- AIC(fit_logistic)
   BIC_Log <- BIC(fit_logistic)
-  df_Log_stats <- data.frame(RSq_Log, AIC_Log, BIC_Log, ID)
+  df_Log_stats <- data.frame(RSq_Log, AIC_Log, BIC_Log, ID, Species, Temp)
   df_Log_stats$Model <- "Logistic"
-  names(df_Log_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Model")
+  names(df_Log_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Species", "Temp", "Model")
   
   logistic_points <- logistic_model(t = timepoints, r_max = coef(fit_logistic)["r_max"], N_max = coef(fit_logistic)["N_max"], 
                                     N_0 = coef(fit_logistic)["N_0"])
@@ -132,8 +134,8 @@ if(class(fit_logistic) !="try-error"){
   names(df_Log_points) <- c("ID", "t", "LogN", "Model")
   
 } else {
-  df_Log_stats <- data.frame(RSq_Log = NA, AIC_Log = NA, BIC_Log = NA,ID = ID, Model = "Logistic")
-  names(df_Log_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Model")
+  df_Log_stats <- data.frame(RSq_Log = NA, AIC_Log = NA, BIC_Log = NA,ID = ID, Species, Temp, Model = "Logistic")
+  names(df_Log_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Species", "Temp", "Model")
   
   df_Log_points <- data.frame(ID, timepoints = NA, logistic_points = NA)
   df_Log_points$Model <- "Logistic"
@@ -146,9 +148,9 @@ if(class(fit_gompertz) !="try-error"){
   RSq_Gom <- 1 - (RSS_Gom/TSS_Gom)
   AIC_Gom <- AIC(fit_gompertz)
   BIC_Gom <- BIC(fit_gompertz)
-  df_Gom_stats <- data.frame(RSq_Gom, AIC_Gom, BIC_Gom, ID)
+  df_Gom_stats <- data.frame(RSq_Gom, AIC_Gom, BIC_Gom, ID, Species, Temp)
   df_Gom_stats$Model <- "Gompertz"
-  names(df_Gom_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Model")
+  names(df_Gom_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Species", "Temp", "Model")
   
   gompertz_points <- gompertz_model(t = timepoints, r_max = coef(fit_gompertz)["r_max"], N_max = coef(fit_gompertz)["N_max"], 
                                     N_0 = coef(fit_gompertz)["N_0"], t_lag = coef(fit_gompertz)["t_lag"])
@@ -157,8 +159,8 @@ if(class(fit_gompertz) !="try-error"){
   names(df_Gom_points) <- c("ID", "t", "LogN", "Model")
   
 } else {
-  df_Gom_stats <- data.frame(RSq_Gom = NA, AIC_Gom = NA, BIC_Gom = NA,ID = ID, Model = "Gompertz")
-  names(df_Gom_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Model")
+  df_Gom_stats <- data.frame(RSq_Gom = NA, AIC_Gom = NA, BIC_Gom = NA,ID = ID, Species, Temp, Model = "Gompertz")
+  names(df_Gom_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Species", "Temp", "Model")
   
   df_Gom_points <- data.frame(ID, timepoints = NA, gompertz_points = NA)
   df_Gom_points$Model <- "Gompertz"
@@ -171,9 +173,9 @@ if(class(fit_baranyi) !="try-error"){
   RSq_Bar <- 1 - (RSS_Bar/TSS_Bar)
   AIC_Bar <- AIC(fit_baranyi)
   BIC_Bar <- BIC(fit_baranyi)
-  df_Bar_stats <- data.frame(RSq_Bar, AIC_Bar, BIC_Bar, ID)
+  df_Bar_stats <- data.frame(RSq_Bar, AIC_Bar, BIC_Bar, ID, Species, Temp)
   df_Bar_stats$Model <- "Baranyi"
-  names(df_Bar_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Model")
+  names(df_Bar_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Species", "Temp", "Model")
   
   baranyi_points <- baranyi_model(t = timepoints, r_max = coef(fit_baranyi)["r_max"], N_max = coef(fit_baranyi)["N_max"], 
                                   N_0 = coef(fit_baranyi)["N_0"], t_lag = coef(fit_baranyi)["t_lag"])
@@ -182,8 +184,8 @@ if(class(fit_baranyi) !="try-error"){
   names(df_Bar_points) <- c("ID", "t", "LogN", "Model")
   
 } else {
-  df_Bar_stats <- data.frame(RSq_Bar = NA, AIC_Bar = NA, BIC_Bar = NA, ID = ID, Model = "Baranyi")
-  names(df_Bar_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Model")
+  df_Bar_stats <- data.frame(RSq_Bar = NA, AIC_Bar = NA, BIC_Bar = NA, ID = ID, Species, Temp, Model = "Baranyi")
+  names(df_Bar_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Species", "Temp", "Model")
   
   df_Bar_points <- data.frame(ID, timepoints = NA, baranyi_points = NA)
   df_Bar_points$Model <- "Baranyi"
@@ -196,9 +198,9 @@ if(class(fit_buchanan) !="try-error"){
   RSq_Buc <- 1 - (RSS_Buc/TSS_Buc)
   AIC_Buc <- AIC(fit_buchanan)
   BIC_Buc <- BIC(fit_buchanan)
-  df_Buc_stats <- data.frame(RSq_Buc, AIC_Buc, BIC_Buc, ID)
+  df_Buc_stats <- data.frame(RSq_Buc, AIC_Buc, BIC_Buc, ID, Species, Temp)
   df_Buc_stats$Model <- "Buchanan"
-  names(df_Buc_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Model")
+  names(df_Buc_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Species", "Temp", "Model")
   
   buchanan_points <- buchanan_model(t = timepoints, r_max = coef(fit_buchanan)["r_max"], N_max = coef(fit_buchanan)["N_max"], 
                                     N_0 = coef(fit_buchanan)["N_0"], t_lag = coef(fit_buchanan)["t_lag"])
@@ -207,8 +209,8 @@ if(class(fit_buchanan) !="try-error"){
   names(df_Buc_points) <- c("ID", "t", "LogN", "Model")
   
 } else {
-  df_Buc_stats <- data.frame(RSq_Buc = NA, AIC_Buc = NA, BIC_Buc = NA, ID = ID, Model = "Buchanan")
-  names(df_Buc_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Model")
+  df_Buc_stats <- data.frame(RSq_Buc = NA, AIC_Buc = NA, BIC_Buc = NA, ID = ID, Species, Temp, Model = "Buchanan")
+  names(df_Buc_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Species", "Temp", "Model")
   
   df_Buc_points <- data.frame(ID, timepoints = NA, buchanan_points = NA)
   df_Buc_points$Model <- "Buchanan"
@@ -221,9 +223,9 @@ if(class(fit_quad) !="try-error"){
   RSq_Qua <- 1 - (RSS_Qua/TSS_Qua)
   AIC_Qua <- AIC(fit_quad)
   BIC_Qua <- BIC(fit_quad)
-  df_Qua_stats <- data.frame(RSq_Qua, AIC_Qua, BIC_Qua, ID)
+  df_Qua_stats <- data.frame(RSq_Qua, AIC_Qua, BIC_Qua, ID, Species, Temp)
   df_Qua_stats$Model <- "Quadratic"
-  names(df_Qua_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Model")
+  names(df_Qua_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Species", "Temp", "Model")
   
   quadratic_points <- predict.lm(fit_quad, data.frame(t = timepoints))
   df_Qua_points <- data.frame(ID, timepoints, quadratic_points)
@@ -231,8 +233,8 @@ if(class(fit_quad) !="try-error"){
   names(df_Qua_points) <- c("ID", "t", "LogN", "Model")
   
 } else {
-  df_Qua_stats <- data.frame(RSq_Qua = NA, AIC_Qua = NA, BIC_Qua = NA, ID = ID, Model = "Quadratic")
-  names(df_Qua_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Model")
+  df_Qua_stats <- data.frame(RSq_Qua = NA, AIC_Qua = NA, BIC_Qua = NA, ID = ID, Species, Temp, Model = "Quadratic")
+  names(df_Qua_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Species", "Temp", "Model")
   
   df_Qua_points <- data.frame(ID, timepoints = NA, quadratic_points = NA)
   df_Qua_points$Model <- "Quadratic"
@@ -245,9 +247,9 @@ if(class(fit_poly) !="try-error"){
   RSq_Pol <- 1 - (RSS_Pol/TSS_Pol)
   AIC_Pol <- AIC(fit_poly)
   BIC_Pol <- BIC(fit_poly)
-  df_Pol_stats <- data.frame(RSq_Pol, AIC_Pol, BIC_Pol, ID)
+  df_Pol_stats <- data.frame(RSq_Pol, AIC_Pol, BIC_Pol, ID, Species, Temp)
   df_Pol_stats$Model <- "Polynomial"
-  names(df_Pol_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Model")
+  names(df_Pol_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Species", "Temp", "Model")
   
   poly_points <- predict.lm(fit_poly, data.frame(t = timepoints))
   df_Pol_points <- data.frame(ID, timepoints, poly_points)
@@ -255,8 +257,8 @@ if(class(fit_poly) !="try-error"){
   names(df_Pol_points) <- c("ID", "t", "LogN", "Model")
   
 } else {
-  df_Pol_stats <- data.frame(RSq_Pol = NA, AIC_Pol = NA, BIC_Pol = NA, ID = ID, Model = "Polynomial")
-  names(df_Pol_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Model")
+  df_Pol_stats <- data.frame(RSq_Pol = NA, AIC_Pol = NA, BIC_Pol = NA, ID = ID, Species, Temp, Model = "Polynomial")
+  names(df_Pol_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Species", "Temp", "Model")
   
   df_Pol_points <- data.frame(ID, timepoints = NA, poly_points = NA)
   df_Pol_points$Model <- "Polynomial"
@@ -269,9 +271,9 @@ if(class(fit_lin) !="try-error"){
   RSq_Lin <- 1 - (RSS_Lin/TSS_Lin)
   AIC_Lin <- AIC(fit_lin)
   BIC_Lin <- BIC(fit_lin)
-  df_Lin_stats <- data.frame(RSq_Lin, AIC_Lin, BIC_Lin, ID)
+  df_Lin_stats <- data.frame(RSq_Lin, AIC_Lin, BIC_Lin, ID, Species, Temp)
   df_Lin_stats$Model <- "Linear"
-  names(df_Lin_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Model")
+  names(df_Lin_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Species", "Temp", "Model")
   
   linear_points <- predict.lm(fit_lin, data.frame(t=timepoints))
   df_Lin_points <- data.frame(ID, timepoints, linear_points)
@@ -279,8 +281,8 @@ if(class(fit_lin) !="try-error"){
   names(df_Lin_points) <- c("ID", "t", "LogN", "Model")
   
 } else {
-  df_Lin_stats <- data.frame(RSq_Lin = NA, AIC_Lin = NA, BIC_Lin = NA, ID = ID, Model = "Linear")
-  names(df_Lin_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Model")
+  df_Lin_stats <- data.frame(RSq_Lin = NA, AIC_Lin = NA, BIC_Lin = NA, ID = ID, Species, Temp, Model = "Linear")
+  names(df_Lin_stats) <- c("R-Squared", "AIC Score", "BIC Score", "ID", "Species", "Temp", "Model")
   
   df_Lin_points <- data.frame(ID, timepoints = NA, linear_points = NA)
   df_Lin_points$Model <- "Linear"
@@ -292,24 +294,15 @@ if(class(fit_lin) !="try-error"){
 stats_results <- rbind(df_Log_stats, df_Gom_stats, df_Bar_stats, df_Buc_stats, df_Qua_stats, df_Pol_stats, df_Lin_stats)
 plot_results <- rbind(df_Log_points, df_Gom_points, df_Bar_points, df_Buc_points, df_Qua_points, df_Pol_points, df_Lin_points)
 
-###############EXPORT RESULTS TO CSV FILE###############
-
-write.csv(stats_results, paste0("../results/stats_results_",i,".csv"))
-
-write.csv(plot_results, paste0("../results/plot_results_",i,".csv"))
-
+statistics[[i]] <- stats_results
+plots[[i]] <- plot_results
 
 }
 
-#This is where we use the readr package 
+# This is where we use the plyr package
 
-stats_results <- list.files(path = "../results/", pattern=glob2rx("stats*.csv"), full.names = TRUE) %>% 
-  lapply(read_csv) %>% 
-  bind_rows 
+merged_statistics <- ldply(statistics, data.frame)
+merged_plots <- ldply(plots, data.frame)
 
-plot_results <- list.files(path = "../results/", pattern=glob2rx("plot*.csv"), full.names = TRUE) %>%
-  lapply(read_csv) %>%
-  bind_rows
-
-write.csv(stats_results, ("../results/total_stats_results.csv"))
-write.csv(plot_results, ("../results/total_plot_results.csv"))
+write.csv(merged_statistics, ("../results/merged_total_stats_results.csv"))
+write.csv(merged_plots, ("../results/merged_total_plot_results.csv"))
