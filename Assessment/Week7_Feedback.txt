@@ -9,7 +9,7 @@ Note that:
 
 ======================================================================
 ======================================================================
-Your Git repo size this week is about 133.39 MiB on disk 
+Your Git repo size this week is about 250.86 MiB on disk 
 
 PART 1: Checking project workflow...
 
@@ -112,10 +112,10 @@ Biological Computing in Python II (11/11/19 - 15/11/19)
 Including: program testing, debugging and documentation, retrieving, managing and analyzing data from local and remote databases, automate file handling, string manipulation and run shell scripts, efficient numerical analyses, patching together R and Python scripts and functions.
 **********************************************************************
 
-Found following files in results directory: outputFile.Rout, TestR.Rout, fmr_plot.pdf, LV_model2.pdf, LV_model4.pdf, LV_model.pdf, LV_model3.pdf, FW.pdf, TestR_errFile.Rout, errorFile.Rout, .DS_Store...
+Found following files in results directory: .gitkeep, .DS_Store...
 ideally, Results directory should be empty other than, perhaps, a readme. 
 
-Found 15 code files: TestR.py, boilerplate.py, workflow.py, regexs.py, profileme2.py, timeitme.py, blackbirds.py, TestR.R, profileme.py, fmr.R, using_os.py, LV1.py, DrawFW.py, run_fmr_R.py, LV2.py
+Found 20 code files: TestR.py, boilerplate.py, workflow.py, regexs.py, LV3.py, profileme2.py, timeitme.py, blackbirds.py, Nets.py, TestR.R, profileme.py, LV4.py, fmr.R, using_os.py, LV1.py, DrawFW.py, Nets.R, run_fmr_R.py, LV2.py, run_LV.sh
 
 ======================================================================
 Testing script/code files...
@@ -172,7 +172,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.13396s
+Time consumed = 0.17651s
 
 ======================================================================
 Inspecting script file boilerplate.py...
@@ -250,7 +250,7 @@ This is a boilerplate
 
 Code ran without errors
 
-Time consumed = 0.02708s
+Time consumed = 0.02888s
 
 ======================================================================
 Inspecting script file workflow.py...
@@ -375,21 +375,20 @@ Output (only first 500 characters):
 **********************************************************************
 I'm talkin' to you, bash!
 
-total 76
--rw-rw-r-- 1 mhasoba mhasoba 1924 Dec  3 05:59 blackbirds.py
--rw-rw-r-- 1 mhasoba mhasoba 2306 Dec  3 05:59 boilerplate.py
--rw-rw-r-- 1 mhasoba mhasoba 2564 Dec  3 05:59 DrawFW.py
--rwxrwxr-x 1 mhasoba mhasoba  866 Dec  3 05:59 fmr.R
--rw-rw-r-- 1 mhasoba mhasoba 2888 Dec  3 05:59 LV1.py
--rw-rw-r-- 1 mhasoba mhasoba 1351 Dec  3 05:59 LV2.py
--rw-rw-r-- 1 mhasoba mhasoba  679 Dec  3 05:59 profileme2.py
--rw-rw-r-- 1 mhasoba mhasoba 1243 Dec  3 05:59 profileme.py
-drw
+total 720
+-rw-rw-r-- 1 mhasoba mhasoba   1924 Dec  3 05:59 blackbirds.py
+-rw-rw-r-- 1 mhasoba mhasoba   2306 Dec  3 05:59 boilerplate.py
+-rw-rw-r-- 1 mhasoba mhasoba   2564 Dec  3 05:59 DrawFW.py
+-rwxrwxr-x 1 mhasoba mhasoba    866 Dec  3 05:59 fmr.R
+-rw-rw-r-- 1 mhasoba mhasoba   3457 Mar  2 13:03 LV1.py
+-rw-rw-r-- 1 mhasoba mhasoba   2172 Mar  2 13:03 LV2.py
+-rw-rw-r-- 1 mhasoba mhasoba   1763 Mar  2 13:03 LV3.py
+-rw-rw-r-- 1 mhasoba mhasoba   1968 Mar  2 13:03 LV4.py
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.05954s
+Time consumed = 0.06155s
 
 ======================================================================
 Inspecting script file regexs.py...
@@ -685,7 +684,103 @@ Dr Arkhat Abzhanov
 
 Code ran without errors
 
-Time consumed = 0.35583s
+Time consumed = 0.35211s
+
+======================================================================
+Inspecting script file LV3.py...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env python3
+# Date: 3rd December 2019
+
+"""Script ploting output of discrete-time version of Lokta-Volterra model"""
+
+__appname__ = 'LV3.py'
+__author__ = 'Amy Solman (amy.solman19@imperial.ac.uk)'
+__version__ = '0.0.1'
+
+import scipy as sc
+
+import matplotlib.pylab as p
+
+import numpy as np 
+
+
+r = 1 #growth rate of resource pop
+a = 0.1 #search rate for resource
+z = 1.5 #mortality rate
+e = 0.75 #consumers efficiency converting resource to consumer biomass
+R0 = 10 #starting resource pop
+C0 = 5 #starting consumer pop
+K = 30
+
+#Define time vector from point 0 to 30 using 10 subdivisions
+timeseries = list(sc.linspace(0, 15, 1000))
+rows = len(timeseries)
+
+RC = np.zeros([rows,2]) #create numpy array of zeros 
+RC[:1] = sc.array([R0, C0]) #fill the first row of the array with the starting pops
+
+#Discrete-time version of the LV model
+
+for t in range(0, len(timeseries) - 1):
+    RC[t+1][0] = RC[t][0] * (1 + (r * (1 - RC[t][0] / K)) - a * RC[t][1]) #fill first column of the next row with the new R pop
+    RC[t+1][1] = RC[t][1] * (1 - z + e * a * RC[t][0]) #fill first column of the next row with the new C pop
+
+f1 = p.figure()
+p.plot(timeseries, RC[:,0], 'g-', label='Resource density') #Plot
+p.plot(timeseries, RC[:,1], 'b-', label = 'Consumer density')
+p.grid()
+p.legend(loc='best')
+p.xlabel('Time')
+p.ylabel('Population density')
+p.title('Consumer-Resource population dynamics \n r = 1, a = 0.1, z = 1.5, e = 0.75')
+
+#Finally, save the figure as a pdf:
+
+f1.savefig('../results/LV3_model1.pdf') #save figure
+
+f2 = p.figure()
+p.plot(RC[:,0], RC[:,1], 'r-')
+p.grid()
+p.xlabel('Resource density')
+p.ylabel('Consumer density')
+p.title('Consumer-Resource population dynamics \n r = 1, a = 0.1, z = 1.5, e = 0.75')
+
+f2.savefig('../results/LV3_model2.pdf')
+
+**********************************************************************
+
+Testing LV3.py...
+
+LV3.py is a Python script file;
+
+checking for docstrings...
+
+Found no functions, but one docstring for the script, good
+
+Current Points = 98
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+Traceback (most recent call last):
+  File "LV3.py", line 49, in <module>
+    f1.savefig('../results/LV3_model1.pdf') #save figure
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/figure.py", line 1814, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/backend_bases.py", line 2259, in print_figure
+    **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/backends/backend_pdf.py", line 2584, in print_pdf
+    file = PdfFile(filename, metadata=kwargs.pop("metadata", None))
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/backends/backend_pdf.py", line 439, in __init__
+    fh = open(filename, 'wb')
+FileNotFoundError: [Errno 2] No such file or directory: '../results/LV3_model1.pdf'
 
 ======================================================================
 Inspecting script file profileme2.py...
@@ -742,7 +837,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 3.62488s
+Time consumed = 3.65087s
 
 ======================================================================
 Inspecting script file timeitme.py...
@@ -798,12 +893,14 @@ Current Points = 96.5
 Output (only first 500 characters): 
 
 **********************************************************************
+10000000 My string
+10000000 My string
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 10.00699s
+Time consumed = 9.95620s
 
 ======================================================================
 Inspecting script file blackbirds.py...
@@ -895,7 +992,99 @@ Taxonomic Hierarchy
 
 Code ran without errors
 
-Time consumed = 0.03032s
+Time consumed = 0.03117s
+
+======================================================================
+Inspecting script file Nets.py...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env python3
+# Date: 3rd December 2019
+
+"""Network visualisation script converted from R to python.
+Visualises the QMEE CDT collaboration network"""
+
+__appname__ = 'Nets.py'
+__author__ = 'Amy Solman (amy.solman19@imperial.ac.uk'
+__version__ = '0.0.1'
+
+#library(igraph) # Load the igraph package
+import networkx as nx
+import pandas as pd
+import scipy as sc
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+
+#Import CSV files
+links = pd.read_csv('../data/QMEE_Net_Mat_edges.csv')
+nodes = pd.read_csv('../data/QMEE_Net_Mat_nodes.csv')
+
+links_new = links.rename(index={0:'ICL', 1:'UoR', 2:'CEH', 3:'ZSL', 4:'CEFAS', 5:'NonAc'} ) 
+
+#A = nx.DiGraph(links_new.values, with_labels = True)
+#nx.draw(A)
+
+edges = links_new.stack().reset_index()
+#remove 0s
+edges = edges[edges.iloc[:,2] != 0]
+#remove third column
+del edges[0]
+#make into array
+AdjL = sc.array(edges)
+AdjL
+#Get unique nodes names
+Sps = sc.unique(AdjL)
+#LEt's use a circular confirguration. 
+#For this we need to calculate the coordiantes:
+pos = nx.circular_layout(Sps)
+G = nx.DiGraph()
+G.add_nodes_from(Sps)
+G.add_edges_from(tuple(AdjL))
+NodSize = 10000
+f1 = plt.figure()
+nx.draw_networkx(G, pos, nodesize = NodSize, nodelist=['CEH', 'ZSL', 'CEFAS'], node_color='lawngreen', arrows=True)
+nx.draw_networkx(G, pos, nodesize = NodSize, nodelist=['UoR', 'ICL'], node_color='dodgerblue', arrows=True)
+nx.draw_networkx(G, pos, nodesize = NodSize, nodelist=['NonAc'], node_color='r', arrows=True)
+green_patch = mpatches.Patch(color='lawngreen', label = 'Hosting Partner')
+blue_patch = mpatches.Patch(color='dodgerblue', label = 'University')
+red_patch = mpatches.Patch(color='r', label = 'Non-Hosting Partner')
+plt.legend(handles=[green_patch, red_patch, blue_patch], loc='upper left')
+f1.savefig('../results/QMEENet.svg')**********************************************************************
+
+Testing Nets.py...
+
+Nets.py is a Python script file;
+
+checking for docstrings...
+
+Found no functions, but one docstring for the script, good
+
+Current Points = 96.5
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+Traceback (most recent call last):
+  File "Nets.py", line 19, in <module>
+    links = pd.read_csv('../data/QMEE_Net_Mat_edges.csv')
+  File "/usr/lib/python3/dist-packages/pandas/io/parsers.py", line 498, in parser_f
+    return _read(filepath_or_buffer, kwds)
+  File "/usr/lib/python3/dist-packages/pandas/io/parsers.py", line 275, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/usr/lib/python3/dist-packages/pandas/io/parsers.py", line 590, in __init__
+    self._make_engine(self.engine)
+  File "/usr/lib/python3/dist-packages/pandas/io/parsers.py", line 731, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/usr/lib/python3/dist-packages/pandas/io/parsers.py", line 1103, in __init__
+    self._reader = _parser.TextReader(src, **kwds)
+  File "pandas/parser.pyx", line 353, in pandas.parser.TextReader.__cinit__ (pandas/parser.c:3246)
+  File "pandas/parser.pyx", line 591, in pandas.parser.TextReader._setup_parser_source (pandas/parser.c:6111)
+OSError: File b'../data/QMEE_Net_Mat_edges.csv' does not exist
 
 ======================================================================
 Inspecting script file TestR.R...
@@ -916,7 +1105,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.09717s
+Time consumed = 0.09456s
 
 ======================================================================
 Inspecting script file profileme.py...
@@ -976,7 +1165,113 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 6.44558s
+Time consumed = 6.47913s
+
+======================================================================
+Inspecting script file LV4.py...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env python3
+# Date: 6th December 2019
+
+"""Script ploting output of discrete-time version of Lokta-Volterra model
+with gaussian fluctuation in resource growth rate"""
+
+__appname__ = 'LV3.py'
+__author__ = 'Amy Solman (amy.solman19@imperial.ac.uk)'
+__version__ = '0.0.1'
+
+import scipy as sc
+
+from scipy import stats
+
+import matplotlib.pylab as p
+
+import numpy as np 
+
+
+r = 1 #growth rate of resource pop
+a = 0.1 #search rate for resource
+z = 1.5 #mortality rate
+e = 0.75 #consumers efficiency converting resource to consumer biomass
+R0 = 10 #starting resource pop
+C0 = 5 #starting consumer pop
+K = 30
+#sc.stats.norm.rvs(loc=1, scale=0.1)
+
+#np.random.normal(loc=0.0, scale=1.0, size=None) 
+
+#Define time vector from point 0 to 30 using 10 subdivisions
+timeseries = list(sc.linspace(0, 15, 1000))
+rows = len(timeseries)
+
+RC = np.zeros([rows,2]) #create numpy array of zeros 
+RC[:1] = sc.array([R0, C0]) #fill the first row of the array with the starting pops
+
+#Discrete-time version of the LV model
+    
+for t in range(0, len(timeseries) - 1):
+    RC[t+1][0] = RC[t][0] * (1 + (r + (sc.stats.norm.rvs(loc=0, scale=0.1)) * (1 - RC[t][0] / K)) - a * RC[t][1]) #fill first column of the next row with the new R pop
+    RC[t+1][1] = RC[t][1] * (1 - z + e * a * RC[t][0]) #fill first column of the next row with the new C pop
+
+f1 = p.figure()
+p.plot(timeseries, RC[:,0], 'g-', label='Resource density') #Plot
+p.plot(timeseries, RC[:,1], 'b-', label = 'Consumer density')
+p.grid()
+p.legend(loc='best')
+p.xlabel('Time')
+p.ylabel('Population density')
+p.title('Consumer-Resource population dynamics \n r = 1, a = 0.1, z = 1.5, e = 0.75')
+
+#Finally, save the figure as a pdf:
+
+f1.savefig('../results/LV4_model1.pdf') #save figure
+
+f2 = p.figure()
+p.plot(RC[:,0], RC[:,1], 'r-')
+p.grid()
+p.xlabel('Resource density')
+p.ylabel('Consumer density')
+p.title('Consumer-Resource population dynamics \n r = 1, a = 0.1, z = 1.5, e = 0.75')
+
+f2.savefig('../results/LV4_model2.pdf')**********************************************************************
+
+Testing LV4.py...
+
+LV4.py is a Python script file;
+
+checking for docstrings...
+
+Found no functions, but one docstring for the script, good
+
+Current Points = 95.0
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+LV4.py:41: RuntimeWarning: overflow encountered in double_scalars
+  RC[t+1][0] = RC[t][0] * (1 + (r + (sc.stats.norm.rvs(loc=0, scale=0.1)) * (1 - RC[t][0] / K)) - a * RC[t][1]) #fill first column of the next row with the new R pop
+LV4.py:42: RuntimeWarning: overflow encountered in double_scalars
+  RC[t+1][1] = RC[t][1] * (1 - z + e * a * RC[t][0]) #fill first column of the next row with the new C pop
+LV4.py:41: RuntimeWarning: invalid value encountered in double_scalars
+  RC[t+1][0] = RC[t][0] * (1 + (r + (sc.stats.norm.rvs(loc=0, scale=0.1)) * (1 - RC[t][0] / K)) - a * RC[t][1]) #fill first column of the next row with the new R pop
+Traceback (most recent call last):
+  File "LV4.py", line 55, in <module>
+    f1.savefig('../results/LV4_model1.pdf') #save figure
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/figure.py", line 1814, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/backend_bases.py", line 2259, in print_figure
+    **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/backends/backend_pdf.py", line 2584, in print_pdf
+    file = PdfFile(filename, metadata=kwargs.pop("metadata", None))
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/backends/backend_pdf.py", line 439, in __init__
+    fh = open(filename, 'wb')
+FileNotFoundError: [Errno 2] No such file or directory: '../results/LV4_model1.pdf'
 
 ======================================================================
 Inspecting script file fmr.R...
@@ -1023,7 +1318,7 @@ Finished in R!
 
 Code ran without errors
 
-Time consumed = 0.16806s
+Time consumed = 0.17437s
 
 ======================================================================
 Inspecting script file using_os.py...
@@ -1140,16 +1435,16 @@ import scipy.integrate as integrate
 import matplotlib.pylab as p
 
 #Now define a function that returns the growth rate of consumer and resource population at any give time step.
-def dCR_dt(pops, t=0):
+def dCR_dt(pops, t=0): #start with the pops and time at 0
 
-    R = pops[0]
-    C = pops[1]
-    dRdt = r * R - a * R * C
-    dCdt = -z * C + e * a * R * C
+    R = pops[0] #resource population
+    C = pops[1] #consumer population
+    dRdt = r * R - a * R * C #change in resource pop over time = growth rate of resource * resource pop - search rate for resource * resource pop * consumer pop 
+    dCdt = -z * C + e * a * R * C #change in consumer pop over time = minus mortality rate * consumer pop + consumer efficiency * serach rate for resource * resource pop * consumer pop
 
-    return sc.array([dRdt, dCdt])
+    return sc.array([dRdt, dCdt]) #return an array of the changes of both pops
 
-type(dCR_dt)
+type(dCR_dt) #this is a function
 
 #So dCR_dt has been stored as a function object in teh current Python session, all ready to go.
 #Now assign some parameter values:
@@ -1161,20 +1456,18 @@ e = 0.75 #consumers efficiency converting resource to consumer biomass
 
 #Define the time vector; let's integrate from time point 0 to 15, using 1000 sub-divisions of time:
 
-t = sc.linspace(0, 15, 1000) #sc.linspace = return evenly spaced numbers over a
-#specified interval from x to y with z subdivisions
-#Note that the units of time are arbitrary here.
+t = sc.linspace(0, 15, 1000) #t = 1000 evenly spaced numbers between 0 and 15
+
 #Set the initial conditions for the two populations (10 resources and 5 consumers per unit area)
 #and convert the two into an array (because our dCR_dt function takes an array as input)
-
-R0 = 10
-C0 = 5
-RC0 = sc.array([R0, C0])
+R0 = 10 #initial resource pop
+C0 = 5 #initial consumer pop
+RC0 = sc.array([R0, C0]) #populations as an array (so we can add to these with our function)
 
 #Now numerically integrate this system forward from those starting conditions:
-
-pops, infodict = integrate.odeint(dCR_dt, RC0, t, full_output = True)
+pops, infodict = integrate.odeint(dCR_dt, RC0, t, full_output = True) #run our function with the starting pop array and t 0-15
 pops
+
 #So pops contains the result (the population trajectories).
 #Also check what's in infodict (it's a dictionary with additional information).
 type(infodict)
@@ -1199,20 +1492,20 @@ p.grid()
 p.legend(loc='best')
 p.xlabel('Time')
 p.ylabel('Population density')
-p.title('Consumer-Resource population dynamics')
+p.title('Consumer-Resource population dynamics \n r = 1, a = 0.1, z = 1.5, e = 0.75')
 
 #Finally, save the figure as a pdf:
 
-f1.savefig('../results/LV_model.pdf') #save figure
+f1.savefig('../results/LV1_model1.pdf') #save figure
 
 f2 = p.figure()
 p.plot(pops[:,0], pops[:,1], 'r-')
 p.grid()
 p.xlabel('Resource density')
 p.ylabel('Consumer density')
-p.title('Consumer-Resource population dynamics')
+p.title('Consumer-Resource population dynamics \n r = 1, a = 0.1, z = 1.5, e = 0.75')
 
-f2.savefig('../results/LV_model2.pdf')**********************************************************************
+f2.savefig('../results/LV1_model2.pdf')**********************************************************************
 
 Testing LV1.py...
 
@@ -1234,8 +1527,8 @@ Output (only first 500 characters):
 
 Encountered error (or warning):
 Traceback (most recent call last):
-  File "LV1.py", line 80, in <module>
-    f1.savefig('../results/LV_model.pdf') #save figure
+  File "LV1.py", line 78, in <module>
+    f1.savefig('../results/LV1_model1.pdf') #save figure
   File "/usr/local/lib/python3.5/dist-packages/matplotlib/figure.py", line 1814, in savefig
     self.canvas.print_figure(fname, **kwargs)
   File "/usr/local/lib/python3.5/dist-packages/matplotlib/backend_bases.py", line 2259, in print_figure
@@ -1244,7 +1537,7 @@ Traceback (most recent call last):
     file = PdfFile(filename, metadata=kwargs.pop("metadata", None))
   File "/usr/local/lib/python3.5/dist-packages/matplotlib/backends/backend_pdf.py", line 439, in __init__
     fh = open(filename, 'wb')
-FileNotFoundError: [Errno 2] No such file or directory: '../results/LV_model.pdf'
+FileNotFoundError: [Errno 2] No such file or directory: '../results/LV1_model1.pdf'
 
 ======================================================================
 Inspecting script file DrawFW.py...
@@ -1383,6 +1676,93 @@ Traceback (most recent call last):
 FileNotFoundError: [Errno 2] No such file or directory: '../results/FW.pdf'
 
 ======================================================================
+Inspecting script file Nets.R...
+
+File contents are:
+**********************************************************************
+library(igraph) # Load the igraph package
+
+rm(list = ls())
+
+# 	ICL	UoR	CEH	ZSL	CEFAS	Nonacademic/CASE
+# ICL	0	0	10	9	5	70
+# UoR		0	12	0	2	76
+# CEH			0	0	0	6
+# ZSL			       0 	0	28
+# CEFAS			       0	0
+# Nonacademic/CASE                        0
+
+links <- read.csv("../data/QMEE_Net_Mat_edges.csv", header=T, as.is=T)
+nodes <- read.csv("../data/QMEE_Net_Mat_nodes.csv", header=T, row.names = 1)
+
+#Create graph object
+net <- graph.adjacency(as.matrix(links), mode = "directed", weighted=TRUE, diag=F)
+        
+#Test plot
+# plot(net, edge.arrow.size=1, edge.curved=.1,
+#      vertex.color="orange", vertex.frame.color="#555555",
+#      vertex.label=V(net)$Type, vertex.label.color="black",
+#      vertex.label.cex=.7) 
+
+# Generate colors based on partner type:
+colrs <- c("green", "red", "blue")
+V(net)$color <- colrs[nodes$Type]
+
+# Set node size based on Number of PIs:
+# V(net)$size <- V(net)$Pis*0.9
+
+V(net)$size <- 50
+
+# Set edge width based on weight (PhD Students):
+E(net)$width <- E(net)$weight
+
+#change arrow size and edge color:
+E(net)$arrow.size <- 1
+E(net)$edge.color <- "gray80"
+
+E(net)$width <- 1+E(net)$weight/10
+
+graphics.off()
+
+svg("../results/QMEENet.svg",width=7,height=7)
+
+plot(net, edge.curved=0, vertex.label.color="black") 
+
+legend(x=-1.5, y=-0.1, c("Hosting Partner", "Non-hosting Partner", "University"), pch=21,
+       col="#777777", pt.bg=colrs, pt.cex=2, cex=.8, bty="n", ncol=1)
+
+dev.off()
+**********************************************************************
+
+Testing Nets.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+Loading required package: methods
+
+Attaching package: ‘igraph’
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+Error in file(file, "rt") : cannot open the connection
+Calls: read.csv -> read.table -> file
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file '../data/QMEE_Net_Mat_edges.csv': No such file or directory
+Execution halted
+
+======================================================================
 Inspecting script file run_fmr_R.py...
 
 File contents are:
@@ -1432,7 +1812,7 @@ Run successful! Well done! Goldstar!
 
 Code ran without errors
 
-Time consumed = 0.19989s
+Time consumed = 0.20718s
 
 ======================================================================
 Inspecting script file LV2.py...
@@ -1459,7 +1839,9 @@ def dCR_dt(pops, t=0):
 
     R = pops[0]
     C = pops[1]
-    dRdt = r * R - a * R * C
+    dRdt_1 = r * R - a * R * C
+    K = r * R * ( 1 - R) / dRdt_1
+    dRdt = r * R * (1 - R /  K) - a * R * C
     dCdt = -z * C + e * a * R * C
 
     return sc.array([dRdt, dCdt])
@@ -1477,22 +1859,39 @@ pops, infodict = integrate.odeint(dCR_dt, RC0, t, full_output = True)
 
 f1 = p.figure()
 p.plot(t, pops[:,0], 'g-', label='Resource density') #Plot
-p.plot(t, pops[:,1], 'b-', label = 'Consumer densioty')
+p.plot(t, pops[:,1], 'b-', label = 'Consumer density')
 p.grid()
 p.legend(loc='best')
 p.xlabel('Time')
 p.ylabel('Population density')
-p.title('Consumer-Resource population dynamics')
+p.title('Consumer-Resource population dynamics \n r = 1, a = 0.1, z = 1.5, e = 0.75')
+Final_Pred_Pop = pops[:,0][-1]
+Final_Prey_Pop = pops[:,1][-1]
+textstr2 = '\n'.join((
+    r'$Final Pred Pop=%.2f$' % (Final_Pred_Pop, ),
+    r'$Final Prey Pop=%.2f$' % (Final_Prey_Pop, )))
+props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+p.text(0.05, 40, textstr2, fontsize=12,
+        verticalalignment='top', bbox=props)
 
-f1.savefig('../results/LV_model3.pdf') #save figure
+f1.savefig('../results/LV2_model1.pdf') #save figure
 
 f2 = p.figure()
 p.plot(pops[:,0], pops[:,1], 'r-')
 p.grid()
 p.xlabel('Resource density')
 p.ylabel('Consumer density')
-p.title('Consumer-Resource population dynamics')
-f2.savefig('../results/LV_model4.pdf')**********************************************************************
+p.title('Consumer-Resource population dynamics \n r = 1, a = 0.1, z = 1.5, e = 0.75')
+Final_Pred_Pop = pops[:,0][-1]
+Final_Prey_Pop = pops[:,1][-1]
+textstr2 = '\n'.join((
+    r'$Final Pred Pop=%.2f$' % (Final_Pred_Pop, ),
+    r'$Final Prey Pop=%.2f$' % (Final_Prey_Pop, )))
+props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+p.text(5, 18, textstr2, fontsize=12,
+        verticalalignment='top', bbox=props)
+f2.savefig('../results/LV2_model2.pdf')
+**********************************************************************
 
 Testing LV2.py...
 
@@ -1519,10 +1918,172 @@ Traceback (most recent call last):
 ValueError: not enough values to unpack (expected 5, got 1)
 
 ======================================================================
+Inspecting script file run_LV.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash
+#Author: Amy Solman amy.solman@imperial.ac.uk
+#Script: run_LV1_LV2.sh
+#Description:Bash script to run LV1.py, LV2.py and LV3.py
+
+echo "Running of our scripts is about to begin..."
+
+ipython3 run LV1.py
+ipython3 run LV2.py 1. 0.1 1.5 0.75 
+ipython3 run LV3.py
+ipython3 run LV4.py
+
+echo "Now for profiling!"
+
+python3 -m cProfile LV1.py
+python3 -m cProfile LV2.py 1. 0.1 1.5 0.75 
+python3 -m cProfile LV3.py
+python3 -m cProfile LV4.py
+
+
+echo "Done!"
+exit 
+
+**********************************************************************
+
+Testing run_LV.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Running of our scripts is about to begin...
+[22;0t]0;IPython: Week7/Code[22;0t]0;IPython: Week7/Code[22;0t]0;IPython: Week7/Code[22;0t]0;IPython: Week7/CodeNow for profiling!
+         321512 function calls (314385 primitive calls) in 0.559 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+       36    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap>:1043(__import__)
+      682    0.002    0.000    0.002    0.000
+**********************************************************************
+
+Encountered error (or warning):
+[TerminalIPythonApp] WARNING | File not found: 'run'
+[TerminalIPythonApp] WARNING | File not found: 'run'
+[TerminalIPythonApp] WARNING | File not found: 'run'
+[TerminalIPythonApp] WARNING | File not found: 'run'
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/runpy.py", line 184, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.5/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/usr/lib/python3.5/cProfile.py", line 160, in <module>
+    main()
+  File "/usr/lib/python3.5/cProfile.py", line 153, in main
+    runctx(code, globs, None, options.outfile, options.sort)
+  File "/usr/lib/python3.5/cProfile.py", line 20, in runctx
+    filename, sort)
+  File "/usr/lib/python3.5/profile.py", line 64, in runctx
+    prof.runctx(statement, globals, locals)
+  File "/usr/lib/python3.5/cProfile.py", line 100, in runctx
+    exec(cmd, globals, locals)
+  File "LV1.py", line 78, in <module>
+    f1.savefig('../results/LV1_model1.pdf') #save figure
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/figure.py", line 1814, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/backend_bases.py", line 2259, in print_figure
+    **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/backends/backend_pdf.py", line 2584, in print_pdf
+    file = PdfFile(filename, metadata=kwargs.pop("metadata", None))
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/backends/backend_pdf.py", line 439, in __init__
+    fh = open(filename, 'wb')
+FileNotFoundError: [Errno 2] No such file or directory: '../results/LV1_model1.pdf'
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/runpy.py", line 184, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.5/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/usr/lib/python3.5/cProfile.py", line 160, in <module>
+    main()
+  File "/usr/lib/python3.5/cProfile.py", line 153, in main
+    runctx(code, globs, None, options.outfile, options.sort)
+  File "/usr/lib/python3.5/cProfile.py", line 20, in runctx
+    filename, sort)
+  File "/usr/lib/python3.5/profile.py", line 64, in runctx
+    prof.runctx(statement, globals, locals)
+  File "/usr/lib/python3.5/cProfile.py", line 100, in runctx
+    exec(cmd, globals, locals)
+  File "LV2.py", line 56, in <module>
+    f1.savefig('../results/LV2_model1.pdf') #save figure
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/figure.py", line 1814, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/backend_bases.py", line 2259, in print_figure
+    **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/backends/backend_pdf.py", line 2584, in print_pdf
+    file = PdfFile(filename, metadata=kwargs.pop("metadata", None))
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/backends/backend_pdf.py", line 439, in __init__
+    fh = open(filename, 'wb')
+FileNotFoundError: [Errno 2] No such file or directory: '../results/LV2_model1.pdf'
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/runpy.py", line 184, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.5/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/usr/lib/python3.5/cProfile.py", line 160, in <module>
+    main()
+  File "/usr/lib/python3.5/cProfile.py", line 153, in main
+    runctx(code, globs, None, options.outfile, options.sort)
+  File "/usr/lib/python3.5/cProfile.py", line 20, in runctx
+    filename, sort)
+  File "/usr/lib/python3.5/profile.py", line 64, in runctx
+    prof.runctx(statement, globals, locals)
+  File "/usr/lib/python3.5/cProfile.py", line 100, in runctx
+    exec(cmd, globals, locals)
+  File "LV3.py", line 49, in <module>
+    f1.savefig('../results/LV3_model1.pdf') #save figure
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/figure.py", line 1814, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/backend_bases.py", line 2259, in print_figure
+    **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/backends/backend_pdf.py", line 2584, in print_pdf
+    file = PdfFile(filename, metadata=kwargs.pop("metadata", None))
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/backends/backend_pdf.py", line 439, in __init__
+    fh = open(filename, 'wb')
+FileNotFoundError: [Errno 2] No such file or directory: '../results/LV3_model1.pdf'
+LV4.py:41: RuntimeWarning: overflow encountered in double_scalars
+  RC[t+1][0] = RC[t][0] * (1 + (r + (sc.stats.norm.rvs(loc=0, scale=0.1)) * (1 - RC[t][0] / K)) - a * RC[t][1]) #fill first column of the next row with the new R pop
+LV4.py:42: RuntimeWarning: overflow encountered in double_scalars
+  RC[t+1][1] = RC[t][1] * (1 - z + e * a * RC[t][0]) #fill first column of the next row with the new C pop
+LV4.py:41: RuntimeWarning: invalid value encountered in double_scalars
+  RC[t+1][0] = RC[t][0] * (1 + (r + (sc.stats.norm.rvs(loc=0, scale=0.1)) * (1 - RC[t][0] / K)) - a * RC[t][1]) #fill first column of the next row with the new R pop
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/runpy.py", line 184, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.5/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/usr/lib/python3.5/cProfile.py", line 160, in <module>
+    main()
+  File "/usr/lib/python3.5/cProfile.py", line 153, in main
+    runctx(code, globs, None, options.outfile, options.sort)
+  File "/usr/lib/python3.5/cProfile.py", line 20, in runctx
+    filename, sort)
+  File "/usr/lib/python3.5/profile.py", line 64, in runctx
+    prof.runctx(statement, globals, locals)
+  File "/usr/lib/python3.5/cProfile.py", line 100, in runctx
+    exec(cmd, globals, locals)
+  File "LV4.py", line 55, in <module>
+    f1.savefig('../results/LV4_model1.pdf') #save figure
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/figure.py", line 1814, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/backend_bases.py", line 2259, in print_figure
+    **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/backends/backend_pdf.py", line 2584, in print_pdf
+    file = PdfFile(filename, metadata=kwargs.pop("metadata", None))
+  File "/usr/local/lib/python3.5/dist-packages/matplotlib/backends/backend_pdf.py", line 439, in __init__
+    fh = open(filename, 'wb')
+FileNotFoundError: [Errno 2] No such file or directory: '../results/LV4_model1.pdf'
+
+======================================================================
 ======================================================================
 Finished running scripts
 
-Ran into 4 errors
+Ran into 9 errors
 
 ======================================================================
 ======================================================================

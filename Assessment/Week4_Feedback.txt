@@ -1,0 +1,1676 @@
+Starting weekly assessment for Amy, Week4
+
+Current Points = 100
+
+Note that: 
+(1) Major sections begin with a double "====" line 
+(2) Subsections begin with a single "====" line 
+(3) Code output or text file content are printed within single "*****" lines 
+
+======================================================================
+======================================================================
+Your Git repo size this week is about 250.86 MiB on disk 
+
+PART 1: Checking project workflow...
+
+Found the following directories in parent directory: Week6, Week1, Week7, Assessment, Week5, Week2, Week9, Week4, .git, Miniproject, Week3, Project
+
+Found the following files in parent directory: .gitignore, README.md, .DS_Store
+
+Checking for key files in parent directory...
+
+Found .gitignore in parent directory, great! 
+
+Printing contents of .gitignore:
+**********************************************************************
+*~ 
+*.tmp
+**********************************************************************
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+**********************************************************************
+# CMEE README
+
+My CMEE Coursework Repository
+
+This repository contains the coursework for my CMEE MRes at Imperial College London. The programs therein use shell scripting, python and R. 
+
+Work is divided into week-specified subdirectories (Week1/Week2...) except for where indicated.
+
+Week 1
+
+Practicals using command line and shell scripting only. Sandbox contains practise files. Code contains shell scripts. Data contains data files used with shell scripts. Plus README.md. 
+
+Week 2
+
+Biological computing in Python I. Including: using data structures, writing code, control flow tools, comprehensions, debugging etc.
+
+Week 3
+
+Biological computing in R. Including: Variable types, data structures, manipulating data, control flow tools, vectorisation, data management and visualisation.
+
+Week 4
+
+Statistics in R. Including: Basic statistics for ecology and evolution, with a focus on applicability. Mostly parametric tests (descriptive statistics, t-test, ANOVA, correlations, linear models, hypothesis testing).
+
+Week 5
+
+Spatial Analyses and Geographic Information Systems. Including: GIS data types, obtaining and handling GIS data, creating maps, basic data analyses and hypothesis testing in the spatial domain.
+
+Week 6
+
+Genomics and Bioinformatics. Including: understanding genomic data collection methods, how to choose data collection technique, genomic databases, genetic structure within/between populations, how to characterise and interpret results of common analyses such as STRUCTURE and PCA.
+
+Week 7
+
+Biological Computing in Python II. Including: program testing, debugging and documentation, retrieving, managing and analyzing data from local and remote databases, automate file handling, string manipulation and run shell scripts, efficient numerical analyses, patching together R and Python scripts and functions.
+
+Miniproject (Week 8)
+
+Selected own dataset out of selection of three. Carried out computationally intensive analysis that includes elements of shell scripting, R & Python, addressing questions involving data processing and model fitting, writing up and compiling a meaningful report on the analysis.
+
+Week 9
+
+High Performance Computing. Including: develop an advanced understanding of programming in R, principles of High Performance Computing.
+
+Project
+
+Working folder for dissertation project, including project proposal.
+
+
+**********************************************************************
+
+======================================================================
+Looking for the weekly directories...
+
+Found 8 weekly directories: Week1, Week2, Week3, Week4, Week5, Week6, Week7, Week9
+
+The Week4 directory will be assessed 
+
+======================================================================
+======================================================================
+PART 2: Checking weekly code and workflow...
+
+======================================================================
+Assessing WEEK4...
+
+Found the following directories: Code, Data, Results
+
+Found the following files: README.md, .DS_Store
+
+Checking for readme file in weekly directory...
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+**********************************************************************
+# CMEE README WEEK 4
+
+Statistics in R (21/10/19 - 25/10/19)
+In this module we built upon the introduction to R we received in the Biological Computing in R week and learned a core set of statistical methods that are of wide use in research projects. These statistical tests form the basis for many data analyses we will do in the future. 
+. Topics included:
+- Basic statistics for ecology and evolution, with a focus on applicability. 
+- Parametric tests (descriptive statistics, t-test, ANOVA, correlations, linear models, hypothesis testing).
+ 
+**********************************************************************
+
+Found following files in results directory: The Chihuahuan Desert Ecosystem.docx, rodents.pptx, .DS_Store...
+ideally, Results directory should be empty other than, perhaps, a readme. 
+
+Found 13 code files: StatsWithSparrows8.R, StatsWithSparrows15.R, StatsWithSparrows10.R, StatsWithSparrows5.R, StatsWithSparrows9.R, StatsWithSparrows1.R, RodentInvestigation.R, StatsWithSparrows18.R, StatsWithSparrows3.R, StatsWithSparrows13.R, StatsWithSparrows4.R, StatsWithSparrows6.R, StatsWithSparrows2.R
+
+Found the following extra files: .DS_Store
+0.5 pt deducted per extra file
+
+Current Points = 99.5
+
+======================================================================
+Testing script/code files...
+
+======================================================================
+Inspecting script file StatsWithSparrows8.R...
+
+File contents are:
+**********************************************************************
+# Amy Solman amy.solman19@imperial.ac.uk
+# 28th October 2019
+# Lecture 8
+
+# Linear functions
+# Decartes - Cartesian coordinates
+# Can describe any point with coordinates x, y
+# Y is response variable, x explanitory variable
+# 
+# Explanatory vs response variable:
+# Bigger sparrows are heavier (x, y)
+# Male sparrows are heavier (x, y)
+# Food-rich areas have more animals (y, x)
+# 
+# Linear functions
+# Used to describe a line in a cartesian coordinate system
+# y = mx + b
+# y coordinate depends on x
+# m = slope
+# b = intercept
+# To find the slop count one to the right of the line
+# then count up until you meet the line again
+# 
+# Degrees of freedom for a line: n - 2 (y and intercept)
+# Where n is the number of observations in the sample
+# 
+# DF for a line that goes through the origin?
+# DF for a line with slope 1 and a variable intercept?**********************************************************************
+
+Testing StatsWithSparrows8.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.10558s
+
+======================================================================
+Inspecting script file StatsWithSparrows15.R...
+
+File contents are:
+**********************************************************************
+# Amy Solman amy.solman19@imperial.ac.uk
+# 25th October 2019
+# Lecture 15
+
+##########LECTURE FIFTEEN##########
+
+rm(list=ls())
+
+
+daphnia <- read.delim("../Data/daphnia.txt")
+summary(daphnia)
+head(daphnia)
+
+#We check for potential outliers in x and y. From the summary data, 
+#we can see that the categories have sufficient sample size - this is a homogeneous dataset
+
+#Create a two panel graph (boxplot) plotting growth rate against detergent
+#then growth rate against daphnia
+par(mfrow = c(1, 2))
+plot(Growth.rate~Detergent, data = daphnia)
+plot(Growth.rate~Daphnia, data = daphnia)
+
+#Outliers in boxplots come up as circles. So, there are none.
+#Growth rates in defferent detergents appear to have a similar means
+#within about one point of each other
+#Clone 2 and 3 have similar growth rates, Clone 1 has a lower mean growth rate
+
+#Homogeneitry of variances
+
+#This is an important assumption for ANOVAS and regression analysis
+#To run the model explaining growth rate with Detergent brand and genotype,
+# we have to assume that the variances within each brand, and within each genotype are similar.
+#Looking at the plot they are sort of similar.
+#Rule of thumb for ANOVA is that the ratio between the largest and smallest variance should not be
+#much more than four
+
+require(dplyr)
+
+daphnia %>%
+  group_by(Detergent) %>%
+  summarise (variance=var(Growth.rate))
+
+daphnia %>%
+  group_by(Daphnia) %>%
+  summarise (variance=var(Growth.rate))
+
+#Ratio of variances for Clone 1 with the other two is about 5 (5 times smaller).
+#But ecological data is messy - plough ahead but keep this in mind
+#When interpreting model and drawing conclusions
+
+#Are the data normally distributed?
+
+hist(daphnia$Growth.rate)
+
+#Not very normally distrubuted
+#Linear regression assumes normality but is reasonably robust against violations
+#However, it assumes that the observations for each x (detergent, genotype)
+#are normal.
+#Not too many zeros in data
+
+#Is there any collinearity among the covariates? The condition in which some of the independent
+#variables are highly correlated. We only have catagories here so it doesn't apply.
+# Data set is homogenous because the variables are of one type.
+
+#Model daphnia
+#Create barplots showing the means and standard errors of the mean for both clonal 
+#genotype and detergent presence.
+
+seFun <- function(x) {
+  sqrt(var(x)/length(x))
+}
+detergentMean <- with(daphnia, tapply(Growth.rate, INDEX = Detergent,
+        FUN = mean))
+detergentSEM <- with(daphnia, tapply(Growth.rate, INDEX = Detergent,
+        FUN = seFun))
+cloneMean <- with(daphnia, tapply(Growth.rate, INDEX = Daphnia, FUN = mean))
+cloneSEM <- with(daphnia, tapply(Growth.rate, INDEX = Daphnia, FUN = seFun))
+
+par(mfrow = c(2,1), mar=c(4,4,1,1))
+barMids <- barplot(detergentMean, xlab = "Detergent type", ylab = "Population growth rate",
+                   ylim = c(0, 5))
+arrows(barMids, detergentMean - detergentSEM, barMids, 
+       detergentMean + detergentSEM, code = 3, angle = 90)
+barMids <- barplot(cloneMean, xlab = "Daphnia clone", ylab = "Population growth rate",
+        ylim = c(0, 5))
+arrows(barMids, cloneMean - cloneSEM, barMids, cloneMean + cloneSEM,
+       code = 3, angle = 90)
+
+# Do they have any explanatory power?
+#The differences in the means for the detergents don't look like they matter but
+#we should test whether they have any explanatory power. We can do this by adding both variables
+#into the formula describing the model. So far we have only seen this in simple situations
+#where there is one variable describing another (y~x). We can use the + sign
+#to add extra variables into the right hand side of the formula: y~x+z, means model y
+#using both the x and z variables. So now we can fit the model and look at
+#the analysis of variance table.
+
+daphniaMod <- lm(Growth.rate~Detergent + Daphnia, data = daphnia)
+anova(daphniaMod)
+
+#We now have the ANOVA table with line for each variable. In each case we follow
+#exactly the same procedure of  using an F-test on the mean squares - does this variable
+#explain a significant amount of variation in the data? In each case, we compare the mean
+#square variation fro the line('Mean Sq') to the residual mean square variation.
+
+#From this we conclude that genotype is important in determining the population growth rate
+#measured in the Daphnia but that the detergents do not have any effect. We can now
+#use the same techniques as before to see the differences in the means between each detergent
+#and genotype.
+
+summary(daphniaMod)
+
+detergentMean - detergentMean[1]
+
+cloneMean - cloneMean[1]
+
+daphniaANOVAMod <- aov(Growth.rate~Detergent + Daphnia, data = daphnia)
+summary(daphnia)
+
+?aov
+
+daphniaModHSD <- TukeyHSD(daphniaANOVAMod)
+daphniaModHSD
+
+par(mfrow=c(2,1), mar=c(4,4,1,1))
+plot(daphniaModHSD)
+
+par(mfrow=c(2,2))
+plot(daphniaMod)
+
+timber <- read.delim("../Data/timber.txt")
+summary(timber)
+
+par(mfrow = c(2,2))
+boxplot(timber$volume)
+boxplot(timber$girth)
+boxplot(timber$height)
+
+var(timber$volume)
+var(timber$girth)
+var(timber$height)
+
+t2 <- as.data.frame(subset(timber, timber$volume!="NA"))
+t2$z.girth <- scale(timber$girth)
+t2$z.height <- scale(timber$height)
+var(t2$z.girth)
+var(t2$z.height)
+plot(t2)
+
+par(mfrow=c(2,2))
+hist(t2$volume)
+hist(t2$girth)
+hist(t2$height)
+
+pairs(timber)
+
+cor(timber)
+
+summary(lm(girth~height, data = timber))
+
+VIF <- 1/(1-0.27)
+VIF
+
+sqrt(VIF)
+
+pairs(timber)
+
+cor(timber)
+
+pairs(t2)
+
+cor(t2)
+
+timberMod <- lm(volume~girth + height, data = timber)
+anova(timberMod)
+summary(timberMod)
+plot(timberMod)
+
+#Extra exercises in the handout**********************************************************************
+
+Testing StatsWithSparrows15.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+  Growth.rate     Water     Detergent    Daphnia  
+ Min.   :1.762   Tyne:36   BrandA:18   Clone1:24  
+ 1st Qu.:2.797   Wear:36   BrandB:18   Clone2:24  
+ Median :3.788             BrandC:18   Clone3:24  
+ Mean   :3.852             BrandD:18              
+ 3rd Qu.:4.807                                    
+ Max.   :6.918                                    
+  Growth.rate Water Detergent Daphnia
+1    2.919086  Tyne    BrandA  Clone1
+2    2.492904  Tyne    BrandA  Clone1
+3    3.021804  Tyne    BrandA 
+**********************************************************************
+
+Encountered error (or warning):
+Loading required package: dplyr
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+======================================================================
+Inspecting script file StatsWithSparrows10.R...
+
+File contents are:
+**********************************************************************
+# Amy Solman amy.solman19@imperial.ac.uk
+# 24th October 2019
+# Lecture 10
+
+##########LECTURE TEN##########
+
+rm(list=ls()) #clear environment
+
+d <- read.table("../Data/SparrowSize.txt", header = TRUE)
+str(d) #structure of data
+
+#plot mass/tarsus scatterplot with labels
+plot(d$Mass~d$Tarsus, ylab = "Mass (g)", xlab = "Tarsus (mm)", pch = 19, cex = 0.4)
+
+x <- c(1:100) #populate new x vector
+b <- 0.5 
+m <- 1.5
+y <- m*x+b # y is slope times x plus intercept
+plot(x, y, xlim = c(0,100), pch = 19, cex = 0.5) #plot x/y - straight line!
+
+d$Mass[1] #the first y value
+
+length(d$Mass) #y sample size
+
+d$Mass[1770] #y value at index 1770
+
+plot(d$Mass~d$Tarsus, ylab = "Mass (g)", xlab = "Tarsus (mm)", pch = 19, cex = 0.4, 
+     ylim = c(-5, 38), xlim = c(0,22))
+#plot y/x with axis lengths defined
+
+plot(d$Mass~d$Tarsus, ylab = "Mass (g)", xlab = "Tarsus (mm)", pch = 19, cex = 0.4)
+#plot y/x with automatic axis lengths
+
+d1 <- subset(d, d$Mass!="NA") # create a subset of the data with NA values for Mass removed
+d2 <- subset(d1, d1$Tarsus!="NA") # create a subset of that subset with NA value for
+#tarsus removed
+length(d2$Tarsus) #what is the sample size of tarsus in the new dataset
+
+model1 <- lm(Mass~Tarsus, data=d2) #model the data of the new data set with NA removed
+summary(model1) #summarise
+
+hist(model1$residuals) #create histogram of the residuals
+
+head(model1$residuals) #show top six residuals
+
+model2 <- lm(y~x) #create new linear model from previously defined vectors
+summary(model2) #summary data from that model
+
+#run the model with z scores of x variable
+d2$z.Tarsus <- scale(d2$Tarsus) 
+model3 <- lm(Mass~z.Tarsus, data = d2)
+summary(model3)
+
+plot(d2$Mass~d2$z.Tarsus, pch = 19, cex = 0.4) 
+abline(v = 0, lty = "dotted") #add straight line to a plot 
+
+head(d)
+
+str(d)
+
+d$Sex <- as.numeric(d$Sex) #transform Sex data to numeric variable
+par(mfrow = c(1,2)) #create multi frame plot
+plot(d$Wing ~ d$Sex.1, ylab = "Wing (mm)") #plot wing/sex as 2 factor variable
+plot(d$Wing ~ d$Sex, xlab = "Sex", xlim = c(-0.1, 1.1), ylab = "") #plot wing/sex as numeric variable
+#with defined axis lengths
+abline(lm(d$Wing ~ d$Sex), lwd = 2) #add straight line to the plot
+text(0.15, 76, "intercept") #add ingraph text
+text(0.9, 77.5, "slope", col = "red") #add ingraph text
+
+d4 <- subset(d, d$Wing!="NA") #new data frame with subset excluding NA for wings
+m4 <- lm(Wing~Sex, data=d4) #new linear model for wing/sex in new data frame
+t4 <- t.test(d4$Wing~d4$Sex, var.equal=TRUE) #t-test on new data frame 
+summary(m4)
+t4
+
+par(mfrow = c(2, 2)) #create four panel multi graph of model3 (linear regression)
+plot(model3)
+
+par(mfrow = c(2, 2)) #create four panel multi graph of m4 (linear regression)
+plot(m4)
+
+##########EXERCISES##########
+
+# Run diagnostics for a model with sex as explanatory variable. Interpret the plot.
+
+# Run a linear model, where you test the hypothesis that sparrows with bigger bills can eat more.
+# The prediction is that the larger the bill, the heavier the sparrow.
+
+#plot of mass as explained by bill size, with labelled axis
+d3 <- subset(d1, d1$Bill!="NA")
+
+plot(d3$Mass~d3$Bill, ylab = "Mass (g)", xlab = "Bill (mm)", pch = 19, cex = 0.4,
+     xlim = c(0, 20), ylim = c(0, 40))
+#pch is type of character used to show data point, cex is size of that character
+#manually set axis lengths
+
+length(d3$Bill)
+summary(d3$Mass)
+sd(d3$Mass)
+summary(d3$Bill)
+sd(d3$Bill)
+
+model4 <- lm(Mass~Bill, data=d3)
+summary(model4)
+
+d3$z.Bill <- scale(d3$Bill)
+model5 <- lm(Mass~z.Bill, data=d3)
+summary(model5)
+
+plot(d3$Mass~d3$z.Bill, pch = 19, cex = 0.4)
+abline(v = 0, lty = "dotted")
+
+# Detail what your explanatory and what your response variable is.
+# Write a short (1A4) report on methods and results. Before you go into the 
+# linear model, you should first describe your data, say how many sparrows, how many females and males,
+# whether there is a difference in your response between the sexes. If that difference is meaningful,
+# you should test the sexes seperately. Write this section as you would write it for a scientific article.
+
+##########REPORT###########
+
+##########METHODS##########
+# To test whether sparrows with bigger bills can eat more, and thus have greater mass, I used
+# a linear model, where body mass (g) was the response variable, and bill size (mm) the explanatory variable.
+# I z-standardized bill size to a mean of zero and SD of one, so that the intercept could be interpreted
+# as the mean of body mass. Following the analysis, I used visual inspection of residual plots to assess
+# that the assumption that the residuals follow a normal distribution was not violated. I report results as
+# statistically significant if p equals or is smaller than 0.05. I used R version 3.3 (R Core Team 2015)
+# for all analysis and plotting.
+
+##########RESULTS##########
+# I used data from 1111 observations. The sparrows weighed on average 27.65g (SD 2.04, range: 21.25-36.20).
+# The bills of the sparrows were on average 13.31mm long(wide?) (SD 0.60, range: 9.70-16.00). I found a positive,
+# statistically significant association between mass and bill size (Table 1).**********************************************************************
+
+Testing StatsWithSparrows10.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+'data.frame':	1770 obs. of  8 variables:
+ $ BirdID: int  1 2 2 2 2 2 2 2 2 2 ...
+ $ Year  : int  2002 2001 2002 2003 2004 2004 2004 2004 2004 2005 ...
+ $ Tarsus: num  16.9 16.8 17.2 17.5 17.8 ...
+ $ Bill  : num  NA NA NA 13.5 13.4 ...
+ $ Wing  : num  76 76 76 76 77 78 77 77 77 77 ...
+ $ Mass  : num  23.6 27.5 28.1 27.8 26.5 ...
+ $ Sex   : int  0 1 1 1 1 1 1 1 1 1 ...
+ $ Sex.1 : Factor w/ 2 levels "female","male": 1 2 2 2 2 2 2 2 2 2 ...
+[1] 23.6
+[1] 1770
+[1] 33
+[1] 1644
+
+Call:
+lm(formula = Mass ~
+**********************************************************************
+
+Encountered error (or warning):
+Warning message:
+In summary.lm(model2) : essentially perfect fit: summary may be unreliable
+
+======================================================================
+Inspecting script file StatsWithSparrows5.R...
+
+File contents are:
+**********************************************************************
+# Amy Solman amy.solman19@imperial.ac.uk
+# 24th October 2019
+# Lecture 5
+#Hypothesis Testing
+
+#p-value - the probability of observing this particular result
+#and more extreme results when the null hypothesis is true(this is no effect)
+
+
+rm(list=ls())
+
+d <- read.table("../Data/SparrowSize.txt", header = TRUE)
+
+boxplot(d$Mass~d$Sex.1, col=c("red", "blue"), ylab="Body mass (g)")
+
+# Males seem slightly heavier than females
+#We have to find out our null hypothesis
+#Difference between males and females is equal zero
+#If difference is positive, males have larger bodies
+#If difference is negative, males have lower body mass
+
+t.test1 <- t.test(d$Mass~d$Sex.1)
+t.test1
+
+#R tells us the alternative hypothesis
+#t-value is large, given the degrees of freedom
+#means with high probability males are heavier than females
+
+d1 <- as.data.frame(head(d, 50))
+length(d1$Mass)
+
+t.test2 <- t.test(d1$Mass~d1$Sex)
+t.test2
+
+#Test if wing length in 2001 differs from the grand total mean
+d2 <- subset(d, d$Year==2001)
+
+t.test4 <-t.test(d2$Wing)
+t.test4
+
+#test if male and female wing length differ in 2001
+d2 <- subset(d, d$Year==2001)
+t.test5 <- t.test(d2$Wing~d2$Sex.1)
+t.test5
+
+#test if male and female wing length differ in full data set
+t.test6 <- t.test(d$Wing~d$Sex.1)
+t.test6
+
+install.packages("pwr")
+
+require(pwr)
+
+#sampe size needed to find 5mm difference 
+pwr.t.test(d=(0-5)/2.41,power=0.8,sig.level=0.05,type="two.sample",alternative="two.sided")
+**********************************************************************
+
+Testing StatsWithSparrows5.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+	Welch Two Sample t-test
+
+data:  d$Mass by d$Sex.1
+t = -5.5654, df = 1682.9, p-value = 3.039e-08
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.7669117 -0.3672162
+sample estimates:
+mean in group female   mean in group male 
+            27.46852             28.03558 
+
+[1] 50
+
+	Welch Two Sample t-test
+
+data:  d1$Mass by d1$Sex
+t = 0.33484, df = 26.84, p-value = 0.7403
+alternative hypothesis: true difference in means is not equal to 0
+95 perce
+**********************************************************************
+
+Encountered error (or warning):
+Installing package into ‘/usr/local/lib/R/site-library’
+(as ‘lib’ is unspecified)
+Warning in install.packages("pwr") :
+  'lib = "/usr/local/lib/R/site-library"' is not writable
+Error in install.packages("pwr") : unable to install packages
+Execution halted
+
+======================================================================
+Inspecting script file StatsWithSparrows9.R...
+
+File contents are:
+**********************************************************************
+# Amy Solman amy.solman19@imperial.ac.uk
+# 24th October 2019
+# Lecture 9
+
+##########LECTURE NINE##########
+
+#Run a linear regression in R
+
+x <- c(1, 2, 3, 4, 8) # create vector of data values
+y <- c(4, 3, 5, 7, 9) # create vector of data values
+
+model1 <- (lm(y~x)) # assign a linear model of x/y to vector model1
+#explain y with x
+model1 #print model1
+
+# Coefficients:
+# (Intercept)     x  
+# 2.6164       0.8288   - where line of best fit would cross the axis - I think?
+
+summary(model1) #summary stats of the model
+
+# Residuals:
+#   1       2       3       4       5 
+# 0.5548 -1.2740 -0.1027  1.0685 -0.2466  - distance from the line of each data point
+# errors of each point
+# 
+# Coefficients:
+#                                           Estimate Std. Error   t value Pr(>|t|)  
+# (Intercept)                                  2.6164     0.8214   3.185   0.0499 *
+#   x (for increase of 1 x, y increases by...) 0.8288     0.1894   4.375   0.0221 *
+#   
+# performs t-test on intercept, is it different from zero. is 2.6 different from zero given
+# an error on 0.8
+#
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+# Residual standard error: 1.024 on 3 degrees of freedom
+# Multiple R-squared:  0.8645,	Adjusted R-squared:  0.8193 
+# F-statistic: 19.14 on 1 and 3 DF,  p-value: 0.0221
+
+anova(model1) #analysis of variance
+
+# Analysis of Variance Table
+
+# Response: y
+# Df  Sum Sq Mean Sq F value Pr(>F)  
+# 1 20.0562 20.0562  19.139 0.0221 *
+#   Residuals  3  3.1438  1.0479                 
+# ---
+#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+# Residual standard error: 1.024 on 3 degrees of freedom
+# Multiple R-squared:  0.8645,	Adjusted R-squared:  0.8193 
+# F-statistic: 19.14 on 1 and 3 DF,  p-value: 0.0221
+
+resid(model1) #extracts model residuals from objects returned by modeling functions
+
+# 1          2          3          4          5 
+# 0.5547945 -1.2739726 -0.1027397  1.0684932 -0.2465753 
+
+cov(x, y) #covariance, measure of the koint variability
+#of two random variables
+
+# 6.05
+
+var(x) #variance of x
+
+# 7.3
+
+plot(y~x) #plot the values
+**********************************************************************
+
+Testing StatsWithSparrows9.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+Call:
+lm(formula = y ~ x)
+
+Coefficients:
+(Intercept)            x  
+     2.6164       0.8288  
+
+
+Call:
+lm(formula = y ~ x)
+
+Residuals:
+      1       2       3       4       5 
+ 0.5548 -1.2740 -0.1027  1.0685 -0.2466 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)  
+(Intercept)   2.6164     0.8214   3.185   0.0499 *
+x             0.8288     0.1894   4.375   0.0221 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.024 on 3 degrees of 
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.16494s
+
+======================================================================
+Inspecting script file StatsWithSparrows1.R...
+
+File contents are:
+**********************************************************************
+# Amy Solman amy.solman19@imperial.ac.uk
+# 22nd October 2019
+# Lecture 1 and 2
+
+##########LECTURE ONE##########
+
+rm = (list=ls())
+
+# getwd() # check which working directory we're in
+# setwd("/Users/amysolman/Documents/SparrowStats") # re-set working directory
+# getwd() # check what we did worked
+
+2*2+1
+
+2*(2+1)
+
+12/2^3
+
+(12/2)^3
+
+x <- 5
+x
+
+y <- 2
+y
+
+x2 <- x^2
+x2
+
+x
+
+a <- x2 + x
+a
+
+y2 <- y^2
+z2 <- x2 + y2
+z <- sqrt(z2)
+print(z)
+
+3>2
+
+3 >= 3
+
+4<2
+
+myNumericVector <- c(1.3, 2.5, 1.9, 3.4, 5.6, 1.4, 3.1, 2.9)
+myCharacterVector <- c("low", "low", "low", "low", "high", "high", "high", "high")
+myLogicalVector <- c(TRUE, TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE)
+
+str(myNumericVector)
+str(myCharacterVector)
+str(myLogicalVector)
+
+myMixedVector <- c(1, TRUE, FALSE, 3, "help", 1.2, TRUE, "notwhatIplanned")
+str(myMixedVector)
+
+install.packages("lme4")
+library(lme4) 
+require(lme4)
+
+help(getwd)
+help(log)
+
+sqrt(4); 4^0.5; log(0); log(1); log(10); log(Inf)
+
+exp(1)
+
+pi
+
+##########LECTURE TWO##########
+
+#setwd("/Users/amysolman/Documents/SparrowStats")
+
+d <- read.table("../Data/SparrowSize.txt", header=TRUE)
+# str(d)
+# head(d)
+
+averages <- c(1, 2, 3, 3, 3, 4, 5, 5, 5, 20)
+
+mean(averages)
+median(averages)
+mode(averages)
+
+# function for mode
+getmode <- function(v) {
+  uniqv <- unique(v)
+  uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+
+result <- getmode(averages)
+# print(result)
+# 
+# print(d)
+
+
+
+# Print mean of bill/mass/wing
+mean(d$Bill, na.rm = TRUE)
+mean(d$Mass, na.rm = TRUE)
+mean(d$Wing, na.rm = TRUE)
+
+# Print variation of bill/mass/wing
+var(d$Bill, na.rm = TRUE)
+var(d$Mass, na.rm = TRUE)
+var(d$Wing, na.rm = TRUE)
+
+# Print standard deviation of bill/mass/wing
+sd(d$Bill, na.rm = TRUE)
+sd(d$Mass, na.rm = TRUE)
+sd(d$Wing, na.rm = TRUE)
+
+hist(d$Tarsus)
+hist(d$Bill, breaks=60)
+hist(d$Mass, breaks=60)
+hist(d$Wing, breaks=60) 
+
+#install.packages("modeest")
+
+
+
+
+
+
+**********************************************************************
+
+Testing StatsWithSparrows1.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+[1] 5
+[1] 6
+[1] 1.5
+[1] 216
+[1] 5
+[1] 2
+[1] 25
+[1] 5
+[1] 30
+[1] 5.385165
+[1] TRUE
+[1] TRUE
+[1] FALSE
+ num [1:8] 1.3 2.5 1.9 3.4 5.6 1.4 3.1 2.9
+ chr [1:8] "low" "low" "low" "low" "high" "high" "high" "high"
+ logi [1:8] TRUE TRUE FALSE FALSE TRUE TRUE ...
+ chr [1:8] "1" "TRUE" "FALSE" "3" "help" "1.2" "TRUE" "notwhatIplanned"
+
+**********************************************************************
+
+Encountered error (or warning):
+Installing package into ‘/usr/local/lib/R/site-library’
+(as ‘lib’ is unspecified)
+Warning in install.packages("lme4") :
+  'lib = "/usr/local/lib/R/site-library"' is not writable
+Error in install.packages("lme4") : unable to install packages
+Execution halted
+
+======================================================================
+Inspecting script file RodentInvestigation.R...
+
+File contents are:
+**********************************************************************
+#Amy Solman amy.solman19@imperial.ac.uk
+#29th October 2019
+#Investigation of the Chihuahuan Desert Ecosystem
+
+#We want to ask, does hing leg length differ between species?
+# Does hind leg length differ within species?
+# Does hind leg length differ between sexes?
+# Does hind leg length differ within sexes?
+
+rm(list=ls())
+
+{#modifying the data for analysis
+a <- read.csv("../Data/rodents.csv", header=T, stringsAsFactors =F)
+head(a)
+str(a)
+
+a$sex <- ifelse(a$sex!="M", ifelse(a$sex!="F", "No_Data", "F"), "M")
+
+a$tag <- ifelse(a$tag=="", "No_Tag", a$tag)
+
+a$yr <- as.factor(a$yr)
+a$mo <- as.factor(a$mo)
+a$sex <- as.factor(a$sex)
+a$tag <- as.factor(a$tag)
+a$species <- as.factor(a$species)
+
+colnames(a)[6] <- "hindfootlength.mm"
+colnames(a)[7] <- "weight.g"
+colnames(a)[8] <- "precip.mm"
+}
+
+str(a)
+
+## Data Description
+
+hist(a$hindfootlength.mm)
+summary(a$hindfootlength.mm)
+
+boxplot(a$hindfootlength.mm~a$species)
+boxplot(a$hindfootlength.mm~a$sex)
+boxplot(a$hindfootlength.mm~a$yr)
+
+boxplot(a$weight.g~a$species)
+boxplot(a$weight.g~a$sex)
+boxplot(a$weight.g~a$yr)
+boxplot(a$weight.g~a$precip.mm)
+boxplot(a$weight.g~a$hindfootlength.mm)
+boxplot(a$weight.g~a$mo)
+
+require(lme4) 
+require(ggplot2)
+
+#Does precipitation affect weight
+
+#testing normality
+hist(a$precip.mm)
+hist(a$weight.g)
+
+#not normally distributed so lets try log
+hist(log(a$precip.mm))
+hist(log(a$weight.g))
+
+install.packages("car")
+library(car)
+
+#use qqplot to test if data is normally distributed
+#if it is it meet parametric requirements for linear model
+qqPlot(log(a$weight.g))
+qqPlot(log(a$precip.mm), ylim = c(0, 5))
+
+# We can't use parametric tests
+hist(a$hindfootlength.mm)
+hist(a$weight.g)
+qqPlot(a$hindfootlength.mm)
+
+#The data is not normally distrubuted so we will use non-parametric tests
+#using number to number (weight/precip) so use spearmans rank
+
+#correlation test
+cor.test(a$weight.g, a$precip.mm, method="spearman")
+#no significant relationship 
+plot(log(a$weight.g)~log(a$precip.mm), main="Correlation between rodent weight and precipitation", 
+     ylab="log Rodent Weight", xlab = "log Precipitation")
+plot(a$weight.g~a$precip.mm)
+
+#non-parametric t-test is mann-whitney
+
+#non-parametric version of ANOVA test
+kruskal.test(a$weight.g~interaction(a$species, a$sex))
+#very significant p-value 
+#variation in weight is significantly influenced by species and sex
+
+#post hoc for kruskal-wallis
+
+install.packages("PMCMRplus")
+library(PMCMRplus)
+
+aa<-a[which(a$sex!="No_Data"),]
+aa$sex<-as.factor(as.character(aa$sex))
+boxplot(aa$weight.g~aa$sex, main ="Boxplot of rodent weight against gender", ylab="Weight (g)", xlab = "Gender")
+**********************************************************************
+
+Testing RodentInvestigation.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+'data.frame':	29162 obs. of  8 variables:
+ $ yr     : int  1980 1980 1980 1980 1980 1980 1980 1980 1980 1980 ...
+ $ mo     : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ tag    : chr  "2058" "2055" "2021" "2135" ...
+ $ species: chr  "OT" "DM" "OT" "OL" ...
+ $ sex    : chr  "M" "F" "F" "M" ...
+ $ hfl    : int  21 36 20 20 36 21 20 20 38 38 ...
+ $ wgt    : int  23 36 21 29 49 23 32 24 47 37 ...
+ $ precip : num  15.2 15.2 15.2 15.2 15.2 ...
+'data.frame':	29162 obs. of  8 variables:
+ $ yr               : Factor w
+**********************************************************************
+
+Encountered error (or warning):
+Loading required package: lme4
+Loading required package: Matrix
+Loading required package: methods
+
+Attaching package: ‘lme4’
+
+The following object is masked from ‘package:stats’:
+
+    sigma
+
+Loading required package: ggplot2
+Installing package into ‘/usr/local/lib/R/site-library’
+(as ‘lib’ is unspecified)
+Warning in install.packages("car") :
+  'lib = "/usr/local/lib/R/site-library"' is not writable
+Error in install.packages("car") : unable to install packages
+Execution halted
+
+======================================================================
+Inspecting script file StatsWithSparrows18.R...
+
+File contents are:
+**********************************************************************
+# Amy Solman amy.solman19@imperial.ac.uk
+# 28th October 2019
+# Lecture 18: Linear mixed models
+
+##########LECTURE EIGHTEEN##########
+
+rm(list=ls())
+
+a <- read.table("../Data/ObserverRepeatability.txt", header=T)
+
+#We want to find out how much the measurement of tarsus and bill
+#width depends on different observers. We will use the ANOVA method to do that.
+#Calculate the between-observer repeatability pf tarsus of the porn-star female!
+
+require(dplyr)
+
+#List how many counts are provided by each student
+a %>%
+  group_by(StudentID) %>%
+  summarise (count=length(StudentID))
+
+#List how many students provided counts
+a %>%
+  group_by(StudentID) %>%
+  summarise(count=length(StudentID)) %>%
+    summarise(length(StudentID))
+
+#List how many counts were provided in total
+a %>%
+  group_by(StudentID) %>%
+  summarise(count=length(StudentID)) %>%
+    summarise(sum(count))
+
+#List how many counts were provided in total - a quicker way!
+length(a$StudentID)
+
+#Sum the square values of each count (sum of squares)
+a %>%
+  group_by(StudentID) %>%
+  summarise(count=length(StudentID)) %>%
+  summarise(sum(count^2))
+
+#Calculate denominator of equation for repeatability
+1/79*(151-333/151)
+
+#Run ANOVA to check the mean squares
+mod <- lm(Tarsus~StudentID, data=a)
+anova(mod)
+
+#Test whether handedness, and which leg was measured made a difference
+mod <- lm(Tarsus~Leg+Handedness+StudentID,data=a)
+anova(mod)
+
+#Linear mixed-effects models using 'Eigen' and S4
+require(lme4)
+
+#In this model, specify leg and handedness as fixed factors
+#(1|Student) code for modelling StudenID as random effect on the intercept
+lmm <- lmer(Tarsus~Leg+Handedness+(1|StudentID),data=a)
+summary(lmm)
+
+var(a$Tarsus)
+
+3.03+1.71
+
+summary(lmm)
+**********************************************************************
+
+Testing StatsWithSparrows18.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+# A tibble: 80 x 2
+   StudentID count
+   <fct>     <int>
+ 1 AF151093      3
+ 2 AH2912        2
+ 3 Ak70593       1
+ 4 AK70593       1
+ 5 AL0109        1
+ 6 AR0408        2
+ 7 AR1310        1
+ 8 ASR0312       2
+ 9 BC1603        1
+10 cd1302        2
+# … with 70 more rows
+# A tibble: 1 x 1
+  `length(StudentID)`
+                <int>
+1                  80
+# A tibble: 1 x 1
+  `sum(count)`
+         <int>
+1          151
+[1] 151
+# A tibble: 1 x 1
+  `sum(count^2)`
+           <dbl>
+1            333
+[1] 1.88
+**********************************************************************
+
+Encountered error (or warning):
+Loading required package: dplyr
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: lme4
+Loading required package: Matrix
+Loading required package: methods
+
+Attaching package: ‘lme4’
+
+The following object is masked from ‘package:stats’:
+
+    sigma
+
+Warning message:
+'rBind' is deprecated.
+ Since R version 3.2.0, base's rbind() should work fine with S4 objects 
+
+======================================================================
+Inspecting script file StatsWithSparrows3.R...
+
+File contents are:
+**********************************************************************
+# Amy Solman amy.solman19@imperial.ac.uk
+# 24th October 2019
+# Stats with Sparrows
+
+rm = (list=ls())
+
+d <- read.table("../Data/SparrowSize.txt", header = TRUE) # re-set working directory
+
+str(d)
+
+hist(d$BirdID)    
+hist(d$Year)
+hist(d$Tarsus)
+hist(d$Bill)
+hist(d$Wing)
+hist(d$Mass)
+hist(d$Sex)
+#hist(d$Sex.1)
+
+# How to draw Poisson distribution
+
+# How to draw Binomial distribution
+
+# How to draw Gaussian distribution
+
+# How to draw Random distribution
+
+# What is the difference between a density and probability plot?**********************************************************************
+
+Testing StatsWithSparrows3.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+'data.frame':	1770 obs. of  8 variables:
+ $ BirdID: int  1 2 2 2 2 2 2 2 2 2 ...
+ $ Year  : int  2002 2001 2002 2003 2004 2004 2004 2004 2004 2005 ...
+ $ Tarsus: num  16.9 16.8 17.2 17.5 17.8 ...
+ $ Bill  : num  NA NA NA 13.5 13.4 ...
+ $ Wing  : num  76 76 76 76 77 78 77 77 77 77 ...
+ $ Mass  : num  23.6 27.5 28.1 27.8 26.5 ...
+ $ Sex   : int  0 1 1 1 1 1 1 1 1 1 ...
+ $ Sex.1 : Factor w/ 2 levels "female","male": 1 2 2 2 2 2 2 2 2 2 ...
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.16174s
+
+======================================================================
+Inspecting script file StatsWithSparrows13.R...
+
+File contents are:
+**********************************************************************
+# Amy Solman amy.solman19@imperial.ac.uk
+# 28th October 2019
+# Lecture 13: ANOVA
+
+##########LECTURE THIRTEEN##########
+
+rm(list=ls())
+
+d <- read.table("../Data/SparrowSize.txt", header = TRUE)
+str(d)
+
+d1 <- subset(d, d$Wing!="NA")
+summary(d1$Wing)
+
+model1 <- lm(Wing~Sex.1, data = d1)
+summary(model1)
+
+boxplot(d1$Wing~d1$Sex.1, ylab ="Wing length (mm)")
+
+anova(model1)
+
+b <- subset(d, d$Year!=2000) #exclude data for 2000 because it is outlier
+
+
+t.test(d1$Wing~d1$Sex.1, var.equal=TRUE)
+
+boxplot(d1$Wing~d1$BirdID, ylab="Wing length (mm)")
+
+install.packages("dplyr")
+
+require(dplyr)
+
+tbl_df(d1)
+
+glimpse(d1)
+
+d$Mass %>% cor.test(d$Tarsus, na.rm=TRUE)
+
+d1 %>% 
+  group_by(BirdID) %>%
+  summarise (count=length(BirdID))
+
+count(d1, BirdID)
+
+d1 %>% 
+  group_by(BirdID) %>%
+  summarise (count=length(BirdID)) %>%
+  count(count)
+
+count(d1, d1$BirdID) %>%
+  count(count)
+
+model3 <- lm(Wing~as.factor(BirdID), data = d1)
+anova(model3)
+
+boxplot(d$Mass~d$Year)
+
+m2 <- lm(d$Mass~as.factor(d$Year))
+anova(m2)
+summary(m2)
+
+t(model.matrix(m2))
+**********************************************************************
+
+Testing StatsWithSparrows13.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+'data.frame':	1770 obs. of  8 variables:
+ $ BirdID: int  1 2 2 2 2 2 2 2 2 2 ...
+ $ Year  : int  2002 2001 2002 2003 2004 2004 2004 2004 2004 2005 ...
+ $ Tarsus: num  16.9 16.8 17.2 17.5 17.8 ...
+ $ Bill  : num  NA NA NA 13.5 13.4 ...
+ $ Wing  : num  76 76 76 76 77 78 77 77 77 77 ...
+ $ Mass  : num  23.6 27.5 28.1 27.8 26.5 ...
+ $ Sex   : int  0 1 1 1 1 1 1 1 1 1 ...
+ $ Sex.1 : Factor w/ 2 levels "female","male": 1 2 2 2 2 2 2 2 2 2 ...
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   60.0    
+**********************************************************************
+
+Encountered error (or warning):
+Installing package into ‘/usr/local/lib/R/site-library’
+(as ‘lib’ is unspecified)
+Warning in install.packages("dplyr") :
+  'lib = "/usr/local/lib/R/site-library"' is not writable
+Error in install.packages("dplyr") : unable to install packages
+Execution halted
+
+======================================================================
+Inspecting script file StatsWithSparrows4.R...
+
+File contents are:
+**********************************************************************
+# Amy Solman amy.solman19@imperial.ac.uk
+# 24th October 2019
+# Lecture 9
+
+##########LECTURE FOUR##########
+
+#Standard errors
+
+# H0 = True mean is equal to mean of 2001
+# H1 = True mean is not equal to mean of 2001
+
+rm(list=ls())
+
+d <- read.table("../Data/SparrowSize.txt", header = TRUE)
+str(d)
+
+names(d)
+head(d)
+
+#SE of Tarsus total sample population
+d1<- subset(d, d$Tarsus!="NA")
+seTarsus<-sqrt(var(d1$Tarsus)/length(d1$Tarsus))
+seTarsus
+
+#SE of Tarsus 2001 only
+#Larger sample size means smaller standard error and greater certainty
+d12001<-subset(d1, d1$Year==2001)
+seTarsus2001<-sqrt(var(d12001$Tarsus)/length(d12001$Tarsus))
+seTarsus2001
+
+#SE of wing total sampel population
+d2<- subset(d, d$Wing!="NA")
+seWing<-sqrt(var(d2$Wing)/length(d2$Wing))
+seWing
+
+#SE of wing 2001 only
+d22001<-subset(d2, d2$Year==2001)
+seWing2001<-sqrt(var(d22001$Wing)/length(d22001$Wing))
+seWing2001
+
+#SE of bill total sampel population
+d3<- subset(d, d$Bill!="NA")
+seBill<-sqrt(var(d3$Bill)/length(d3$Bill))
+seBill
+
+#SE of bill 2001 only
+d32001<-subset(d3, d3$Year==2001)
+seBill2001<-sqrt(var(d32001$Bill)/length(d32001$Bill))
+seBill2001
+
+#SE of mass total sampel population
+d4<- subset(d, d$Mass!="NA")
+seMass<-sqrt(var(d4$Mass)/length(d4$Mass))
+seMass
+
+#SE of mass 2001 only
+d32001<-subset(d3, d3$Year==2001)
+seBill2001<-sqrt(var(d32001$Bill)/length(d32001$Bill))
+seBill2001
+
+d42001<-subset(d4, d4$Year==2001)
+seMass2001<-sqrt(var(d42001$Mass)/length(d42001$Mass))
+seMass2001
+
+TarsusSE <- data.frame(seTarsus, seTarsus2001)
+TarsusSE
+
+names(TarsusSE) <- c("Total", "2001")
+TarsusSE
+
+WingSE <- data.frame(seWing, seWing2001)
+WingSE
+
+names(WingSE) <- c("Total", "2001")
+WingSE
+
+BillSE <- data.frame(seBill, seBill2001)
+BillSE
+
+names(BillSE) <- c("Total", "2001")
+BillSE
+
+MassSE <- data.frame(seMass, seMass2001)
+MassSE
+
+names(MassSE) <- c("Total", "2001")
+MassSE
+
+TarsusSE
+WingSE
+BillSE
+MassSE
+
+Result <- rbind(TarsusSE, WingSE, BillSE, MassSE, row.names = TRUE)
+Result
+
+t.test(d1$Tarsus, mu=18.5, na.rm=TRUE)
+**********************************************************************
+
+Testing StatsWithSparrows4.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+'data.frame':	1770 obs. of  8 variables:
+ $ BirdID: int  1 2 2 2 2 2 2 2 2 2 ...
+ $ Year  : int  2002 2001 2002 2003 2004 2004 2004 2004 2004 2005 ...
+ $ Tarsus: num  16.9 16.8 17.2 17.5 17.8 ...
+ $ Bill  : num  NA NA NA 13.5 13.4 ...
+ $ Wing  : num  76 76 76 76 77 78 77 77 77 77 ...
+ $ Mass  : num  23.6 27.5 28.1 27.8 26.5 ...
+ $ Sex   : int  0 1 1 1 1 1 1 1 1 1 ...
+ $ Sex.1 : Factor w/ 2 levels "female","male": 1 2 2 2 2 2 2 2 2 2 ...
+[1] "BirdID" "Year"   "Tarsus" "Bill"   "Wing"   "Mass"   "S
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.14812s
+
+======================================================================
+Inspecting script file StatsWithSparrows6.R...
+
+File contents are:
+**********************************************************************
+# Amy Solman amy.solman19@imperial.ac.uk
+# 25th October 2019
+# Lecture 6
+
+##########LECTURE SIX##########
+
+#Using statistical powers
+
+#The chance that it will come out statistically significant when it should - 
+#this is, when the alternative hypothesis is really true. Power is a probability and
+#is very often expressed as a percentage.
+
+rm(list=ls())
+
+d <- read.table("../Data/SparrowSize.txt", header = TRUE)
+
+library(pwr)
+
+#POWER ANALYSIS
+pwr.t.test(d=(0-0.16)/0.96, power=.8,sig.level=.05, type = "two.sample", alternative="two.sided")
+
+#POWER ANALYSIS TO FIND DIFFERENCE OF AN EFFECT SIZE OF 5MM
+pwr.t.test(d=(0-5)/2.41,power=0.8,sig.level=0.05,type="two.sample",alternative="two.sided")
+**********************************************************************
+
+Testing StatsWithSparrows6.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+Error in library(pwr) : there is no package called ‘pwr’
+Execution halted
+
+======================================================================
+Inspecting script file StatsWithSparrows2.R...
+
+File contents are:
+**********************************************************************
+# Amy Solman amy.solman19@imperial.ac.uk
+# 23rd October 2019
+
+rm = (list=ls())
+
+#setwd("/Users/amysolman/Documents/SparrowStats") # re-set working directory
+d <- read.table("../Data/SparrowSize.txt", header = TRUE)
+
+str(d)
+head(d)
+length(d$Tarsus)
+
+#Centrality, mean, median and mode in normally distributed data
+
+mean(d$Tarsus) #NA because of missing values in our dataset
+mean(d$Tarsus, na.rm = TRUE)
+median(d$Tarsus, na.rm = TRUE)
+mode(d$Tarsus) #returns numeric - mode function returns description of the type of object
+#mode is difficult to estimate the mode in a continuous dataset because it is possible very
+#few of the values will be exactly the same, most values occur only once
+
+par(mfrow = c(2,2)) #par used to set or query graphical parameters, creates simple multipanel plot
+hist(d$Tarsus, breaks=3, col="grey")
+hist(d$Tarsus, breaks=10, col="grey")
+hist(d$Tarsus, breaks=30, col="grey")
+hist(d$Tarsus, breaks=100, col="grey")
+
+#breaks in the data show the resolution (breaks) is greater than the resolution of the 
+#measuring device
+
+# install.packages("modeest") #install doesn't work
+# require(modeest)
+
+#mlv(d$Tarsus) #should be in modeest package, this wouldn't work anyway
+#because we have to recode the dataset to deal with NA values
+
+d2 <- subset(d, d$Tarsus!='NA')
+length(d$Tarsus)
+length(d2$Tarsus)
+
+#mlv(d2$Tarsus) #this would give us a mode
+
+#or we can use this function...
+
+getmode <- function(v) {
+  uniqv <- unique(v)
+  uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+
+result <- getmode(d2$Tarsus)
+print(result)
+
+#in normally distributed data the mean, mode and median should be similar (18.5, 18.6, 19)
+
+#Range, variance and standard deviation
+
+range(d$Tarsus, na.rm = TRUE)
+range(d2$Tarsus, na.rm = TRUE)
+var(d$Tarsus, na.rm = TRUE)
+var(d2$Tarsus, na.rm = TRUE)
+
+sum((d2$Tarsus - mean(d2$Tarsus))^2)/(length(d2$Tarsus) - 1) #variance
+#square root variance for standard deviation
+sqrt(var(d2$Tarsus))
+
+sqrt(0.74)
+
+sd(d2$Tarsus)
+
+#Z scores and quantiles
+
+zTarsus <- (d2$Tarsus - mean(d2$Tarsus))/sd(d2$Tarsus)
+var(zTarsus)
+
+sd(zTarsus)
+hist(zTarsus)
+
+set.seed(123)
+znormal <- rnorm(1e+06)
+hist(znormal, breaks = 100)
+
+summary(znormal)
+
+qnorm(c(0.025, 0.975))
+#pnorm(.Last.value)
+
+par(mfrow = c(1, 2)) #make a multi panel graph with 1 row and two columns
+hist(znormal, breaks = 100) # make a histogram of znormal with 100 breaks
+abline(v=qnorm(c(0.25, 0.5, 0.75)), lwd = 2) # put a line on histo showing median and
+# 50% quantiles
+abline(v=qnorm(c(0.025, 0.975)), lwd = 2, lty = "dashed") # draw a line on histogram
+# showing 2.5% and 97.5% quartiles
+plot(density(znormal)) # plot density graph of znormal
+abline(v = qnorm(c(0.25, 0.5, 0.75)), col = "gray") # put a line on histo showing median and
+# 50% quantiles
+abline(v = qnorm(c(0.025, 0.975)), lty = "dotted", col = "black") # draw a line on histogram
+# showing 2.5% and 97.5% quartiles
+abline(h = 0, lwd = 3, col = "blue") 
+text(2, 0.3, "1.96", col = "red", adj = 0)
+text(-2, 0.3, "-1.96", col = "red", adj = 1)
+
+class(d$Sex)
+class(d$Sex.1)
+
+boxplot(d$Tarsus~d$Sex.1, col = c("red", "blue"), ylab = "Tarsus length (mm)")
+**********************************************************************
+
+Testing StatsWithSparrows2.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+'data.frame':	1770 obs. of  8 variables:
+ $ BirdID: int  1 2 2 2 2 2 2 2 2 2 ...
+ $ Year  : int  2002 2001 2002 2003 2004 2004 2004 2004 2004 2005 ...
+ $ Tarsus: num  16.9 16.8 17.2 17.5 17.8 ...
+ $ Bill  : num  NA NA NA 13.5 13.4 ...
+ $ Wing  : num  76 76 76 76 77 78 77 77 77 77 ...
+ $ Mass  : num  23.6 27.5 28.1 27.8 26.5 ...
+ $ Sex   : int  0 1 1 1 1 1 1 1 1 1 ...
+ $ Sex.1 : Factor w/ 2 levels "female","male": 1 2 2 2 2 2 2 2 2 2 ...
+  BirdID Year Tarsus Bill Wing  Mass Sex  Sex.1
+1      1 200
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.54251s
+
+======================================================================
+======================================================================
+Finished running scripts
+
+Ran into 8 errors
+
+======================================================================
+======================================================================
+
+FINISHED WEEKLY ASSESSMENT
+
+Current Points for the Week = 99.5
+
+NOTE THAT THESE ARE POINTS, NOT MARKS FOR THE WEEK!

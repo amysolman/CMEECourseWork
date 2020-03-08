@@ -9,13 +9,13 @@ Note that:
 
 ======================================================================
 ======================================================================
-Your Git repo size this week is about 231.66 KiB on disk 
+Your Git repo size this week is about 250.86 MiB on disk 
 
 PART 1: Checking project workflow...
 
-Found the following directories in parent directory: Week1, Assessment, Week2, .git
+Found the following directories in parent directory: Week6, Week1, Week7, Assessment, Week5, Week2, Week9, Week4, .git, Miniproject, Week3, Project
 
-Found the following files in parent directory: README.txt, .gitignore, .DS_Store
+Found the following files in parent directory: .gitignore, README.md, .DS_Store
 
 Checking for key files in parent directory...
 
@@ -27,28 +27,65 @@ Printing contents of .gitignore:
 *.tmp
 **********************************************************************
 
-Found README in parent directory, named: README.txt
+Found README in parent directory, named: README.md
 
-Printing contents of README.txt:
+Printing contents of README.md:
 **********************************************************************
+# CMEE README
+
 My CMEE Coursework Repository
 
-This repository contains the coursework for my CMEE MSc at Imperial College London. The programs therein use shell scripting, python and R. 
+This repository contains the coursework for my CMEE MRes at Imperial College London. The programs therein use shell scripting, python and R. 
 
-Work is divided into week-specified subdirectories (Week1/Week2...).
+Work is divided into week-specified subdirectories (Week1/Week2...) except for where indicated.
 
-WEEK 1
+Week 1
 
-Practicals using command line and shell scripting only. Sandbox contains practise files. Code contains shell scripts. Data contains data files used with shell scripts.
+Practicals using command line and shell scripting only. Sandbox contains practise files. Code contains shell scripts. Data contains data files used with shell scripts. Plus README.md. 
 
-WEEK 2
+Week 2
 
-Biological computing in Python I. Including: using data structures, writing code, control flow tools, comprehensions, debugging etc.**********************************************************************
+Biological computing in Python I. Including: using data structures, writing code, control flow tools, comprehensions, debugging etc.
+
+Week 3
+
+Biological computing in R. Including: Variable types, data structures, manipulating data, control flow tools, vectorisation, data management and visualisation.
+
+Week 4
+
+Statistics in R. Including: Basic statistics for ecology and evolution, with a focus on applicability. Mostly parametric tests (descriptive statistics, t-test, ANOVA, correlations, linear models, hypothesis testing).
+
+Week 5
+
+Spatial Analyses and Geographic Information Systems. Including: GIS data types, obtaining and handling GIS data, creating maps, basic data analyses and hypothesis testing in the spatial domain.
+
+Week 6
+
+Genomics and Bioinformatics. Including: understanding genomic data collection methods, how to choose data collection technique, genomic databases, genetic structure within/between populations, how to characterise and interpret results of common analyses such as STRUCTURE and PCA.
+
+Week 7
+
+Biological Computing in Python II. Including: program testing, debugging and documentation, retrieving, managing and analyzing data from local and remote databases, automate file handling, string manipulation and run shell scripts, efficient numerical analyses, patching together R and Python scripts and functions.
+
+Miniproject (Week 8)
+
+Selected own dataset out of selection of three. Carried out computationally intensive analysis that includes elements of shell scripting, R & Python, addressing questions involving data processing and model fitting, writing up and compiling a meaningful report on the analysis.
+
+Week 9
+
+High Performance Computing. Including: develop an advanced understanding of programming in R, principles of High Performance Computing.
+
+Project
+
+Working folder for dissertation project, including project proposal.
+
+
+**********************************************************************
 
 ======================================================================
 Looking for the weekly directories...
 
-Found 2 weekly directories: Week1, Week2
+Found 8 weekly directories: Week1, Week2, Week3, Week4, Week5, Week6, Week7, Week9
 
 The Week1 directory will be assessed 
 
@@ -59,7 +96,7 @@ PART 2: Checking weekly code and workflow...
 ======================================================================
 Assessing WEEK1...
 
-Found the following directories: Code, Data, Sandbox
+Found the following directories: Code, Data, Sandbox, Results
 
 Found the following files: README.md, .DS_Store
 
@@ -91,14 +128,12 @@ This week we were introduced to the UNIX system and shell scripting. We covered 
 # Code
 
   - File - FirstBiblio.bib: Imported citation from Google Scholar for FirstExample.tex
-  - File - FirstExample.bbl: Generated while compiling LaTex pdf for FirstExample.tex
-  - File - FirstExample.blg: Generated while compiling LaTex pdf for FirstExample.tex
   - File - FirstExample.tex: LaTex example created in VS code
   - File - FirstEample.pdf: Output of LaTex generated paper plus imported citation
   - File - boilerplate.sh: Gives example of basic shell script format and prints "This is a shell script!" into terminal
   - File - CompileLaTex.sh: Bash script to compile LaTex with Bibtex
   - File - Csvtospace.sh: Bash script that takes comma separated values and converts to space separated values. Results in ..Week1/Data/Temperatures
-  - File - tabtocsv.sh: Bash script that takes tab deliminated values and converts to comma separated values 
+  - File - tabtocsv.sh: Bash script that takes tab delimited values and converts to comma separated values 
   - File - variables.sh: Bash script showing how to add a string to a variable, then read multiple values and calculate the sum
   - File - MyExampleScript.sh: Prints two variables (Hello and username), then prints Hello and username again
   - File - CountLines.sh: Counts the number of lines in a file
@@ -118,16 +153,14 @@ This week we were introduced to the UNIX system and shell scripting. We covered 
 
 **********************************************************************
 
-Results directory missing!
+Found following files in results directory: ...
 
-Creating Results directory...
+Found 12 code files: ConcatenateTwoFiles.sh, CompileLaTex.sh, CountLines.sh, variables.sh, tiff2png.sh, csvtospace.sh, FirstExample.tex, MyExampleScript.sh, FirstBiblio.bib, UnixPrac1.txt, tabtocsv.sh, boilerplate.sh
 
-Found 15 code files: ConcatenateTwoFiles.sh, CompileLaTex.sh, testfile1.txt, CountLines.sh, variables.sh, tiff2png.sh, csvtospace.sh, FirstExample.tex, MyExampleScript.sh, FirstBiblio.bib, UnixPrac1.txt, tabtocsv.sh, testfile2.txt, testfile3.txt, boilerplate.sh
-
-Found the following extra files: FirstExample.bbl, FirstExample.pdf, .DS_Store, FirstExample.blg
+Found the following extra files: .DS_Store, FirstExample.pdf
 0.5 pt deducted per extra file
 
-Current Points = 98.0
+Current Points = 99.0
 
 ======================================================================
 Testing script/code files...
@@ -143,22 +176,26 @@ File contents are:
 # Desc: Concatenates two files into new file
 # Date: Oct 2019
 
+"""Inputs text data from two files into single third file"""
+
 cat $1 > $3
 cat $2 >> $3
-echo "Merged File is" cat $3**********************************************************************
+echo "Merged File is" 
+cat $3**********************************************************************
 
 Testing ConcatenateTwoFiles.sh...
 
 Output (only first 500 characters): 
 
 **********************************************************************
-Merged File is cat
+Merged File is
 
 **********************************************************************
 
 Encountered error (or warning):
-ConcatenateTwoFiles.sh: line 7: $3: ambiguous redirect
-ConcatenateTwoFiles.sh: line 8: $3: ambiguous redirect
+ConcatenateTwoFiles.sh: line 7: Inputs text data from two files into single third file: command not found
+ConcatenateTwoFiles.sh: line 9: $3: ambiguous redirect
+ConcatenateTwoFiles.sh: line 10: $3: ambiguous redirect
 
 ======================================================================
 Inspecting script file CompileLaTex.sh...
@@ -186,7 +223,9 @@ rm *.nav
 rm *.out
 rm *.out
 rm *.snm
-rm *.toc**********************************************************************
+rm *.toc
+rm *.blg
+rm *.bbl**********************************************************************
 
 Testing CompileLaTex.sh...
 
@@ -221,39 +260,32 @@ rm: cannot remove '*.out': No such file or directory
 rm: cannot remove '*.out': No such file or directory
 rm: cannot remove '*.snm': No such file or directory
 rm: cannot remove '*.toc': No such file or directory
+rm: cannot remove '*.blg': No such file or directory
+rm: cannot remove '*.bbl': No such file or directory
 
-** (evince:17707): WARNING **: Error when getting information for file '/home/mhasoba/Documents/Teaching/IC_CMEE/2019-20/Coursework/StudentRepos/AmySolman_ABS119/Week1/Code/.pdf': No such file or directory
+** (evince:12310): WARNING **: Error when getting information for file '/home/mhasoba/Documents/Teaching/IC_CMEE/2019-20/Coursework/StudentRepos/AmySolman_ABS119/Week1/Code/.pdf': No such file or directory
 
-** (evince:17707): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12310): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:17707): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12310): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:17707): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12310): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:17707): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12310): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:17707): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12310): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:17707): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12310): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:17707): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12310): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:17707): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12310): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:17707): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12310): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:17707): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12310): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:17707): WARNING **: Error setting file metadata: No such file or directory
-
-======================================================================
-Inspecting script file testfile1.txt...
-
-File contents are:
-**********************************************************************
-Something**********************************************************************
-
-Testing testfile1.txt...
+** (evince:12310): WARNING **: Error setting file metadata: No such file or directory
 
 ======================================================================
 Inspecting script file CountLines.sh...
@@ -266,9 +298,13 @@ File contents are:
 # Desc: Calculates the number of lines in a file
 # Date: Oct 2019
 
+"""Input a file and count the number of lines"""
+
+
 NumLines=`wc -l < $1`
 echo "The file $1 has $NumLines lines"
-echo **********************************************************************
+echo 
+**********************************************************************
 
 Testing CountLines.sh...
 
@@ -281,7 +317,8 @@ The file  has  lines
 **********************************************************************
 
 Encountered error (or warning):
-CountLines.sh: line 7: $1: ambiguous redirect
+CountLines.sh: line 7: Input a file and count the number of lines: command not found
+CountLines.sh: line 10: $1: ambiguous redirect
 
 ======================================================================
 Inspecting script file variables.sh...
@@ -293,6 +330,9 @@ File contents are:
 # Script: variables.sh
 # Desc: Prints string, asks for and prints new string. Asks for two numbers, adds and prints result.
 # Date: Oct 2019
+
+"""Enter a string and it is assigned to a variable.
+Enter two integers and they are added together"""
 
 #Shows the use of variables
 MyVar='some string'
@@ -324,6 +364,7 @@ you entered and . Their sum is:
 **********************************************************************
 
 Encountered error (or warning):
+variables.sh: line 8: $'Enter a string and it is assigned to a variable.\nEnter two integers and they are added together': command not found
 expr: syntax error
 
 ======================================================================
@@ -337,10 +378,10 @@ File contents are:
 # Desc: Converts tiff file to png file
 # Date: Oct 2019
 
-for f in *.tif
+for f in *.tif;
 do  
-    echo "Converting $f" 
-    convert "$f"  "$(basename "$f" .tif).jpg" 
+    echo "Converting $f"; 
+    convert "$f"  "$(basename "$f" .tif).jpg"; 
 done**********************************************************************
 
 Testing tiff2png.sh...
@@ -369,6 +410,8 @@ File contents are:
 # Arguments: 1-> comma delimited file
 # Date: Oct 2019
 
+"""Creates new space seperated file from csv file"""
+
 echo "Creating a space seperated values version of $1 ..."
 cat $1 | tr -s "," "\t" >> $1.txt
 echo "Done!"
@@ -385,9 +428,8 @@ Done!
 
 **********************************************************************
 
-Code ran without errors
-
-Time consumed = 0.01072s
+Encountered error (or warning):
+csvtospace.sh: line 9: Creates new space seperated file from csv file: command not found
 
 ======================================================================
 Inspecting script file FirstExample.tex...
@@ -395,18 +437,18 @@ Inspecting script file FirstExample.tex...
 File contents are:
 **********************************************************************
 \documentclass[12pt]{article}
-\title{A Simple document}
+\title{A Simple Document}
 \author{Amy Solman}
 \date{02/10/2019}
 \begin{document}
   \maketitle
-
+  
   \begin{abstract}
-    This paper must be cool!
+  This paper must be cool!
   \end{abstract}
   
   \section{Introduction}
-    Blah Blah!
+  Blah! Blah!
 
   \section{Materials \& Methods}
   One of the most famous equations is:
@@ -435,6 +477,8 @@ File contents are:
 # Desc: Prints 'Hello' and 'username' twice
 # Date: Oct 2019
 
+"""Enter user name and see it printed twice"""
+
 msg1="Hello"
 msg2=$USER
 echo "$msg1 $msg2"
@@ -452,9 +496,8 @@ Hello mhasoba
 
 **********************************************************************
 
-Code ran without errors
-
-Time consumed = 0.00554s
+Encountered error (or warning):
+MyExampleScript.sh: line 7: Enter user name and see it printed twice: command not found
 
 ======================================================================
 Inspecting script file FirstBiblio.bib...
@@ -516,7 +559,9 @@ File contents are:
 # Desc: substitue the tabs in the files with commas
 # saves the output into a .csv file
 # Arguments: 1-> tab delimited file
-# Date: Oct 2018
+# Date: Oct 2019
+
+"""This script creates a csv version of a tab deliminated file"""
 
 echo "Creating a comma delimited version of $1 ..."
 cat $1 | tr -s "\t" "," >> $1.csv
@@ -533,27 +578,8 @@ Done!
 
 **********************************************************************
 
-Code ran without errors
-
-Time consumed = 0.00560s
-
-======================================================================
-Inspecting script file testfile2.txt...
-
-File contents are:
-**********************************************************************
-Something else**********************************************************************
-
-Testing testfile2.txt...
-
-======================================================================
-Inspecting script file testfile3.txt...
-
-File contents are:
-**********************************************************************
-SomethingSomething else**********************************************************************
-
-Testing testfile3.txt...
+Encountered error (or warning):
+tabtocsv.sh: line 9: This script creates a csv version of a tab deliminated file: command not found
 
 ======================================================================
 Inspecting script file boilerplate.sh...
@@ -567,7 +593,8 @@ File contents are:
 # Arguments: none
 # Date: Oct 2018
 
-echo -e "\nThis is a shell script! \n" # -e enables interpretation of backslash escapes
+echo -e "\nThis is a shell script! \n" 
+# -e enables interpretation of backslash escapes
 
 #exit**********************************************************************
 
@@ -584,19 +611,19 @@ This is a shell script!
 
 Code ran without errors
 
-Time consumed = 0.00482s
+Time consumed = 0.00272s
 
 ======================================================================
 ======================================================================
 Finished running scripts
 
-Ran into 5 errors
+Ran into 8 errors
 
 ======================================================================
 ======================================================================
 
 FINISHED WEEKLY ASSESSMENT
 
-Current Points for the Week = 98.0
+Current Points for the Week = 99.0
 
 NOTE THAT THESE ARE POINTS, NOT MARKS FOR THE WEEK!
