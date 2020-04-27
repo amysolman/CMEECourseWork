@@ -1,0 +1,9 @@
+Cell count Monday 16032020 
+
+	Plot 1 (FSC-H/SSC-H)		
+	P1		
+	Count	Volume (µL)	Events / µL
+C01	20,070	10	2007
+D01	5,186	10	519
+E01	925	10	93
+F01	3	10	0

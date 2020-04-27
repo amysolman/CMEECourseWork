@@ -1,0 +1,12 @@
+"Species","Quadratic","Polynomial","Logistic","Baranyi","Linear","Buchanan","Gompertz"
+"Acinetobacte",2,6,10,0,4,2,0
+"Bacillus.pum",0,4,6,0,4,0,2
+"Chryseobacte",6,0,3,0,0,0,3
+"Clavibacter.",2,4,6,2,0,2,0
+"Dickeya.zeae",2,0,6,0,2,2,4
+"Enterobacter",0,4,4,0,0,0,0
+"Klebsiella.p",4,0,12,0,0,0,0
+"Pantoea.aggl",0,2,10,6,0,0,6
+"Pectobacteri",4,2,0,0,0,2,0
+"Pseudomonas.",2,2,4,2,0,0,6
+"Stenotrophom",2,2,18,0,0,0,2

@@ -1,0 +1,8 @@
+"Model","Fit","Fail","Success.Rate"
+"Baranyi","97","188","0.34"
+"Buchanan","44","241","0.154"
+"Gompertz","224","61","0.786"
+"Linear","285","0","1"
+"Logistic","264","21","0.926"
+"Polynomial","283","2","0.993"
+"Quadratic","285","0","1"

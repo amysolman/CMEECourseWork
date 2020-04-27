@@ -1,0 +1,262 @@
+﻿Year,Author,Title,Plate Number,immigration_rate,Events / µL,count_cells per ml,Count,Volume (µL),Date,Dilution in tube,Tube_number,In-plate dilution,Cells / µL PBS,Events / µL - PBS,1/1 cells per  µL,Well Number
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,Soil Wash,2591,259100000,"25,906",10,27-Feb,Soil Wash,,1/100,0,2591,259100,C03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,1995,199500000,"19,952",10,27-Feb,10^6,1,1/100,0,1995,199500,C04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,2165,216500000,"21,647",10,27-Feb,10^6,2,1/100,0,2165,216500,C05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,2307,230700000,"23,070",10,27-Feb,10^6,3,1/100,0,2307,230700,C06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,100000,1642,164200000,"16,421",10,27-Feb,10^5,1,1/100,0,1642,164200,C07
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,100000,1465,146500000,"14,650",10,27-Feb,10^5,2,1/100,0,1465,146500,C08
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,100000,1620,162000000,"16,197",10,27-Feb,10^5,3,1/100,0,1620,162000,C09
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,10000,1425,142500000,"14,247",10,27-Feb,10^4,1,1/100,0,1425,142500,C10
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,10000,2041,204100000,"20,408",10,27-Feb,10^4,2,1/100,0,2041,204100,C11
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,10000,2097,209700000,"20,971",10,27-Feb,10^4,3,1/100,0,2097,209700,C12
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,Soil Wash,1023,1023000000,"10,231",10,27-Feb,Soil Wash,,1/1000,0,1023,1023000,D03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,525,525000000,"5,248",10,27-Feb,10^6,1,1/1000,0,525,525000,D04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,653,653000000,"6,526",10,27-Feb,10^6,2,1/1000,0,653,653000,D05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,710,710000000,"7,100",10,27-Feb,10^6,3,1/1000,0,710,710000,D06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,100000,441,441000000,"4,414",10,27-Feb,10^5,1,1/1000,0,441,441000,D07
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,100000,390,390000000,"3,900",10,27-Feb,10^5,2,1/1000,0,390,390000,D08
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,100000,530,530000000,"5,303",10,27-Feb,10^5,3,1/1000,0,530,530000,D09
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,10000,360,360000000,"3,595",10,27-Feb,10^4,1,1/1000,0,360,360000,D10
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,10000,622,622000000,"6,224",10,27-Feb,10^4,2,1/1000,0,622,622000,D11
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,10000,673,673000000,"6,732",10,27-Feb,10^4,3,1/1000,0,673,673000,D12
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,Soil Wash,248,2480000000,"2,477",10,27-Feb,Soil Wash,,1/10000,0,248,2480000,E03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,104,1040000000,"1,035",10,27-Feb,10^6,1,1/10000,0,104,1040000,E04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,133,1330000000,"1,331",10,27-Feb,10^6,2,1/10000,0,133,1330000,E05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,151,1510000000,"1,512",10,27-Feb,10^6,3,1/10000,0,151,1510000,E06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,100000,98,980000000,984,10,27-Feb,10^5,1,1/10000,0,98,980000,E07
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,100000,77,770000000,767,10,27-Feb,10^5,2,1/10000,0,77,770000,E08
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,100000,112,1120000000,"1,120",10,27-Feb,10^5,3,1/10000,0,112,1120000,E09
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,10000,80,800000000,795,10,27-Feb,10^4,1,1/10000,0,80,800000,E10
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,10000,158,1580000000,"1,581",10,27-Feb,10^4,2,1/10000,0,158,1580000,E11
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,10000,177,1770000000,"1,773",10,27-Feb,10^4,3,1/10000,0,177,1770000,E12
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,PBS,0,0,2,10,27-Feb,PBS,,PBS,0,0,0,F03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1000,2001,200100000,"20,010",10,27-Feb,10^3,1,1/100,0,2001,200100,C01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1000,1495,149500000,"14,954",10,27-Feb,10^3,2,1/100,0,1495,149500,C02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1000,1636,163600000,"16,363",10,27-Feb,10^3,3,1/100,0,1636,163600,C03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,1084,108400000,"10,840",10,27-Feb,10^2,1,1/100,0,1084,108400,C04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,1414,141400000,"14,136",10,27-Feb,10^2,2,1/100,0,1414,141400,C05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,1933,193300000,"19,326",10,27-Feb,10^2,3,1/100,0,1933,193300,C06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,1345,134500000,"13,453",10,27-Feb,10^1,1,1/100,0,1345,134500,C07
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,1511,151100000,"15,111",10,27-Feb,10^1,2,1/100,0,1511,151100,C08
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,1309,130900000,"13,086",10,27-Feb,10^1,3,1/100,0,1309,130900,C09
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,1256,125600000,"12,559",10,27-Feb,10^0,1,1/100,0,1256,125600,C10
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,1290,129000000,"12,895",10,27-Feb,10^0,2,1/100,0,1290,129000,C11
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,1322,132200000,"13,215",10,27-Feb,10^0,3,1/100,0,1322,132200,C12
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1000,568,568000000,"5,681",10,27-Feb,10^3,1,1/1000,0,568,568000,D01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1000,405,405000000,"4,052",10,27-Feb,10^3,2,1/1000,0,405,405000,D02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1000,395,395000000,"3,948",10,27-Feb,10^3,3,1/1000,0,395,395000,D03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,258,258000000,"2,581",10,27-Feb,10^2,1,1/1000,0,258,258000,D04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,344,344000000,"3,442",10,27-Feb,10^2,2,1/1000,0,344,344000,D05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,402,402000000,"4,021",10,27-Feb,10^2,3,1/1000,0,402,402000,D06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,422,422000000,"4,223",10,27-Feb,10^1,1,1/1000,0,422,422000,D07
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,376,376000000,"3,764",10,27-Feb,10^1,2,1/1000,0,376,376000,D08
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,312,312000000,"3,120",10,27-Feb,10^1,3,1/1000,0,312,312000,D09
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,322,322000000,"3,216",10,27-Feb,10^0,1,1/1000,0,322,322000,D10
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,346,346000000,"3,456",10,27-Feb,10^0,2,1/1000,0,346,346000,D11
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,394,394000000,"3,936",10,27-Feb,10^0,3,1/1000,0,394,394000,D12
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1000,137,1370000000,"1,373",10,27-Feb,10^3,1,1/10000,0,137,1370000,E01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1000,110,1100000000,"1,099",10,27-Feb,10^3,2,1/10000,0,110,1100000,E02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1000,121,1210000000,"1,206",10,27-Feb,10^3,3,1/10000,0,121,1210000,E03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,78,780000000,779,10,27-Feb,10^2,1,1/10000,0,78,780000,E04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,95,950000000,951,10,27-Feb,10^2,2,1/10000,0,95,950000,E05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,125,1250000000,"1,251",10,27-Feb,10^2,3,1/10000,0,125,1250000,E06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,105,1050000000,"1,048",10,27-Feb,10^1,1,1/10000,0,105,1050000,E07
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,93,930000000,931,10,27-Feb,10^1,2,1/10000,0,93,930000,E08
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,59,590000000,585,10,27-Feb,10^1,3,1/10000,0,59,590000,E09
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,76,760000000,764,10,27-Feb,10^0,1,1/10000,0,76,760000,E10
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,84,840000000,844,10,27-Feb,10^0,2,1/10000,0,84,840000,E11
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,94,940000000,937,10,27-Feb,10^0,3,1/10000,0,94,940000,E12
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,PBS,0,0,4,10,27-Feb,PBS,,PBS,0,0,0,F03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0.1,861,86000000,"8,609",10,27-Feb,10^-1,1,1/100,1,860,86000,C01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0.1,1069,106800000,"10,688",10,27-Feb,10^-1,2,1/100,1,1068,106800,C02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0.1,923,92200000,"9,231",10,27-Feb,10^-1,3,1/100,1,922,92200,C03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0,803,80200000,"8,028",10,27-Feb,PBS Control,1,1/100,1,802,80200,C04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0,854,85300000,"8,536",10,27-Feb,PBS Control,2,1/100,1,853,85300,C05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0,638,63700000,"6,379",10,27-Feb,PBS Control,3,1/100,1,637,63700,C06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0.1,234,233000000,"2,335",10,27-Feb,10^-1,1,1/1000,1,233,233000,D01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0.1,242,241000000,"2,415",10,27-Feb,10^-1,2,1/1000,1,241,241000,D02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0.1,275,274000000,"2,747",10,27-Feb,10^-1,3,1/1000,1,274,274000,D03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0,269,268000000,"2,694",10,27-Feb,PBS Control,1,1/1000,1,268,268000,D04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0,196,195000000,"1,958",10,27-Feb,PBS Control,2,1/1000,1,195,195000,D05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0,190,189000000,"1,900",10,27-Feb,PBS Control,3,1/1000,1,189,189000,D06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0.1,69,680000000,687,10,27-Feb,10^-1,1,1/10000,1,68,680000,E01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0.1,81,800000000,810,10,27-Feb,10^-1,2,1/10000,1,80,800000,E02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0.1,66,650000000,663,10,27-Feb,10^-1,3,1/10000,1,65,650000,E03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0,71,700000000,707,10,27-Feb,PBS Control,1,1/10000,1,70,700000,E04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0,61,600000000,605,10,27-Feb,PBS Control,2,1/10000,1,60,600000,E05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0,57,560000000,565,10,27-Feb,PBS Control,3,1/10000,1,56,560000,E06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,PBS,1,0,6,10,27-Feb,PBS,,PBS,1,0,0,F01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,0,988,9870000000,"9,884",10,05-Mar,PBS Control,1,1/100,1,987,9870000,C01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,0,1103,11020000000,"11,032",10,05-Mar,PBS Control,2,1/100,1,1102,11020000,C02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,0,957,9560000000,"9,567",10,05-Mar,PBS Control,3,1/100,1,956,9560000,C03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,Soil Wash,1593,15920000000,"15,926",10,05-Mar,Soil Wash,,1/100,1,1592,15920000,C04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,0,211,2100000000,"2,106",10,05-Mar,PBS Control,1,1/1000,1,210,2100000,D01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,0,220,2190000000,"2,196",10,05-Mar,PBS Control,2,1/1000,1,219,2190000,D02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,0,187,1860000000,"1,867",10,05-Mar,PBS Control,3,1/1000,1,186,1860000,D03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,Soil Wash,388,3870000000,"3,877",10,05-Mar,Soil Wash,,1/1000,1,387,3870000,D04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,0,45,440000000,453,10,05-Mar,PBS Control,1,1/10000,1,44,440000,E01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,0,49,480000000,494,10,05-Mar,PBS Control,2,1/10000,1,48,480000,E02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,0,30,290000000,297,10,05-Mar,PBS Control,3,1/10000,1,29,290000,E03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,Soil Wash,79,780000000,791,10,05-Mar,Soil Wash,,1/10000,1,78,780000,E04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,PBS,1,0,7,10,05-Mar,PBS,,PBS,1,0,0,F01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,1912,19120000000,"19,115",10,05-Mar,10^2,1,1/100,0,1912,19120000,C01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,2061,20610000000,"20,608",10,05-Mar,10^2,2,1/100,0,2061,20610000,C02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,2002,20020000000,"20,024",10,05-Mar,10^2,3,1/100,0,2002,20020000,C03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,1633,16330000000,"16,332",10,05-Mar,10^1,1,1/100,0,1633,16330000,C04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,1918,19180000000,"19,181",10,05-Mar,10^1,2,1/100,0,1918,19180000,C05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,1954,19540000000,"19,542",10,05-Mar,10^1,3,1/100,0,1954,19540000,C06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,1796,17960000000,"17,956",10,05-Mar,10^0,1,1/100,0,1796,17960000,C07
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,1576,15760000000,"15,764",10,05-Mar,10^0,2,1/100,0,1576,15760000,C08
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,1359,13590000000,"13,593",10,05-Mar,10^0,3,1/100,0,1359,13590000,C09
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,0.1,1560,15600000000,"15,601",10,05-Mar,10^-1,1,1/100,0,1560,15600000,C10
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,0.1,1509,15090000000,"15,090",10,05-Mar,10^-1,2,1/100,0,1509,15090000,C11
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,0.1,2029,20290000000,"20,289",10,05-Mar,10^-1,3,1/100,0,2029,20290000,C12
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,444,4440000000,"4,442",10,05-Mar,10^2,1,1/1000,0,444,4440000,D01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,567,5670000000,"5,674",10,05-Mar,10^2,2,1/1000,0,567,5670000,D02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,489,4890000000,"4,888",10,05-Mar,10^2,3,1/1000,0,489,4890000,D03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,413,4130000000,"4,131",10,05-Mar,10^1,1,1/1000,0,413,4130000,D04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,497,4970000000,"4,966",10,05-Mar,10^1,2,1/1000,0,497,4970000,D05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,500,5000000000,"4,998",10,05-Mar,10^1,3,1/1000,0,500,5000000,D06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,484,4840000000,"4,843",10,05-Mar,10^0,1,1/1000,0,484,4840000,D07
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,427,4270000000,"4,273",10,05-Mar,10^0,2,1/1000,0,427,4270000,D08
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,304,3040000000,"3,038",10,05-Mar,10^0,3,1/1000,0,304,3040000,D09
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,0.1,332,3320000000,"3,324",10,05-Mar,10^-1,1,1/1000,0,332,3320000,D10
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,0.1,324,3240000000,"3,238",10,05-Mar,10^-1,2,1/1000,0,324,3240000,D11
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,0.1,473,4730000000,"4,730",10,05-Mar,10^-1,3,1/1000,0,473,4730000,D12
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,81,810000000,814,10,05-Mar,10^2,1,1/10000,0,81,810000,E01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,112,1120000000,"1,119",10,05-Mar,10^2,2,1/10000,0,112,1120000,E02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,94,940000000,939,10,05-Mar,10^2,3,1/10000,0,94,940000,E03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,77,770000000,767,10,05-Mar,10^1,1,1/10000,0,77,770000,E04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,85,850000000,850,10,05-Mar,10^1,2,1/10000,0,85,850000,E05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,108,1080000000,"1,083",10,05-Mar,10^1,3,1/10000,0,108,1080000,E06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,90,900000000,898,10,05-Mar,10^0,1,1/10000,0,90,900000,E07
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,93,930000000,927,10,05-Mar,10^0,2,1/10000,0,93,930000,E08
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,57,570000000,571,10,05-Mar,10^0,3,1/10000,0,57,570000,E09
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,0.1,76,760000000,758,10,05-Mar,10^-1,1,1/10000,0,76,760000,E10
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,0.1,65,650000000,654,10,05-Mar,10^-1,2,1/10000,0,65,650000,E11
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,0.1,112,1120000000,"1,123",10,05-Mar,10^-1,3,1/10000,0,112,1120000,E12
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,PBS,0,0,2,10,05-Mar,PBS,,PBS,0,0,0,F01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,1000000,2479,24780000000,"24,791",10,05-Mar,10^6,1,1/100,1,2478,24780000,C01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,1000000,2231,22300000000,"22,306",10,05-Mar,10^6,2,1/100,1,2230,22300000,C02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,1000000,2591,25900000000,"25,909",10,05-Mar,10^6,3,1/100,1,2590,25900000,C03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,100000,2205,22040000000,"22,050",10,05-Mar,10^5,1,1/100,1,2204,22040000,C04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,100000,2633,26320000000,"26,334",10,05-Mar,10^5,2,1/100,1,2632,26320000,C05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,100000,2583,25820000000,"25,828",10,05-Mar,10^5,3,1/100,1,2582,25820000,C06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,10000,2185,21840000000,"21,853",10,05-Mar,10^4,1,1/100,1,2184,21840000,C07
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,10000,2449,24480000000,"24,486",10,05-Mar,10^4,2,1/100,1,2448,24480000,C08
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,10000,2283,22820000000,"22,832",10,05-Mar,10^4,3,1/100,1,2282,22820000,C09
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,1000,2464,24630000000,"24,635",10,05-Mar,10^3,1,1/100,1,2463,24630000,C10
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,1000,2596,25950000000,"25,955",10,05-Mar,10^3,2,1/100,1,2595,25950000,C11
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,1000,2447,24460000000,"24,468",10,05-Mar,10^3,3,1/100,1,2446,24460000,C12
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,1000000,1029,10280000000,"10,287",10,05-Mar,10^6,1,1/1000,1,1028,10280000,D01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,1000000,781,7800000000,"7,807",10,05-Mar,10^6,2,1/1000,1,780,7800000,D02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,1000000,1119,11180000000,"11,187",10,05-Mar,10^6,3,1/1000,1,1118,11180000,D03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,100000,846,8450000000,"8,458",10,05-Mar,10^5,1,1/1000,1,845,8450000,D04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,100000,1117,11160000000,"11,169",10,05-Mar,10^5,2,1/1000,1,1116,11160000,D05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,100000,1053,10520000000,"10,525",10,05-Mar,10^5,3,1/1000,1,1052,10520000,D06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,10000,763,7620000000,"7,625",10,05-Mar,10^4,1,1/1000,1,762,7620000,D07
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,10000,1015,10140000000,"10,152",10,05-Mar,10^4,2,1/1000,1,1014,10140000,D08
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,10000,979,9780000000,"9,794",10,05-Mar,10^4,3,1/1000,1,978,9780000,D09
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,1000,1028,10270000000,"10,280",10,05-Mar,10^3,1,1/1000,1,1027,10270000,D10
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,1000,1150,11490000000,"11,504",10,05-Mar,10^3,2,1/1000,1,1149,11490000,D11
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,1000,962,9610000000,"9,619",10,05-Mar,10^3,3,1/1000,1,961,9610000,D12
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,1000000,328,3270000000,"3,275",10,05-Mar,10^6,1,1/10000,1,327,3270000,E01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,1000000,253,2520000000,"2,527",10,05-Mar,10^6,2,1/10000,1,252,2520000,E02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,1000000,385,3840000000,"3,850",10,05-Mar,10^6,3,1/10000,1,384,3840000,E03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,100000,288,2870000000,"2,882",10,05-Mar,10^5,1,1/10000,1,287,2870000,E04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,100000,389,3880000000,"3,890",10,05-Mar,10^5,2,1/10000,1,388,3880000,E05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,100000,383,3820000000,"3,832",10,05-Mar,10^5,3,1/10000,1,382,3820000,E06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,10000,247,2460000000,"2,467",10,05-Mar,10^4,1,1/10000,1,246,2460000,E07
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,10000,337,3360000000,"3,365",10,05-Mar,10^4,2,1/10000,1,336,3360000,E08
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,10000,301,3000000000,"3,008",10,05-Mar,10^4,3,1/10000,1,300,3000000,E09
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,1000,314,3130000000,"3,137",10,05-Mar,10^3,1,1/10000,1,313,3130000,E10
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,1000,387,3860000000,"3,870",10,05-Mar,10^3,2,1/10000,1,386,3860000,E11
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,1000,303,3020000000,"3,030",10,05-Mar,10^3,3,1/10000,1,302,3020000,E12
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,PBS,1,0,6,10,05-Mar,PBS,,PBS,1,0,0,F01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,Soil Wash,2626,262500000,"26,276",10,12-Mar,Soil Wash,,1/100,1,2625,262500,C01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,2250,224900000,"22,522",10,12-Mar,10^6,1,1/100,1,2249,224900,C02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,2233,223200000,"22,353",10,12-Mar,10^6,2,1/100,1,2232,223200,C03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,2280,227900000,"22,820",10,12-Mar,10^6,3,1/100,1,2279,227900,C04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,100000,2168,216700000,"21,697",10,12-Mar,10^5,1,1/100,1,2167,216700,C05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,100000,2061,206000000,"20,625",10,12-Mar,10^5,2,1/100,1,2060,206000,C06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,100000,2061,206000000,"20,630",10,12-Mar,10^5,3,1/100,1,2060,206000,C07
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,10000,2080,207900000,"20,824",10,12-Mar,10^4,1,1/100,1,2079,207900,C08
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,10000,2523,252200000,"25,245",10,12-Mar,10^4,2,1/100,1,2522,252200,C09
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,10000,2261,226000000,"22,627",10,12-Mar,10^4,3,1/100,1,2260,226000,C10
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000,2081,208000000,"20,828",10,12-Mar,10^3,1,1/100,1,2080,208000,C11
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000,2051,205000000,"20,532",10,12-Mar,10^3,2,1/100,1,2050,205000,C12
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,Soil Wash,1140,1139000000,"11,422",10,12-Mar,Soil Wash,,1/1000,1,1139,1139000,D01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,747,746000000,"7,488",10,12-Mar,10^6,1,1/1000,1,746,746000,D02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,713,712000000,"7,150",10,12-Mar,10^6,2,1/1000,1,712,712000,D03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,667,666000000,"6,685",10,12-Mar,10^6,3,1/1000,1,666,666000,D04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,100000,553,552000000,"5,546",10,12-Mar,10^5,1,1/1000,1,552,552000,D05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,100000,592,591000000,"5,938",10,12-Mar,10^5,2,1/1000,1,591,591000,D06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,100000,563,562000000,"5,648",10,12-Mar,10^5,3,1/1000,1,562,562000,D07
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,10000,593,592000000,"5,954",10,12-Mar,10^4,1,1/1000,1,592,592000,D08
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,10000,1111,1110000000,"11,127",10,12-Mar,10^4,2,1/1000,1,1110,1110000,D09
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,10000,732,731000000,"7,341",10,12-Mar,10^4,3,1/1000,1,731,731000,D10
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000,605,604000000,"6,071",10,12-Mar,10^3,1,1/1000,1,604,604000,D11
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000,626,625000000,"6,280",10,12-Mar,10^3,2,1/1000,1,625,625000,D12
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,Soil Wash,288,2870000000,"2,899",10,12-Mar,Soil Wash,,1/10000,1,287,2870000,E01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,187,1860000000,"1,886",10,12-Mar,10^6,1,1/10000,1,186,1860000,E02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,168,1670000000,"1,704",10,12-Mar,10^6,2,1/10000,1,167,1670000,E03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,160,1590000000,"1,624",10,12-Mar,10^6,3,1/10000,1,159,1590000,E04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,100000,136,1350000000,"1,380",10,12-Mar,10^5,1,1/10000,1,135,1350000,E05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,100000,129,1280000000,"1,314",10,12-Mar,10^5,2,1/10000,1,128,1280000,E06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,100000,138,1370000000,"1,395",10,12-Mar,10^5,3,1/10000,1,137,1370000,E07
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,10000,128,1270000000,"1,295",10,12-Mar,10^4,1,1/10000,1,127,1270000,E08
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,10000,324,3230000000,"3,263",10,12-Mar,10^4,2,1/10000,1,323,3230000,E09
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,10000,157,1560000000,"1,590",10,12-Mar,10^4,3,1/10000,1,156,1560000,E10
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000,134,1330000000,"1,359",10,12-Mar,10^3,1,1/10000,1,133,1330000,E11
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000,126,1250000000,"1,275",10,12-Mar,10^3,2,1/10000,1,125,1250000,E12
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,PBS,1,0,6,10,12-Mar,PBS,,PBS,1,0,0,F01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1000,1591,159100000,"15,914",10,12-Mar,10^3,3,1/100,0,1591,159100,C01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,1895,189500000,"18,952",10,12-Mar,10^2,1,1/100,0,1895,189500,C02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,1761,176100000,"17,605",10,12-Mar,10^2,2,1/100,0,1761,176100,C03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,1884,188400000,"18,836",10,12-Mar,10^2,3,1/100,0,1884,188400,C04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,1565,156500000,"15,646",10,12-Mar,10^1,1,1/100,0,1565,156500,C05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,1528,152800000,"15,280",10,12-Mar,10^1,2,1/100,0,1528,152800,C06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,1429,142900000,"14,286",10,12-Mar,10^1,3,1/100,0,1429,142900,C07
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,1437,143700000,"14,372",10,12-Mar,10^0,1,1/100,0,1437,143700,C08
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,1351,135100000,"13,508",10,12-Mar,10^0,2,1/100,0,1351,135100,C09
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,1281,128100000,"12,808",10,12-Mar,10^0,3,1/100,0,1281,128100,C10
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,0.1,1366,136600000,"13,656",10,12-Mar,10^-1,1,1/100,0,1366,136600,C11
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,0.1,1472,147200000,"14,715",10,12-Mar,10^-1,2,1/100,0,1472,147200,C12
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1000,431,431000000,"4,314",10,12-Mar,10^3,3,1/1000,0,431,431000,D01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,483,483000000,"4,828",10,12-Mar,10^2,1,1/1000,0,483,483000,D02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,478,478000000,"4,779",10,12-Mar,10^2,2,1/1000,0,478,478000,D03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,558,558000000,"5,580",10,12-Mar,10^2,3,1/1000,0,558,558000,D04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,432,432000000,"4,324",10,12-Mar,10^1,1,1/1000,0,432,432000,D05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,428,428000000,"4,282",10,12-Mar,10^1,2,1/1000,0,428,428000,D06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,406,406000000,"4,056",10,12-Mar,10^1,3,1/1000,0,406,406000,D07
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,400,400000000,"3,997",10,12-Mar,10^0,1,1/1000,0,400,400000,D08
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,379,379000000,"3,793",10,12-Mar,10^0,2,1/1000,0,379,379000,D09
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,345,345000000,"3,445",10,12-Mar,10^0,3,1/1000,0,345,345000,D10
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,0.1,358,358000000,"3,580",10,12-Mar,10^-1,1,1/1000,0,358,358000,D11
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,0.1,383,383000000,"3,833",10,12-Mar,10^-1,2,1/1000,0,383,383000,D12
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1000,115,1150000000,"1,145",10,12-Mar,10^3,3,1/10000,0,115,1150000,E01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,122,1220000000,"1,219",10,12-Mar,10^2,1,1/10000,0,122,1220000,E02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,120,1200000000,"1,201",10,12-Mar,10^2,2,1/10000,0,120,1200000,E03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,100,142,1420000000,"1,417",10,12-Mar,10^2,3,1/10000,0,142,1420000,E04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,99,990000000,988,10,12-Mar,10^1,1,1/10000,0,99,990000,E05
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,101,1010000000,"1,008",10,12-Mar,10^1,2,1/10000,0,101,1010000,E06
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,10,93,930000000,932,10,12-Mar,10^1,3,1/10000,0,93,930000,E07
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,86,860000000,862,10,12-Mar,10^0,1,1/10000,0,86,860000,E08
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,90,900000000,904,10,12-Mar,10^0,2,1/10000,0,90,900000,E09
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,1,82,820000000,818,10,12-Mar,10^0,3,1/10000,0,82,820000,E10
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,0.1,79,790000000,786,10,12-Mar,10^-1,1,1/10000,0,79,790000,E11
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,0.1,95,950000000,945,10,12-Mar,10^-1,2,1/10000,0,95,950000,E12
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,2,PBS,0,0,3,10,12-Mar,PBS,,PBS,0,0,0,F01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0.1,1172,117200000,"11,719",10,12-Mar,10^-1,3,1/100,0,1172,117200,C01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0,1175,117500000,"11,747",10,12-Mar,PBS Control,1,1/100,0,1175,117500,C02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0,1198,119800000,"11,975",10,12-Mar,PBS Control,2,1/100,0,1198,119800,C03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0,1116,111600000,"11,156",10,12-Mar,PBS Control,3,1/100,0,1116,111600,C04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0.1,285,285000000,"2,851",10,12-Mar,10^-1,3,1/1000,0,285,285000,D01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0,274,274000000,"2,739",10,12-Mar,PBS Control,1,1/1000,0,274,274000,D02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0,292,292000000,"2,919",10,12-Mar,PBS Control,2,1/1000,0,292,292000,D03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0,302,302000000,"3,020",10,12-Mar,PBS Control,3,1/1000,0,302,302000,D04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0.1,80,800000000,796,10,12-Mar,10^-1,3,1/10000,0,80,800000,E01
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0,72,720000000,724,10,12-Mar,PBS Control,1,1/10000,0,72,720000,E02
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0,87,870000000,866,10,12-Mar,PBS Control,2,1/10000,0,87,870000,E03
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,0,79,790000000,791,10,12-Mar,PBS Control,3,1/10000,0,79,790000,E04
+2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,3,PBS,0,0,1,10,12-Mar,PBS,,PBS,0,0,0,F01
