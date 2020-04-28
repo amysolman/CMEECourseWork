@@ -43,51 +43,59 @@ Mar12 = DataFrameDict['12-Mar']
 
 #27 FEBRUARY 2020
 #define columns for our dataframe and an empty list
-cols = ['Date', 'ID', 'Immigration_Rate', 'Mean_Cell_Count']
+cols = ['Year', 'Author', 'Title', 'ID', 'Immigration_Rate', 'Mean_Cell_Count', 'Date']
 lst = []
 
 #find the mean cell count of each 'island'
 for i in range(1, (len(Feb27.ID.unique())+1)):
     x = Feb27.loc[Feb27['ID'] == i, 'count_cells per ml']
+    year = mydata['Year'].iloc[0]
+    author = mydata['Author'].iloc[0]
+    title = mydata['Title'].iloc[0]
     a = i
     b = Feb27.loc[Feb27['ID'] == i, 'immigration_rate']
     b = b.iloc[0]
     c = st.mean(x)
-    lst.append(['Feb27', a, b, c])
+    lst.append([year, author, title, a, b, c, 'Feb27'])
 Feb27df = pd.DataFrame(lst, columns=cols)
 
 #05 MARCH 2020
 #define columns for our dataframe and an empty list
-cols = ['Date', 'ID', 'Immigration_Rate', 'Mean_Cell_Count']
+cols = ['Year', 'Author', 'Title', 'ID', 'Immigration_Rate', 'Mean_Cell_Count', 'Date']
 lst = []
 
 #find the mean cell count of each 'island'
 for i in range(1, (len(Mar05.ID.unique())+1)):
     x = Mar05.loc[Mar05['ID'] == i, 'count_cells per ml']
+    year = mydata['Year'].iloc[0]
+    author = mydata['Author'].iloc[0]
+    title = mydata['Title'].iloc[0]
     a = i
     b = Mar05.loc[Mar05['ID'] == i, 'immigration_rate']
     b = b.iloc[0]
     c = st.mean(x)
-    lst.append(['Mar05', a, b, c])
+    lst.append([year, author, title, a, b, c, 'Mar05'])
 Mar05df = pd.DataFrame(lst, columns=cols)
 
 #define columns for our dataframe and an empty list
-cols = ['Date', 'ID', 'Immigration_Rate', 'Mean_Cell_Count']
+cols = ['Year', 'Author', 'Title', 'ID', 'Immigration_Rate', 'Mean_Cell_Count', 'Date']
 lst = []
 
-# 12 MARCH 2020
 #find the mean cell count of each 'island'
 for i in range(1, (len(Mar12.ID.unique())+1)):
     x = Mar12.loc[Mar12['ID'] == i, 'count_cells per ml']
+    year = mydata['Year'].iloc[0]
+    author = mydata['Author'].iloc[0]
+    title = mydata['Title'].iloc[0]
     a = i
     b = Mar12.loc[Mar12['ID'] == i, 'immigration_rate']
     b = b.iloc[0]
     c = st.mean(x)
-    lst.append(['Mar12', a, b, c])
+    lst.append([year, author, title, a, b, c, 'Mar12'])
 Mar12df = pd.DataFrame(lst, columns=cols)
 
 
 #Save the modified data to csv files:
-Feb27df.to_csv('../Data/Solman2020/Modified/Feb27_data.csv')
-Mar05df.to_csv('../Data/Solman2020/Modified/Mar05_data.csv')
-Mar12df.to_csv('../Data/Solman2020/Modified/Mar12_data.csv')
+Feb27df.to_csv('../Data/Solman2020Feb27.csv', index=False)
+Mar05df.to_csv('../Data/Solman2020Mar05.csv', index=False)
+Mar12df.to_csv('../Data/Solman2020Mar12.csv', index=False)
