@@ -29,6 +29,7 @@ LogAreaSpeciesSolman = LogAreaSpeciesSolman.assign(Type='LogAreaSpecies')
 
 total = [data, LogArea, LogAreaSpecies, dataSolman, LogAreaSolman, LogAreaSpeciesSolman]
 result = pd.concat(total)
+result = result.round(2)
 
 result = result.sort_values(by=['Author', 'Type'])
 df = result.loc[:, ~result.columns.str.contains('^Unnamed')] #remove unnamed collumn
