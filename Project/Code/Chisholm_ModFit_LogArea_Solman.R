@@ -5,6 +5,8 @@ graphics.off()
 #install.packages("minpack.lm") <- if you've never installed minpack before
 library("minpack.lm") #for nlls fitting
 library("ggplot2")
+#install.packages("poilog") <- if you've never installed poilog before (for poisson distribution)
+library("poilog")
 
 #####HERE WE LOAD ALL OF OUT DATASETS INTO A LIST OF DATAFRAMES#####
 
@@ -15,6 +17,33 @@ datasets <- lapply(file_list,
                    function(x)
                      read.csv(paste(folder, x, sep = ''),
                               stringsAsFactors = FALSE))
+
+#Remove the first two datasets in our list, we don't need them
+datasets[c(1,2)] <- NULL
+
+#transform the cell counts to estimated species numbers using log normal distribution
+#with the number of cells counted, assuming a log normal distribution of bacterial species
+#how many would we estimate would be in each tube
+
+#Add new empty column for estimated species richness to each dataframe
+#then, using the mean_cells_per_µL, randomly generate integers for the Poisson log normal
+#distribution, then calculate unique numbers as an estimate of species richness
+
+for (i in 1:3) {
+  x <- as.data.frame(datasets[i])
+  newcolumn <- c("EstSpRich")
+  x[,newcolumn] <- NA
+  
+  for (j in 1:nrow(x)) {
+    a <- x$Mean_Cells_per_µL[j]
+    a <- as.integer(a)
+    sp <- rpoilog(a, 1, 1, nu=1, condS=FALSE, keep0=FALSE)
+    x$EstSpRich[j] <- length(unique(sp))
+  }
+  
+  datasets[[i]] <- x
+  
+}
 
 points_list <- list() #for storing our fitted points for plotting
 results_list <- list() #for storing our RSq and parameter results
@@ -33,10 +62,10 @@ chisholm_model <- function(area, theta, m0, K) {
 
 #FOR EACH DATASET IN THE LIST OF DATAFRAMES
 #FIND THE COLUMN WITH SPECIES IN IT AND RENAME THIS SPECIES_RICH
-for (j in 3:length(datasets)) {
+for (j in 1:length(datasets)) {
   x <- data.frame(datasets[j])
   area <- log(x[5]) #assign the area column of our dataframe to a vector
-  species_rich <- x[6] #assign the species richness column of our dataframe to a vector
+  species_rich <- x[8] #assign the species richness column of our dataframe to a vector
   data <- data.frame(area, species_rich) #bind into a new dataframe we will use for fitting
   names(data) <- c("area", "species_rich") #rename the columns
   data$area <- as.numeric(as.character(data$area)) #make sure all values are numeric or NA

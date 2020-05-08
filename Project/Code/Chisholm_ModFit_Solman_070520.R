@@ -40,14 +40,14 @@ for (i in 1:3) {
     sp <- rpoilog(a, 1, 1, nu=1, condS=FALSE, keep0=FALSE)
     x$EstSpRich[j] <- length(unique(sp))
   }
-  
+
   datasets[[i]] <- x
   
 }
 
 points_list <- list() #for storing our fitted points for plotting
 results_list <- list() #for storing our RSq and parameter results
-plots <- list()
+plots <- list() #for storing our plots
 
 #define the function
 chisholm_model <- function(area, theta, m0, K) {
@@ -60,17 +60,18 @@ chisholm_model <- function(area, theta, m0, K) {
   return(theta*(digamma(theta/K+gamma_stars*(digamma(gamma_stars+J_stars)-digamma(gamma_stars)))-digamma(theta/K)))
 }
 
-#FOR EACH DATASET IN THE LIST OF DATAFRAMES
+
+#FOR EACH CELL COUNT DATASET IN THE LIST OF DATAFRAMES (3 + 4)
 #FIND THE COLUMN WITH SPECIES IN IT AND RENAME THIS SPECIES_RICH
+
 for (j in 1:length(datasets)) {
   x <- data.frame(datasets[j])
-  area <- log(x[5]) #assign the area column of our dataframe to a vector
-  species_rich <- log(x[8]) #assign the species richness column of our dataframe to a vector
+  area <- x[5] #assign the area column of our dataframe to a vector
+  species_rich <- x[8] #assign the species richness column of our dataframe to a vector
   data <- data.frame(area, species_rich) #bind into a new dataframe we will use for fitting
   names(data) <- c("area", "species_rich") #rename the columns
   data$area <- as.numeric(as.character(data$area)) #make sure all values are numeric or NA
   data <- data[complete.cases(data),] #remove NAs
-  data <- data[is.finite(rowSums(data)),]
   best_fit_results <- NA
   best_plot_points <- NA
   a <- 0 #for re-setting RSq value after each dataset fit
@@ -79,7 +80,7 @@ for (j in 1:length(datasets)) {
   #Loop through the model fitting, with niche values (K) from 1 to maximum species richness
   #calculate R^2 value and store best parameter results
   
-  for(K in 1:max(data$species_rich)) {
+  for(K in 1:1000) {
     
     
     chisholm_fit <- try(nlsLM(species_rich ~ chisholm_model(area, theta, m0, K), data = data, start = list(theta = 200, m0 = 0.0005, K=K)), silent=T)
@@ -129,8 +130,8 @@ for (j in 1:length(datasets)) {
     #plot the most successful model fit with the data
     p <- ggplot(data, aes(x=area, y=species_rich)) +
       geom_point() +
-      xlab("LogArea") +
-      ylab("Log Species Richness") +
+      xlab("Area") +
+      ylab("Species Richness") +
       theme_bw() +
       ggtitle(paste("Species-Area Relationship", x[[2]][[1]], x[[1]][[1]])) +
       theme(plot.title = element_text(size = 10, face = "bold")) +
@@ -146,7 +147,7 @@ for (j in 1:length(datasets)) {
     
     #Save plots
     
-    file_name = paste("../Results/Plots/LogAreaSpeciesplot_", x[[2]][[1]], ".pdf", sep="")
+    file_name = paste("../Results/Plots/plot_", x[[2]][[1]], ".pdf", sep="")
     pdf(file_name)
     print(plots[[j]])
     dev.off()
@@ -158,4 +159,4 @@ for (j in 1:length(datasets)) {
 merged_results <- do.call(rbind, results_list)
 merged_results <- as.data.frame(merged_results)
 rownames(merged_results) <- NULL
-write.csv(merged_results, ("../Results/Stats_Results/LogAreaSpeciesTotalResults.csv")) 
+write.csv(merged_results, ("../Results/Stats_Results/TotalResultsSolman.csv")) 

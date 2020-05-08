@@ -1,4 +1,4 @@
-﻿Year,Author,Title,Plate Number,immigration_rate,Events / µL,count_cells per ml,Count,Volume (µL),Date,Dilution in tube,Tube_number,In-plate dilution,Cells / µL PBS,Events / µL - PBS,1/1 cells per  µL,Well Number
+﻿Year,Author,Title,Plate Number,immigration_rate,Events / µL,count_cells per ml,Count,Volume (µL),Date,Dilution in tube,Tube_number,In-plate dilution,Cells / µL PBS,Events / µL - PBS,cells_per_µL,Well Number
 2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,Soil Wash,2591,259100000,"25,906",10,27-Feb,Soil Wash,,1/100,0,2591,259100,C03
 2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,1995,199500000,"19,952",10,27-Feb,10^6,1,1/100,0,1995,199500,C04
 2020,"Solman, A.",Quantifying the contributions of dispersal and niches to diversity maintenance in a microbial system,1,1000000,2165,216500000,"21,647",10,27-Feb,10^6,2,1/100,0,2165,216500,C05
