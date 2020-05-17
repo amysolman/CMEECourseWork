@@ -41,6 +41,8 @@ unpack_me <- function(x) {
 }
 
 ##### FUNCTION TO RUN ONE TIMESTEP ON ONE NICHE #####
+####will have to run indices and then unpack function beforehand for this to work####
+#### e.g. unpack_me(indicies(0.005, 1000, 0.02)) #####
 simulation_one_timestep <- function(i) {
   
   if (do_speciation[i]) {
@@ -56,13 +58,108 @@ simulation_one_timestep <- function(i) {
 }
 
 ##### FUNCTION TO RUN T_MAX TIMESTEPS ON ONE NICHE #####
-multi_timestep <- function(t_max) {
+multi_timestep <- function(m, t_max, nu) {
+  
+  x <- indices(m, t_max, nu)
+  unpack_me(x)
   
   for (i in 1:t_max) {
     set.seed(i)
     simulation_one_timestep(i)
   }
   return(Island)
+}
+
+#function to calculate species richness from a vector
+species_richness <- function(community){
+  result <- length(unique(community))
+  print(result)
+}
+
+###Run the simulation for a given number of timesteps and return the Island community
+##for each timestep
+
+neutral_time_series <- function(m, t_max, nu) {
+  series <- vector()
+  x <- indices(m, t_max, nu)
+  unpack_me(x)
+  for (i in 1:t_max) {
+    y <- simulation_one_timestep(i)
+    series <- rbind(series, y)
+  }
+  return(series)
+}
+
+###Function to plot richess richness against timestep
+#####NEEDS FIXING
+plot_my_timeseries <- function(m, t_max, nu) {
+  graphics.off() 
+  data <- neutral_time_series(m, t_max, nu)
+  x <- 1:nrow(data) 
+  y <- apply(data, 1, function(i)length(unique(i)))
+  
+  plot(x, y, type = 'l')
+  
+}
+
+###function to create time series for multiple migration rates
+
+timeseries_multi_migration <- function(t_max, nu) {
+  
+  m = 0
+  multi_series <- list()
+  
+  for (i in 1:100) {
+    set.seed(i)
+    m = m + 0.001
+    x <- neutral_time_series(m, t_max, nu)
+    multi_series[[i]] <- x
+  }
+  
+  return(multi_series)
+}
+
+###plot my multiple migration rate time_series###
+
+plot_my_multiple_migration_rate_timeseries <- function(my_series) {
+  graphics.off()
+  data <- my_series
+  island_list <- list()
+  multi_list <- list()
+  
+  for (i in 1:length(data)) {
+    x <- data[[i]]
+    
+    for (j in 1:nrow(x)) {
+      y <- species_richness(x[j,])
+      island_list[[j]] <-  y
+    }
+    multi_list[[i]] <- island_list
+  }
+  
+  return(multi_list)
+}
+
+##turn multiple timeseries lists into dataframe and plot#####
+
+plot_multiple_migration_timeseries <- function (multi_list) {
+
+  a <- multi_list
+  df <- data.frame(matrix(ncol = 0, nrow = 0))
+  
+  for (x in 1:length(a)) {
+    this_island <- a[[x]]
+    this_island <- unlist(this_island)
+    
+    migration_rate <- x*0.001
+    timestep <- seq(1, length(this_island))
+    migration_rate <- rep(migration_rate, length(this_island))
+    new_df <- cbind.data.frame(timestep, migration_rate, this_island)
+    df <- rbind(df, new_df)
+  }
+  return(df)
+  
+  #####now plot on a graph#####
 }
 
 #RUN SIMULATION T_MAX TIMESTEPS WITH FIXED MIGRATION RATE #####
@@ -86,32 +183,8 @@ multi_niche <- function(niches, m, t_max) {
   return(total_island_community)
 }
 
-
-#Run the multiple_niche function with increasing migration rate
-#returns the communities of 100 islands with immigration rate from 0.001 to 0.1
-
-multi_migration <- function(niches, t_max) {
-  
-  m = 0
-  multi_migrat <- list()
-  
-  for (i in 1:100) {
-    m = m + 0.001
-    communities <- multi_niche(niches, m, t_max)
-    multi_migrat[[i]] <- communities
-    
-  }
-  
-  return(multi_migrat)
-}
-
 #run simulation of one island with 0.001 immigration rate and 1 niche
 #store unique number of species
-#run with two niches, store unique number of species
-#until you are left with a list of cummulative communities for one island if it had
-#1st element is one niche
-#2nd element is two niches
-#3rd element is three niches
 
 run_multiple_niches <- function(number_of_niches, m, t_max) {
   
@@ -158,35 +231,55 @@ find_my_species_richness <- function (number_of_niches, t_max) {
   df <- data.frame(matrix(ncol = 0, nrow = 0))
   
   for (x in 1:length(a)) {
-    species_richness <- vector()
+    species_rich <- vector()
     this_island <- a[[x]]
     for (y in 1:length(this_island)) {
-      species_richness[y] <- length(unique(this_island[[y]]))
+      species_richn[y] <- species_richness(this_island[[y]])
     }
     
     niches <- seq(1, length(this_island))
     migration_rate <- x*0.001
     migration_rate <- rep(migration_rate, length(this_island))
-    island_number <- rep(x, length(this_island))
-    new_df <- cbind.data.frame(island_number, migration_rate, niches, species_richness)
+    new_df <- cbind.data.frame(migration_rate, niches, species_rich)
     df <- rbind(df, new_df)
   }
   return(df)
 }
 
-#run simulation and plot
+#run simulation of 1000 islands with varying migration rate/niche numbers and plot
 
-sp <- find_my_species_richness(10, 100)
+sp <- find_my_species_richness(10, 100000)
 
+#plot
 
-  p <- ggplot(sp, aes(x=migration_rate, y=species_richness, shape=as.factor(niches), colour= as.factor(niches))) +
+  q <- ggplot(sp, aes(x=migration_rate, y=species_richness, shape=as.factor(niches), colour= as.factor(niches))) +
     scale_shape_manual(values=1:10) +
     geom_point() +
     ylab("Species Richness") +
     xlab("Migration Rate") +
-    ggtitle("Species richness, as a function of migration rate and number of niches") +
-    geom_smooth(method=lm, fullrange=TRUE, aes(fill=as.factor(niches))) +
+    ggtitle("Species richness by migration rate and niches (100,000 timesteps)") +
+    geom_smooth(aes(fill=as.factor(niches))) +
     theme(legend.title = element_blank())
+  
+#plot with log migration
 
+  p <- ggplot(sp, aes(x=log(migration_rate), y=species_richness, shape=as.factor(niches), colour= as.factor(niches))) +
+    scale_shape_manual(values=1:10) +
+    geom_point() +
+    ylab("Species Richness") +
+    xlab("Migration Rate") +
+    ggtitle("Species richness, log migration and niches (100,000 timesteps)") +
+    geom_smooth(aes(fill=as.factor(niches))) +
+    theme(legend.title = element_blank())
+  
+  pdf("../Results/species_richness_plot.pdf")
+  print(q)
+  dev.off()
 
+  pdf("../Results/species_richness_log_plot.pdf") 
+  print(p)
+  dev.off()
+  
+  write.csv(sp, "../Results/species_rich_migration_niches_100000timesteps.csv")
+  
 

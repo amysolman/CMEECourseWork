@@ -86,32 +86,8 @@ multi_niche <- function(niches, m, t_max) {
   return(total_island_community)
 }
 
-
-#Run the multiple_niche function with increasing migration rate
-#returns the communities of 100 islands with immigration rate from 0.001 to 0.1
-
-multi_migration <- function(niches, t_max) {
-  
-  m = 0
-  multi_migrat <- list()
-  
-  for (i in 1:100) {
-    m = m + 0.001
-    communities <- multi_niche(niches, m, t_max)
-    multi_migrat[[i]] <- communities
-    
-  }
-  
-  return(multi_migrat)
-}
-
 #run simulation of one island with 0.001 immigration rate and 1 niche
 #store unique number of species
-#run with two niches, store unique number of species
-#until you are left with a list of cummulative communities for one island if it had
-#1st element is one niche
-#2nd element is two niches
-#3rd element is three niches
 
 run_multiple_niches <- function(number_of_niches, m, t_max) {
   
@@ -167,26 +143,32 @@ find_my_species_richness <- function (number_of_niches, t_max) {
     niches <- seq(1, length(this_island))
     migration_rate <- x*0.001
     migration_rate <- rep(migration_rate, length(this_island))
-    island_number <- rep(x, length(this_island))
-    new_df <- cbind.data.frame(island_number, migration_rate, niches, species_richness)
+    #island_number <- rep(x, length(this_island))
+    new_df <- cbind.data.frame(migration_rate, niches, species_richness)
     df <- rbind(df, new_df)
   }
   return(df)
 }
 
-#run simulation and plot
+#run simulation of 1000 islands with varying migration rate/niche numbers and plot
 
-sp <- find_my_species_richness(10, 100)
+sp <- find_my_species_richness(10, 100000)
 
-
-  p <- ggplot(sp, aes(x=migration_rate, y=species_richness, shape=as.factor(niches), colour= as.factor(niches))) +
+  q <- ggplot(sp, aes(x=migration_rate, y=species_richness, shape=as.factor(niches), colour= as.factor(niches))) +
     scale_shape_manual(values=1:10) +
     geom_point() +
     ylab("Species Richness") +
     xlab("Migration Rate") +
     ggtitle("Species richness, as a function of migration rate and number of niches") +
-    geom_smooth(method=lm, fullrange=TRUE, aes(fill=as.factor(niches))) +
+    geom_smooth(aes(fill=as.factor(niches))) +
     theme(legend.title = element_blank())
 
-
+  p <- ggplot(sp, aes(x=log(migration_rate), y=species_richness, shape=as.factor(niches), colour= as.factor(niches))) +
+    scale_shape_manual(values=1:10) +
+    geom_point() +
+    ylab("Species Richness") +
+    xlab("Migration Rate") +
+    ggtitle("Species richness, as a function of migration rate and number of niches") +
+    geom_smooth(aes(fill=as.factor(niches))) +
+    theme(legend.title = element_blank())
 

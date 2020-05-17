@@ -17,7 +17,7 @@ Island = rep(1, J_island)
 nu = 0.01
 
 #number of timesteps to run the simulation for
-t_max = 100000
+t_max = 10000000
 
 #migration rate - proportional the island area
 m = 0.005
