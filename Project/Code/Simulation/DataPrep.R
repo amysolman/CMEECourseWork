@@ -1,4 +1,5 @@
-#script to plot timeseries for each island and put results into dataframe
+#script to process simulation data, ready for model fitting 
+#and timeseries plotting
 
 rm(list=ls())
 graphics.off()
@@ -8,8 +9,8 @@ graphics.off()
 ImportMyData <- function() {
   my_sims <- list()
   for (i in 1:100) {
-    load(paste0(file="simulation_timeseries_", i, ".rda"))
-    my_sims[[i]] <- my_islands
+    try(load(paste0(file="../../Data/SimData/7thJune/simulation_timeseries_", i, ".rda")), silent = T) 
+    my_sims[[i]] <- store_my_islands
   } 
   
   return(my_sims)
@@ -21,7 +22,6 @@ ProcessMyData <- function() {
   my_sims <- ImportMyData()
   
   FinalData <- list()
-  
   listofdataframes <- list()
   all_my_sims <- list() 
   
@@ -32,12 +32,16 @@ ProcessMyData <- function() {
     simulation <- my_sims[[sim]] #seperate out the simulation
     sim_number <- rep(sim, length(simulation)) #get the number of the simulation
     migration_rates <- names(simulation)
-    K_num <- rep(1:20, 50)
-    area <- K_num*10
+    
     island_species <- vector()
+    K_num <- vector()
+    area <- vector()
     
     for (island in 1:length(simulation)) { #for each island in the simulation
       
+      K <- length(simulation[[island]][[1]])
+      area <- c(area, K * length(simulation[[island]][[1]][[1]]$Niche))
+      K_num <- c(K_num, K)
       focal_island <- simulation[[island]]
       species_richness <- unlist(tail(focal_island[[2]], n=1))
       island_species[[island]] <- species_richness
@@ -92,6 +96,6 @@ FinalData <- ProcessMyData()
 Data2Fit <- DataForFitting(FinalData)
 Data2Plot <- DataForPlotting(FinalData)
 
-write.csv(Data2Fit, "../../Results/SimModelFitData.csv", row.names = FALSE)
-write.csv(Data2Plot, "../../Results/SimTimeseriesPlotData.csv", row.names = FALSE)
+write.csv(Data2Fit, "../../Data/SimData/SimModelFitData.csv", row.names = FALSE)
+write.csv(Data2Plot, "../../Data/SimData/SimTimeseriesPlotData.csv", row.names = FALSE)
 

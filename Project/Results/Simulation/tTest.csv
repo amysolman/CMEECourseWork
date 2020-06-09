@@ -1,0 +1,11 @@
+"Mean.Difference","Solman_Sim.Mean","Chisholm_Model.Mean","t.value","p.value","df","conf..low","conf..high","method","alternative","maxArea"
+-0.47,7.59,8.06,-46.83,"< 0.001",668253.7,-0.49,-0.45,"Welch Two Sample t-test","two.sided",225
+-0.49,6.56,7.04,-48.23,"< 0.001",533528.55,-0.51,-0.47,"Welch Two Sample t-test","two.sided",112
+-0.51,5.79,6.3,-47.74,"< 0.001",418231.39,-0.54,-0.49,"Welch Two Sample t-test","two.sided",75
+-0.52,5.31,5.83,-45.99,"< 0.001",348950.21,-0.55,-0.5,"Welch Two Sample t-test","two.sided",56
+-0.54,4.97,5.51,-44.3,"< 0.001",298320.02,-0.57,-0.52,"Welch Two Sample t-test","two.sided",45
+-0.53,4.63,5.16,-41.19,"< 0.001",253503.67,-0.56,-0.51,"Welch Two Sample t-test","two.sided",36
+-0.54,4.45,5,-39.64,"< 0.001",227652.92,-0.57,-0.51,"Welch Two Sample t-test","two.sided",32
+-0.53,4.29,4.82,-37.55,"< 0.001",205866.29,-0.56,-0.51,"Welch Two Sample t-test","two.sided",28
+-0.5,4.09,4.59,-34.58,"< 0.001",184603.23,-0.53,-0.47,"Welch Two Sample t-test","two.sided",25
+-0.51,3.95,4.45,-33.04,"< 0.001",164901.03,-0.54,-0.48,"Welch Two Sample t-test","two.sided",22

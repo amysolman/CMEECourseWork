@@ -47,7 +47,7 @@ coalescence_test <- function(J_meta,nu)
 }
 
 ###FUNCTION TWO####
-#Takes species abundances from teh coalescence test
+#Takes species abundances from the coalescence test
 #and outputs a metacommunity vector
 metacommunity <- function(J_meta, nu) {
   meta <- vector() #empty vector for storing the community
@@ -63,8 +63,8 @@ metacommunity <- function(J_meta, nu) {
 #####FUNCTION THREE#####
 #function to give birth/death/speciation and migration indices as a function of migration rate,
 #number of timesteps and speciation rate
-niche_info <- function(m, nu) {
-  Niche = rep(1, 10)
+niche_info <- function(m, nu, k_size) {
+  Niche = rep(1, k_size)
   do_speciation = nu
   do_migration = m
   index_list <- list(Niche, do_speciation, do_migration)
@@ -103,20 +103,20 @@ simulation_one_timestep <- function(i) {
 #Function to give max_num niches for each m rate of island
 # 1 niche island, 2 niche island, 3 niche island
 
-niches <- function(m, nu, max_K) {
+niches <- function(m, nu, max_k_num, k_size) {
   
   store_my_islands <- list() 
   store_my_niches <- list()
   
-  for (a in 1:max_K) {
+  for (a in 1:max_k_num) {
 
     store_my_islands[[a]] <- store_my_niches
   }
 
-  for (b in 1:max_K) {
+  for (b in 1:max_k_num) {
     
     for (c in 1:b) {
-      store_my_islands[[b]][[c]] <- niche_info(m, nu)
+      store_my_islands[[b]][[c]] <- niche_info(m, nu, k_size)
       
     }
   }
@@ -145,7 +145,7 @@ timeseries_richness <- function(focal_island) {
 ####### FUNCTION EIGHT ######
 #Function to generate multiple islands made up of multiple niches
 
-multi_islands <- function(nu, num_m_rates, max_K) {
+multi_islands <- function(nu, num_m_rates, max_k_num, k_size) {
   
   m <- 0
   
@@ -154,10 +154,10 @@ multi_islands <- function(nu, num_m_rates, max_K) {
   migration_rates <- vector()
   
   for (n in 1:num_m_rates) {
-    m <- m + 0.001
-    x <- niches(m, nu, max_K)
+    m <- m + 0.003
+    x <- niches(m, nu, max_k_num, k_size)
     multi_migration_islands[[n]] <- x
-    migration_rates <- c(migration_rates, rep(m, max_K))
+    migration_rates <- c(migration_rates, rep(m, max_k_num))
   }
 
   multi_migration_islands <- do.call(c, multi_migration_islands)
@@ -232,15 +232,27 @@ timestep_my_focal_island <- function(focal_island) {
 
 #######FUNTION TEN#######
 #Function to run simulation on the cluster
-cluster_run_function <- function(J_meta, nu, num_m_rates, max_K, wall_time, output_file_name) {
+
+cluster_run_function <- function(J_meta, nu, num_m_rates, max_k_size, max_k_num, wall_time, output_file_name) {
   
   j <- 1 #initialise j for counting islands
   
   Meta <<- metacommunity(J_meta, nu) #generate metacommunity for this simulation
   
-  my_islands <- multi_islands(nu, num_m_rates, max_K) #calculates indices for niche of each island
+  store_my_islands <- list()
+  
+  for (x in 1:max_k_size) {
+    
+    my_islands <- multi_islands(nu, num_m_rates, max_k_num, k_size = x) 
+    
+    store_my_islands <- c(store_my_islands, my_islands)
+    
+  }
+  
+  
+  #calculates indices for niche of each island
 
-  num_islands <- length(my_islands)
+  num_islands <- length(store_my_islands)
   
   ptm <- proc.time()[3] #set start of timer, this counts in seconds
   
@@ -250,7 +262,7 @@ cluster_run_function <- function(J_meta, nu, num_m_rates, max_K, wall_time, outp
     
     if (j <= num_islands) { #if j is between 1 and number of islands
     
-      my_islands[[j]] <- timestep_my_focal_island(my_islands[[j]]) #do one timestep on one island
+      store_my_islands[[j]] <- timestep_my_focal_island(store_my_islands[[j]]) #do one timestep on one island
 
         
       } else { #if J is over 10
@@ -258,7 +270,7 @@ cluster_run_function <- function(J_meta, nu, num_m_rates, max_K, wall_time, outp
         j <- 1 #make j 1 again (e.g. return to first island)
         i <<- i + 1 #move to the next timestep
         
-        my_islands[[j]] <- timestep_my_focal_island(my_islands[[j]]) #do next timestep on first island 
+        store_my_islands[[j]] <- timestep_my_focal_island(store_my_islands[[j]]) #do next timestep on first island 
       }
       
     j <- j + 1 #move on to the next island
@@ -271,7 +283,7 @@ cluster_run_function <- function(J_meta, nu, num_m_rates, max_K, wall_time, outp
   
   total_time <- proc.time()[3] - ptm
   
-  save(my_islands, timesteps, total_time, J_meta, nu, file = output_file_name)
+  save(store_my_islands, timesteps, total_time, J_meta, nu, file = output_file_name)
   
 }
 

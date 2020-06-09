@@ -4,7 +4,7 @@
 rm(list=ls())
 graphics.off()
 
-source("SimTimeseries.R")
+source("ClusterSim.R")
 
 #Read in the job number from the cluster. To do this your code should include a new variable iter
 #and should start with the line:
@@ -25,5 +25,6 @@ output_file_name = paste0("simulation_timeseries_", i, ".rda")
 #the max number of different niches for each migration rate we want to simulation,
 #the wall time and output file name
 
-cluster_run_function(J_meta = 10000, nu = 0.001, num_m_rates = 50, max_K = 20, wall_time = 60, output_file_name = output_file_name)
+cluster_run_function(J_meta = 10000, nu = 0.001, num_m_rates = 15, max_k_num = 15, max_k_size = 15, wall_time = 1380, output_file_name = output_file_name)
+
 
