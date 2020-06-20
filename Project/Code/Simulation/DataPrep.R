@@ -9,7 +9,7 @@ graphics.off()
 ImportMyData <- function() {
   my_sims <- list()
   for (i in 1:100) {
-    try(load(paste0(file="../../Data/SimData/7thJune/simulation_timeseries_", i, ".rda")), silent = T) 
+    try(load(paste0(file="../../Data/SimData/18thJune/simulation_timeseries_", i, ".rda")), silent = T) 
     my_sims[[i]] <- store_my_islands
   } 
   
@@ -36,28 +36,30 @@ ProcessMyData <- function() {
     island_species <- vector()
     K_num <- vector()
     area <- vector()
+    K_size <- vector()
     
     for (island in 1:length(simulation)) { #for each island in the simulation
       
       K <- length(simulation[[island]][[1]])
       area <- c(area, K * length(simulation[[island]][[1]][[1]]$Niche))
       K_num <- c(K_num, K)
+      K_size <- c(K_size, length(simulation[island][[1]][[1]][[1]][[1]]))
       focal_island <- simulation[[island]]
       species_richness <- unlist(tail(focal_island[[2]], n=1))
       island_species[[island]] <- species_richness
       SpRichTimeseries <- unlist(focal_island[[2]])
       sim_number <- rep(sim, length(SpRichTimeseries))
       island_num <- rep(island, length(SpRichTimeseries))
-      timestep <- (1:length(SpRichTimeseries))*1000
+      timestep <- (1:length(SpRichTimeseries))*5000
       x <- focal_island[[1]]
-      migration_rate <- rep(x[[1]]$do_speciation, length(SpRichTimeseries))
+      migration_rate <- migration_rates[island]
       df <- cbind(sim_number, island_num, migration_rate, timestep, SpRichTimeseries)
       island_timeseries[[island]] <- df
       
     }
 
     
-    df <- cbind(sim_number, migration_rates, area, K_num, island_species)
+    df <- cbind(sim_number, migration_rates, area, K_num, K_size, island_species)
     listofdataframes[[sim]] <- df
     
     combine <- as.data.frame(do.call("rbind", island_timeseries))
@@ -97,5 +99,7 @@ Data2Fit <- DataForFitting(FinalData)
 Data2Plot <- DataForPlotting(FinalData)
 
 write.csv(Data2Fit, "../../Data/SimData/SimModelFitData.csv", row.names = FALSE)
-write.csv(Data2Plot, "../../Data/SimData/SimTimeseriesPlotData.csv", row.names = FALSE)
+write.csv(Data2Plot, "../../Data/SimData/SimTimeseriesPlotData2.csv", row.names = FALSE)
+
+
 

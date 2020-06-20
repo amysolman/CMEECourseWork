@@ -2,20 +2,56 @@
 rm(list=ls())
 graphics.off()
 
+# J_meta = 100000
+# nu = 0.01
+# max_k_num = 50
+
+###FUNCTION TO NAME UP TO 78 NICHES######
+name_my_niches <- function(max_k_num) {
+  
+  letters <- LETTERS
+  my_niche_names <- list()
+  
+  for (i in 1:max_k_num) {
+    if (i <= 26) {
+      niche_name <- strsplit(letters, '')[[i]]
+      my_niche_names[[i]] <- paste(niche_name,1, sep="")
+    } else if (26 < i && i <= 52) {
+      niche_name <- strsplit(letters, '')[[i-26]]
+      my_niche_names[[i]] <- paste(niche_name,2, sep="")
+    } else if (52 < i && i <= 78) {
+      niche_name <- strsplit(letters, '')[[i-52]]
+      my_niche_names[[i]] <- paste(niche_name,3, sep="")
+    } else if (78 < i && i <= 104) {
+      niche_name <- strsplit(letters, '')[[i-78]]
+      my_niche_names[[i]] <- paste(niche_name,4, sep="")
+    }
+    
+  }
+  my_niche_names <- unlist(my_niche_names)
+  
+  return(my_niche_names)
+} 
 ###FUNCTION ONE COALESCNCE FUNCTION####
 #coalescence code from James
-#generates metacommunity species abundances 
+#generates metacommunity species abundances for one niche
+#repeat 20 times and store each niche individually with letter identity (a - t)
 
-coalescence_test <- function(J_meta,nu)
+coalescence_test <- function(J_meta, nu, max_k_num)
 {
+  metaniches <- list()
+  
+  for (c in 1:max_k_num) { #do the test max_k_num times to get max_k_num niches for the meta community
+    
+  niche_size <- J_meta/max_k_num
   #Initialise a vector lineages of length J with 1 as every entry.
-  lineages <- seq(1,1,length=J_meta)
+  lineages <- seq(1,1,length=niche_size)
   #Initialise an empty vector abundances.
   abundances <- c()
   #Initialise a number N=J.
-  N <- J_meta
+  N <- niche_size
   #Calculate θ, where θ=ν (J-1)/(1-ν).
-  theta <- nu*(J_meta-1)/(1-nu)
+  theta <- nu*(niche_size-1)/(1-nu)
   while(N > 1) # If N > 1 repeat the code
   {
     #Choose an index j of the vector lineages at random according to a uniform distribution.
@@ -42,110 +78,114 @@ coalescence_test <- function(J_meta,nu)
   }
   #Add the only element left in lineages to the end of abundances.
   abundances <- c(abundances,lineages[1])
+  
+  metaniches[[c]] <- abundances
+  
+  }
+  names <- name_my_niches(max_k_num)
+  names(metaniches) <- names
+  
   #END: a vector of simulated species abundances is stored in abundances.
-  return(abundances)
+  return(metaniches)
 }
 
 ###FUNCTION TWO####
 #Takes species abundances from the coalescence test
-#and outputs a metacommunity vector
-metacommunity <- function(J_meta, nu) {
+#and outputs a metacommunity vector of 20 seperate niches
+metacommunity <- function(J_meta, nu, max_k_num) {
+  
   meta <- vector() #empty vector for storing the community
-  abundances <- coalescence_test(J_meta, nu) #run coalescence test
-  abundances <- sort(abundances, decreasing = TRUE) #sort by most abundant species
-  for (i in 1:length(abundances)) {
-    meta <- c(meta, rep(i, abundances[i])) #repeat for each species by abundance to give meta vector
-  } #that we will sample from in our simulation 
-  return(meta)
+  
+  metaniches <- coalescence_test(J_meta, nu, max_k_num) #run coalescence test and get 
+  
+  for (a in 1:length(metaniches)) {
+    
+    metaniches[[a]] <- sort(metaniches[[a]], decreasing = TRUE) #sort by most abundant species
+    
+    for (i in 1:length(metaniches[[a]])) {
+      
+      meta <- c(meta, rep(i, metaniches[[a]][i])) #repeat for each species by abundance to give meta vector
+    
+      
+  }
+    metaniches[[a]] <- meta
+    
+    meta <- vector()
+    
+  } 
+  
+  return(metaniches)
 }
 
-
 #####FUNCTION THREE#####
-#function to give birth/death/speciation and migration indices as a function of migration rate,
-#number of timesteps and speciation rate
-niche_info <- function(m, nu, k_size) {
+#function to store niche community, type and migration rate info
+niche_info <- function(m, k_size, letter) {
   Niche = rep(1, k_size)
-  do_speciation = nu
   do_migration = m
-  index_list <- list(Niche, do_speciation, do_migration)
-  names(index_list) <- c("Niche", "do_speciation", "do_migration")
+  type = letter
+  index_list <- list(Niche, type, do_migration)
+  names(index_list) <- c("Niche", "Type", "do_migration")
   return(index_list)
   
 }
 
 #######FUNCTION FOUR#######
-#return all indices items from list to global values
-unpack_me <- function(x) {
-  list2env(x,globalenv())
-}
-
-#######FUNCTION FIVE#######
-##### FUNCTION TO RUN ONE TIMESTEP ON ONE NICHE #####
-####will have to run indices and then unpack function beforehand for this to work####
-#### e.g. unpack_me(indicies(0.005, 1000, 0.02)) #####
-simulation_one_timestep <- function(i) {
-  
-  num <- runif(1)
-  
-  if (num <= do_speciation) {
-    Niche[sample(length(Niche), 1, replace = T)] <<- sample(100:500, 1) #give unique species at each speciation event
-  } else if (num <= do_speciation + do_migration) {
-    Niche[sample(length(Niche), 1, replace = T)] <<- Meta[sample(length(Meta), 1, replace = T)]
-  } else {
-    Niche[sample(length(Niche), 1, replace = T)] <<- Niche[sample(length(Niche), 1, replace = T)]
-  }
-  
-  return(Niche)
-  
-}
-
-#######FUNCTION SIX#######
 #Function to give max_num niches for each m rate of island
 # 1 niche island, 2 niche island, 3 niche island
 
-niches <- function(m, nu, max_k_num, k_size) {
+niches <- function(m, max_k_num, k_size) {
   
   store_my_islands <- list() 
   store_my_niches <- list()
   
-  for (a in 1:max_k_num) {
-
-    store_my_islands[[a]] <- store_my_niches
-  }
-
-  for (b in 1:max_k_num) {
+  for (a in 1:max_k_num) { #for 1 to the maximum number of niches
     
-    for (c in 1:b) {
-      store_my_islands[[b]][[c]] <- niche_info(m, nu, k_size)
+    store_my_islands[[a]] <- store_my_niches #creates list of 20 empty entries
+  }
+  
+  
+  for (b in 1:max_k_num) { #for 1 to maximum number of niches
+    
+    for (c in 1:b) { #for each niche on an island
+      
+      # myletters <- "ABCDEFGHIJKLMNOPQRST"
+      # letter = strsplit(myletters, '')[[1]][[c]]
+      
+      names <- name_my_niches(max_k_num) #get niche names 
+      letter <- names[[c]] #apply the appropriate name
+      
+      store_my_islands[[b]][[c]] <- niche_info(m, k_size, letter) #generate niche info and store
       
     }
   }
   
   return(store_my_islands)
-
+  
 }
 
-#####FUNCTION SEVEN ######
-#GIVE WHOLE ISLAND RICHNESS EACH TIMESTEP
+
+#####FUNCTION FIVE ######
+#GIVE WHOLE ISLAND RICHNESS AT A GIVEN TIMESTEP
 timeseries_richness <- function(focal_island) {
   
   species_richness <- list()
   
-  for (n in 1:length(focal_island)) {
-    x <- focal_island[[n]]$Niche
-    species_richness[[n]] <- c(x) #combine each niche community into one big community
+  for (n in 1:length(focal_island)) { #for each niche in the focal island
+    x <- focal_island[[n]]$Niche #give the niche community to x
+    niche_unique <- length(unique(x)) #the number of unique species in the niche
+    species_richness[[n]] <- niche_unique
+    
   }
   
-  vect <- vector()
-  vect <- unlist(species_richness)
-  unique_sp <- length(unique(vect))
+  unique_sp <- sum(unlist(species_richness))
+  
   return(unique_sp) #give number of unique species across entire island
 }
 
-####### FUNCTION EIGHT ######
+####### FUNCTION SIX ######
 #Function to generate multiple islands made up of multiple niches
 
-multi_islands <- function(nu, num_m_rates, max_k_num, k_size) {
+multi_islands <- function(num_m_rates, max_k_num, k_size) {
   
   m <- 0
   
@@ -154,12 +194,12 @@ multi_islands <- function(nu, num_m_rates, max_k_num, k_size) {
   migration_rates <- vector()
   
   for (n in 1:num_m_rates) {
-    m <- m + 0.003
-    x <- niches(m, nu, max_k_num, k_size)
+    m <- m + 0.005
+    x <- niches(m, max_k_num, k_size)
     multi_migration_islands[[n]] <- x
     migration_rates <- c(migration_rates, rep(m, max_k_num))
   }
-
+  
   multi_migration_islands <- do.call(c, multi_migration_islands)
   names(multi_migration_islands) <- migration_rates
   
@@ -168,9 +208,9 @@ multi_islands <- function(nu, num_m_rates, max_k_num, k_size) {
   unique_sp <- list()
   
   for (sp in 1:length(multi_migration_islands)) { #for each migration rate being simulated
-      focal_island <- multi_migration_islands[[sp]]
-      unique_sp[[sp]] <- timeseries_richness(focal_island)
-    }
+    focal_island <- multi_migration_islands[[sp]]
+    unique_sp[[sp]] <- timeseries_richness(focal_island)
+  }
   
   #for each island create nested lists
   #each island has two lists, one to hold niche communities and one to 
@@ -189,12 +229,53 @@ multi_islands <- function(nu, num_m_rates, max_k_num, k_size) {
   return(island_data)
 }
 
+#island_data <- multi_islands(num_m_rates, max_k_num, k_size)
+
+#island_data[[x]] <- individual island x
+#island_data[[x]][[1]] <- niches data
+#island_data[[x]][[2]] <- timeseries data
+#island_data[[x]][[1]][[y]] <- individual niche y with community, type and migration rate
+#island_data[[20]][[1]][[5]]$Type <- will give you the type of niche
+
+#######FUNCTION SEVEN#######
+##### FUNCTION TO RUN ONE TIMESTEP ON ONE NICHE #####
+####will have to run indices and then unpack function beforehand for this to work####
+#### e.g. unpack_me(indicies(0.005, 1000, 0.02)) #####
+simulation_one_timestep <- function(i, max_k_num) {
+  
+  num <- runif(1)
+  
+  #myLetters <- LETTERS[1:26] #get capital letters 
+  
+  names <- name_my_niches(max_k_num)
+  
+  x <- match(Type, names) #at what index does the niche time occur
+  #then we can specify to only have migration from the corresponding niche in the meta community
+  
+  if (num <= do_migration) { #if do_migration rate then replace a niche individual with a member of the 
+                                        #corresponding niche in the metacommunity
+    Niche[sample(length(Niche), 1, replace = T)] <<- Meta[[x]][sample(length(Meta[[x]]), 1, replace = T)]
+  } else {
+    Niche[sample(length(Niche), 1, replace = T)] <<- Niche[sample(length(Niche), 1, replace = T)]
+  }
+  
+  return(Niche)
+  
+}
+
+
+#######FUNCTION EIGHT#######
+#return all indices items from list to global values
+unpack_me <- function(x) {
+  list2env(x,globalenv())
+}
+
 #######FUNCTION NINE######
 #function to take focal island and number of niches
 #and run one timestep on each niche
 #need focal island indices to run this
 
-timestep_my_focal_island <- function(focal_island) {
+timestep_my_focal_island <- function(focal_island, max_k_num) {
   
   num_niches <- length(focal_island[[1]])
   
@@ -202,12 +283,12 @@ timestep_my_focal_island <- function(focal_island) {
   #run timesteo on each niche
   while (k <= num_niches) {
     unpack_me(focal_island[[1]][[k]]) #upack the indices for one niche
-    y <- simulation_one_timestep(i)#do simulation on niche and store community in y
+    
+    y <- simulation_one_timestep(i, max_k_num)#do simulation on niche and store community in y
+    
     focal_island[[1]][[k]]$Niche <- y #replace the last community with the new community
     k <- k + 1
   }   
-  
-  #unique_sp <- timeseries_richness(focal_island = focal_island[[1]])
   
   #store the new niche communities for that island
   new_island_data <- list()
@@ -216,7 +297,7 @@ timestep_my_focal_island <- function(focal_island) {
   #combine previous timeseries results with new results
   #use an if statement here to save sp richness on timestep (i) multiples of 100
   
-  if (i %% 10000 == 0) {
+  if (i %% 5000 == 0) {
     unique_sp <- timeseries_richness(focal_island = focal_island[[1]])
     species <- focal_island[[2]] #previous timeseries results
     species[[length(species) + 1]] <- unique_sp #add new results
@@ -224,10 +305,10 @@ timestep_my_focal_island <- function(focal_island) {
   } else {
     new_island_data[[2]] <- focal_island[[2]]
   }
-
+  
   
   return(new_island_data)
-
+  
 }
 
 #######FUNTION TEN#######
@@ -237,13 +318,13 @@ cluster_run_function <- function(J_meta, nu, num_m_rates, max_k_size, max_k_num,
   
   j <- 1 #initialise j for counting islands
   
-  Meta <<- metacommunity(J_meta, nu) #generate metacommunity for this simulation
+  Meta <<- metacommunity(J_meta, nu, max_k_num) #generate metacommunity for this simulation
   
   store_my_islands <- list()
   
   for (x in 1:max_k_size) {
     
-    my_islands <- multi_islands(nu, num_m_rates, max_k_num, k_size = x) 
+    my_islands <- multi_islands(num_m_rates, max_k_num, k_size = x) 
     
     store_my_islands <- c(store_my_islands, my_islands)
     
@@ -251,28 +332,28 @@ cluster_run_function <- function(J_meta, nu, num_m_rates, max_k_size, max_k_num,
   
   
   #calculates indices for niche of each island
-
+  
   num_islands <- length(store_my_islands)
   
   ptm <- proc.time()[3] #set start of timer, this counts in seconds
   
   while (proc.time()[3] - ptm < wall_time*60){ 
     
-
+    
     
     if (j <= num_islands) { #if j is between 1 and number of islands
-    
-      store_my_islands[[j]] <- timestep_my_focal_island(store_my_islands[[j]]) #do one timestep on one island
-
-        
-      } else { #if J is over 10
-
-        j <- 1 #make j 1 again (e.g. return to first island)
-        i <<- i + 1 #move to the next timestep
-        
-        store_my_islands[[j]] <- timestep_my_focal_island(store_my_islands[[j]]) #do next timestep on first island 
-      }
       
+      store_my_islands[[j]] <- timestep_my_focal_island(store_my_islands[[j]], max_k_num) #do one timestep on one island
+      
+      
+    } else { #if J is over 10
+      
+      j <- 1 #make j 1 again (e.g. return to first island)
+      i <<- i + 1 #move to the next timestep
+      
+      store_my_islands[[j]] <- timestep_my_focal_island(store_my_islands[[j]], max_k_num) #do next timestep on first island 
+    }
+    
     j <- j + 1 #move on to the next island
     
   }

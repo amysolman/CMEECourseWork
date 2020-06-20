@@ -9,7 +9,7 @@ library("gridExtra") #for multiplots on one graph
 
 #read in our plotting data
 
-PlottingData <- read.csv("../../Data/SimData/SimTimeseriesPlotData.csv")
+PlottingData <- read.csv("../../Data/SimData/SimTimeseriesPlotData2.csv")
 
 #plot three of our simulations to check they reached equilibrium
 
@@ -31,7 +31,7 @@ for (p in 1:3) {
 }
 
 # Print the plot to a pdf file
-pdf("../../Results/Simulation/TimeseriesPlot.pdf")
+pdf("../../Results/Simulation2/TimeseriesPlot.pdf")
 myplot <- do.call(grid.arrange,my_plots)
 print(myplot)
 dev.off()

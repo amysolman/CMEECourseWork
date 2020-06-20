@@ -1,0 +1,21 @@
+"Mean.Difference","Solman_Sim.Mean","Chisholm_Model.Mean","t.value","p.value","df","conf..low","conf..high","method","alternative","maxArea"
+-1.55,16.05,17.6,-87.73,"$<$ 0.001",1577892.38,-1.58,-1.51,"Welch Two Sample t-test","two.sided",400
+-1.02,12.93,13.94,-72.1,"$<$ 0.001",1313012.99,-1.05,-0.99,"Welch Two Sample t-test","two.sided",200
+-0.7,10.81,11.51,-54.38,"$<$ 0.001",1066519.67,-0.73,-0.68,"Welch Two Sample t-test","two.sided",133
+-0.54,9.6,10.14,-42.13,"$<$ 0.001",903758.01,-0.56,-0.51,"Welch Two Sample t-test","two.sided",100
+-0.43,8.79,9.22,-33.29,"$<$ 0.001",783987.01,-0.46,-0.4,"Welch Two Sample t-test","two.sided",80
+-0.35,8.08,8.43,-26.42,"$<$ 0.001",679982.58,-0.37,-0.32,"Welch Two Sample t-test","two.sided",66
+-0.3,7.65,7.95,-22,"$<$ 0.001",611949.82,-0.33,-0.27,"Welch Two Sample t-test","two.sided",57
+-0.25,7.21,7.47,-18.37,"$<$ 0.001",547915.48,-0.28,-0.23,"Welch Two Sample t-test","two.sided",50
+-0.22,6.91,7.13,-15.24,"$<$ 0.001",495904.8,-0.25,-0.19,"Welch Two Sample t-test","two.sided",44
+-0.21,6.79,7,-13.86,"$<$ 0.001",471906.29,-0.24,-0.18,"Welch Two Sample t-test","two.sided",40
+-0.19,6.47,6.66,-12.43,"$<$ 0.001",431902.96,-0.22,-0.16,"Welch Two Sample t-test","two.sided",36
+-0.16,6.16,6.32,-10.54,"$<$ 0.001",387903.75,-0.19,-0.13,"Welch Two Sample t-test","two.sided",33
+-0.15,6,6.15,-9.5,"$<$ 0.001",363907.34,-0.18,-0.12,"Welch Two Sample t-test","two.sided",30
+-0.14,5.85,5.99,-8.37,"$<$ 0.001",339913.87,-0.17,-0.1,"Welch Two Sample t-test","two.sided",28
+-0.12,5.72,5.85,-7.21,"$<$ 0.001",315920.01,-0.16,-0.09,"Welch Two Sample t-test","two.sided",26
+-0.12,5.65,5.77,-6.93,"$<$ 0.001",307921.33,-0.15,-0.09,"Welch Two Sample t-test","two.sided",25
+-0.1,5.55,5.66,-5.67,"$<$ 0.001",279937.07,-0.14,-0.07,"Welch Two Sample t-test","two.sided",22
+-0.1,5.55,5.66,-5.67,"$<$ 0.001",279937.07,-0.14,-0.07,"Welch Two Sample t-test","two.sided",22
+-0.1,5.5,5.6,-5.4,"$<$ 0.001",271940.18,-0.14,-0.06,"Welch Two Sample t-test","two.sided",21
+-0.1,5.49,5.59,-5.06,"$<$ 0.001",263944.31,-0.14,-0.06,"Welch Two Sample t-test","two.sided",20

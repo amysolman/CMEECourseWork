@@ -6,7 +6,7 @@ library("ggplot2")
 
 #First import my data
 
-Solman <- read.csv("../../Results/Simulation/SolmanMean_1.csv")
+Solman <- read.csv("../../Results/Simulation2/SolmanMean_1.csv")
 
 #now define the model function
 
@@ -30,8 +30,10 @@ for (i in 1: nrow(Solman)) {
   J = area
   m0 = m*sqrt(area)
   nu = 0.001
-  theta = 2*J*nu
+  J_meta = 50000
+  niche_size = J_meta/20
   K = data$niches
+  theta = 2*(niche_size*K)*nu
   Chisholm_Est[[i]] <- round(chisholm_model(area, theta, m0, K), digits = 2)
 }
 
@@ -57,7 +59,7 @@ for (a in 1:length(unique_areas)) {
 }
 
 #export those final mean results
-write.csv(df, "../../Results/Simulation/TotalMeanResults.csv", row.names = FALSE)
+write.csv(df, "../../Results/Simulation2/TotalMeanResults.csv", row.names = FALSE)
 
 unique_areas <- unique(Chisholm_Est$area)
 
@@ -77,14 +79,15 @@ for (a in 1:length(unique_areas)) {
 
 TotalData <- rbind(Solman, Chisholm_Est)
 
-p1 <- ggplot(df, aes(x=area, y = Species_Rich, group = SimOrMod)) +
-  geom_point(aes(colour=SimOrMod)) +
+p1 <- ggplot(df, aes(x=log(area), y = Species_Rich, colour = SimOrMod)) +
+  geom_point() +
+  scale_color_manual(values=c("red", "blue")) +
   labs(colour = "Simulation (Solman) \n or Model (Chisholm)") +
-  labs(x = "Island Area", y = "Species Richness") +
-  labs(title = "Mean species richness for Solman SAR (species-area relationship) simulation \nplotted with Chisholm model estimates") +
+  labs(x = "Log Island Area", y = "Species Richness") +
+  theme(legend.title = element_blank()) +
   theme_bw()
 
-pdf("../../Results/Simulation/MeanResultsPlot.pdf")
+pdf("../../Results/Simulation2/MeanResultsPlot.pdf")
 print(p1)
 dev.off()
 

@@ -3,12 +3,14 @@
 rm(list=ls())
 graphics.off()
 
-#library("ggplot2")
 library("broom") # tidy() function
-#library("dplyr") # for calculating repeatability
+
+totalmaxArea <- list()
+num_islands <- list()
 
 #CHECK LIST OF STATISTICAL ANALYSIS AND MODEL FITTING
 # 1: Get the data!
+# 2: Check repeatability of simulation
 # 2: Outliers
 # 3: Homogeneitry of variances 
 # 4: Are the data normally distributed?
@@ -20,7 +22,7 @@ library("broom") # tidy() function
 # 10: Simplify model 
 # 11: Decide on final model 
 # 12: Run model validation
-# 13: Check repeatability of simulation
+
 
 ##############################################
 ##########STEP ONE: GET OUT DATA##############
@@ -54,8 +56,8 @@ compare_results <- function() {
   
   #create empty list for storing estimated species richness
   island_species <- vector()
-  EstData <- SimData[, -c(5:6)] #copy my simulation data
-  
+  EstData <- SimData[, 1:4] #copy my simulation data
+  SimData <- SimData[, -c(5)] #remove niche size column
   
   for (i in 1: nrow(EstData)) {
     data <- EstData[i, ]
@@ -64,13 +66,15 @@ compare_results <- function() {
     J = area
     m0 = m*sqrt(area)
     nu = 0.001
-    theta = 2*J*nu
+    J_meta = 50000 #size of metacommunity that supplied island immigrants
+    niche_size = 50000/20 #size of each niche in the metacommunity
     K = data$K_num
+    theta = 2*(niche_size*K)*nu #2*the metacommunity size immigrating to the island*nu
     island_species[[i]] <- round(chisholm_model(area, theta, m0, K), digits = 2)
   }
   
   #bind results to single dataframe
-  EstData <- cbind.data.frame(EstData, island_species)
+  EstData <- cbind.data.frame(EstData, island_species, theta)
   
   #Add a SimOrModel column
   SimOrModel <- rep("Chisholm_Model", nrow(EstData))
@@ -87,9 +91,10 @@ compare_results <- function() {
 ###RUN CHISHOLMS FUNCTION AND GET OUR ESTIMATES
 StartData <- compare_results()
 
-for (div in 1:10) {
+for (div in 1:20) {
   
-
+###DIVIDE UP OUR DATA AND GET THE MEAN####
+  
 #Divide TotalData to include only the low half of island sizes
 TotalData <- StartData[StartData$area <= max(StartData$area)/div, ]
 
@@ -98,7 +103,11 @@ SolmanData <- TotalData[TotalData$SimOrModel == "Solman_Sim", ]
 ChisholmData <- TotalData[TotalData$SimOrModel == "Chisholm_Model", ]
 
 maxArea <- max(SolmanData$area)
-write.csv(maxArea, paste0("../../Results/Simulation/maxArea_", div, ".csv"), row.names = FALSE)
+totalmaxArea[[div]] <- maxArea
+write.csv(maxArea, paste0("../../Results/Simulation2/maxArea_", div, ".csv"), row.names = FALSE)
+
+#how many islands are in the whole dataset we're using?
+num_islands[[div]] <- nrow(SolmanData)
 
 ####We're also going to get the mean values from all our simulations####
 
@@ -156,16 +165,85 @@ for (a in 1:length(my_new_new_data)) {
 total_mean <- do.call("rbind", mean_df)
 SolmanMean <- as.data.frame(total_mean)
 
-write.csv(SolmanMean, paste0("../../Results/Simulation/SolmanMean_", div, ".csv"), row.names = FALSE)
+write.csv(SolmanMean, paste0("../../Results/Simulation2/SolmanMean_", div, ".csv"), row.names = FALSE)
 
+#####################################################################
+#######STEP TWO: CHECK THE REPEATABILITY OF THE SIMULATION######
+#####################################################################
+
+#Start by running a linear model of island species against simulation number as a factor
+model1 <- lm(island_species ~ as.factor(sim_number), data = SolmanData)
+
+a <- tidy(anova(model1))#Then do an anova of the model to see if there is more variance within simulations#or amoung them
+#we use the tidy function to get the results into a dataframe, makes them easier to access
+
+#group level variance
+Vg <- a$meansq[1]
+
+#residual/data-level variance
+Vr <- a$meansq[2]
+
+R = round(Vg/(Vg+Vr), digits=3)
+
+#note that if our simulations were different sizes we would have to work this out different - see stats notes
+
+write.csv(R, paste0("../../Results/Simulation2/repeatabilityscore_", div, ".csv"))
+
+############################################################
+###STEP THREE: IS THERE COLLINEARITY AMOUNG THE COVARIATES?###
+############################################################
+
+file_name = paste("../../Results/Simulation2/CollinearityPlot_", div, ".pdf", sep="")
+pdf(file_name)
+pairs(SolmanMean)#is there collinearity amoung covariates?
+dev.off()
+
+df <- cor(SolmanMean)
+df <- as.data.frame(df)
+df <- round(df, digits = 3)
+
+write.csv(df, paste0("../../Results/Simulation2/CollineaityResults_", div, ".csv"), row.names = FALSE)
+
+#Area and niches are somewhat positively correlated (migration rate is not), with
+#number of niches being a better predictor of species richness 
+#than island area.
+
+#Let's find the Variance Inflation Factor. 
+#This VIF we can use to find out what amount of collinearity is too much.
+#VIF can be calulated by running an extra linear model in which the covariate of focus (here, K_num)
+#is y and all other covariates of the model are covariates.
+
+#We know mathematically that number of niches is correlated to area in our simulation
+#let's make sure it's not too much!
+
+##WE START WITH Z-TRANSFORMING OUR AREA AND NICHE VARIABLES
+
+SolmanMean$z.area <- scale(SolmanMean$area)
+SolmanMean$z.K_num <- scale(SolmanMean$niches)
+
+model2 <- summary(lm(z.K_num ~ z.area, data = SolmanMean))
+VIF <- 1/(1-model2$r.squared)
+SEInflation_Area <- sqrt(VIF) #The standard errors of k_num are thus inflated by
+# 1.32 which is not a lot. A VIF of 1.8 is also okay. 
+
+#Keep it in mind when you do YOUR interpretation and discolse it in your report!
+#think biology always!
+VIF_Results <- rbind(VIF, SEInflation_Area)
+VIF_Results <- as.data.frame(VIF_Results)
+VIF_Results <- round(VIF_Results, digits = 3)
+names(VIF_Results) <- c("Niches")
+
+write.csv(VIF_Results, paste0("../../Results/Simulation2/NichesAreaVIFResults_", div, ".csv"), row.names = FALSE)
+
+#So we don't have too much collinearity!  Woohoo!!
 
 #####################################################
-##########STEP TWO: ARE THERE OUTLIERS?##############
+##########STEP THREE: ARE THERE OUTLIERS?##############
 #####################################################
 
 ####LETS MAKE A BOX PLOT OF SIMULATED AND ESTIMATED SPECIES RICHNESSES
 #Outliers should appear as circles in our boxplots
-file_name = paste("../../Results/Simulation/SolmanChisholmBoxplot_", div, ".pdf", sep="")
+file_name = paste("../../Results/Simulation2/SolmanChisholmBoxplot_", div, ".pdf", sep="")
 pdf(file_name)
 b1 <- boxplot(TotalData$island_species ~ TotalData$SimOrModel, col = c("red", "blue"), ylab = "Num_Species")
 print(b1)
@@ -176,18 +254,18 @@ dev.off()
 #will check again next time, and consider removing outlying datapoints
 
 ############################################################
-##########STEP THREE: HOMOGENEITY OF VARIANCES##############
+##########STEP FOUR: HOMOGENEITY OF VARIANCES##############
 ############################################################
 
-#####GET THE RANGE, VARIANCE, SD AND SE OF EACH DATASET
+#####GET THE MEAN, RANGE, VARIANCE, SD AND SE OF EACH DATASET
 ####AND BIND INTO A DATAFRAME TO EXPORT
 
-S <- range(SolmanData$island_species) # 1 - 33
+S <- range(SolmanData$island_species)
 x <- toString(S[1])
 y <- toString(S[2])
 Solman <- paste(x, "-", y)
 
-C <- range(ChisholmData$island_species) # 1 - 20.88
+C <- range(ChisholmData$island_species)
 x <- toString(C[1])
 y <- toString(C[2])
 Chisholm <- paste(x, "-", y)
@@ -213,27 +291,33 @@ Chisholm_se <- sqrt(var(ChisholmData$island_species)/length(ChisholmData$island_
 SEs <- rbind(Solman_se, Chisholm_se)
 SEs <- round(SEs, digits = 3)
 
-#Let's bind these statistics into a dataframe so we can export them as a csv file
-MyStats <- as.data.frame(cbind(ranges, variances, SDs, SEs))
-names(MyStats) <- c("Range", "Variance", "Standard Deviation", "Standard Error")
+#Mean
+Solman_mean <- mean(SolmanData$island_species)
+Chisholm_mean <- mean(ChisholmData$island_species)
+Means <- rbind(Solman_mean, Chisholm_mean)
+Means <- round(Means, digits = 3)
 
-write.csv(MyStats, paste0("../../Results/Simulation/MyStats_", div, ".csv"), row.names = FALSE) 
+#Let's bind these statistics into a dataframe so we can export them as a csv file
+MyStats <- as.data.frame(cbind(Means, ranges, variances, SDs, SEs))
+names(MyStats) <- c("Mean", "Range", "Variance", "Standard Deviation", "Standard Error")
+
+write.csv(MyStats, paste0("../../Results/Simulation2/MyStats_", div, ".csv"), row.names = FALSE) 
 
 ############################################################
-##########STEP FOUR: ARE THE DATA NORMALLY DISTRIBUTED?#####
+##########STEP FIVE: ARE THE DATA NORMALLY DISTRIBUTED?#####
 ############################################################
 
 #My simulation histogram shows fairly normally distributed data
 
 ####HISTOGRAM OF SOLMAN SPECIES RICHNESS
-file_name = paste("../../Results/Simulation/SolmanSpeciesHistogram_", div, ".pdf", sep="")
+file_name = paste("../../Results/Simulation2/SolmanSpeciesHistogram_", div, ".pdf", sep="")
 pdf(file_name)
 h1 <- hist(SolmanData$island_species) #produces left skewed data
 print(h1)
 dev.off()
 
 ######HISTOGRAM OF ISLAND AREAS
-file_name = paste("../../Results/Simulation/SolmanAreaHistogram_", div, ".pdf", sep="")
+file_name = paste("../../Results/Simulation2/SolmanAreaHistogram_", div, ".pdf", sep="")
 pdf(file_name)
 h2 <- hist(SolmanData$area)
 print(h2)
@@ -247,66 +331,18 @@ print(h3)
 dev.off()
 
 #####HISTOGRAM OF CHISHOLM SPECIES RICHNESS
-file_name = paste("../../Results/Simulation/ChisholmDataHistogram_", div, ".pdf", sep="")
+file_name = paste("../../Results/Simulation2/ChisholmDataHistogram_", div, ".pdf", sep="")
 pdf(file_name)
 h4 <- hist(ChisholmData$island_species) #produces uniform frequency of observations, no 'hump'
 print(h4)
 dev.off()
 
 ############################################################
-##########STEP FIVE: ARE THERE EXCESSIVELY MANY ZEROS?######
+##########STEP SIX: ARE THERE EXCESSIVELY MANY ZEROS?######
 ############################################################
 
 #Look at the histogram for my species richnesses
 #there are no zero species islands
-
-############################################################
-###STEP SIX: IS THERE COLLINEARITY AMOUNG THE COVARIATES?###
-############################################################
-
-file_name = paste("../../Results/Simulation/CollinearityPlot_", div, ".pdf", sep="")
-pdf(file_name)
-pairs(SolmanMean)#is there collinearity amoung covariates?
-dev.off()
-
-df <- cor(SolmanMean)
-df <- as.data.frame(df)
-df <- round(df, digits = 3)
-
-write.csv(df, paste0("../../Results/Simulation/CollineaityResults_", div, ".csv"), row.names = FALSE)
-
-#Area and niches are somewhat positively correlated (migration rate is not), with
-#number of niches being a better predictor of species richness 
-#than island area.
-
-#Let's find the Variance Inflation Factor. 
-#This VIF we can use to find out what amount of collinearity is too much.
-#VIF can be calulated by running an extra linear model in which the covariate of focus (here, K_num)
-#is y and all other covariates of the model are covariates.
-
-#We know mathematically that number of niches is correlated to area in our simulation
-#let's make sure it's not too much!
-
-##WE START WITH Z-TRANSFORMING OUR AREA AND NICHE VARIABLES
-
-SolmanMean$z.area <- scale(SolmanMean$area)
-SolmanMean$z.K_num <- scale(SolmanMean$niches)
-
-model1 <- summary(lm(z.K_num ~ z.area, data = SolmanMean))
-VIF <- 1/(1-model1$r.squared)
-SEInflation_Area <- sqrt(VIF) #The standard errors of k_num are thus inflated by
-# 1.32 which is not a lot. A VIF of 1.8 is also okay. 
-
-#Keep it in mind when you do YOUR interpretation and discolse it in your report!
-#think biology always!
-VIF_Results <- rbind(VIF, SEInflation_Area)
-VIF_Results <- as.data.frame(VIF_Results)
-VIF_Results <- round(VIF_Results, digits = 3)
-names(VIF_Results) <- c("Niches")
-
-write.csv(VIF_Results, paste0("../../Results/Simulation/NichesAreaVIFResults_", div, ".csv"), row.names = FALSE)
-
-#So we don't have too much collinearity!  Woohoo!!
 
 ############################################################
 ##########STEP SEVEN: VISUALLY INSPECT RELATIONSHIPS########
@@ -351,11 +387,11 @@ write.csv(VIF_Results, paste0("../../Results/Simulation/NichesAreaVIFResults_", 
 t.test1 <- t.test(TotalData$island_species ~ TotalData$SimOrModel)
 
 if (t.test1$p.value < 0.001) {
-  pvalue <- c("< 0.001")
-} else if (t.test1$p.value <- 0.05) {
-  pvalue <- c("< 0.05")
+  pvalue <- c("$<$ 0.001")
+} else if (t.test1$p.value < 0.05) {
+  pvalue <- c("$<$ 0.05")
 } else {
-  pvalue <- c("> 0.05")
+  pvalue <- c("$>$ 0.05")
 }
 
 df <- as.data.frame(tidy(t.test1))
@@ -370,17 +406,17 @@ for (i in 1:8) {
 df$`p-value` <- pvalue
 
 #Save to CSV 
-write.csv(df, paste0("../../Results/Simulation/tTestResults_", div, ".csv"), row.names = FALSE)
+write.csv(df, paste0("../../Results/Simulation2/tTestResults_", div, ".csv"), row.names = FALSE)
 
 ###Let's also try a paired sample t-test
 t.test2 <- t.test(SolmanData$island_species, ChisholmData$island_species, paired = TRUE, alternative = "two.sided")
 
 if (t.test2$p.value < 0.001) {
-  pvalue <- c("< 0.001")
-} else if (t.test2$p.value <- 0.05) {
-  pvalue <- c("< 0.05")
+  pvalue <- c("$<$ 0.001")
+} else if (t.test2$p.value < 0.05) {
+  pvalue <- c("$<$ 0.05")
 } else {
-  pvalue <- c("> 0.05")
+  pvalue <- c("$>$ 0.05")
 }
 
 df1 <- as.data.frame(tidy(t.test2))
@@ -394,7 +430,7 @@ for (i in 1:6) {
 df1$`p-value` <- pvalue
   
 #Save to CSV 
-write.csv(df1, paste0("../../Results/Simulation/PairedtTestResults_", div, ".csv"), row.names = FALSE)
+write.csv(df1, paste0("../../Results/Simulation2/PairedtTestResults_", div, ".csv"), row.names = FALSE)
 
 #####LET'S START RUNNING SOME LINEAR MODELS TO SEE IF THERE
 ###IS A STATISTICALLY SIGNIFICANT RELATIONSHIP BETWEEN OUR VARIABLES
@@ -413,11 +449,11 @@ AreaR <- summary(model2)$r.squared
 #AreaP <- c("< 0.001") #this is a manual entry - check this and update yourself!
 df2 <- tidy(model2)
 if (df2$p.value[[1]] < 0.001) {
-  AreaP <- c("< 0.001")
-} else if (df2$p.value[[1]] <- 0.05) {
-  AreaP <- c("< 0.05")
+  AreaP <- c("$<$ 0.001")
+} else if (df2$p.value[[1]] < 0.05) {
+  AreaP <- c("$<$ 0.05")
 } else {
-  AreaP <- c("> 0.05")
+  AreaP <- c("$>$ 0.05")
 }
 df2$rSquared <- rep(AreaR, 2)
 df2$Variate <- c("Area")
@@ -433,11 +469,11 @@ df2[6][[1]] <- round(df2[6][[1]], digits = 3)
 NicheR <- summary(model3)$r.squared
 df3 <- tidy(model3)
 if (df3$p.value[[1]] < 0.001) {
-  NicheP <- c("< 0.001")
-} else if (df3$p.value[[1]] <- 0.05) {
-  NicheP <- c("< 0.05")
+  NicheP <- c("$<$ 0.001")
+} else if (df3$p.value[[1]] < 0.05) {
+  NicheP <- c("$<$ 0.05")
 } else {
-  NicheP <- c("> 0.05")
+  NicheP <- c("$>$ 0.05")
 }
 df3$rSquared <- rep(NicheR, 2)
 df3$Variate <- c("Niches")
@@ -452,26 +488,26 @@ df3[6][[1]] <- round(df3[6][[1]], digits = 3)
 
 df2_3 <- rbind(df2, df3)
 
-write.csv(df2_3, paste0("../../Results/Simulation/lmResults_", div, ".csv"))
+write.csv(df2_3, paste0("../../Results/Simulation2/lmResults_", div, ".csv"))
 
 ##########################################################
 ####EXTENSION OF STEP THREE: HOMOGENEITY OF VARIANCES#####
 ##########################################################
 
 ####LET'S GET HISTOGRAMS OF THE RESIDUALS#####
-file_name = paste("../../Results/Simulation/AreaNicheResidualHisto_", div, ".pdf", sep="")
+file_name = paste("../../Results/Simulation2/AreaNicheResidualHisto_", div, ".pdf", sep="")
 pdf(file_name)
 h5 <- hist(model1$residuals)
 print(h5)
 dev.off()
 
-file_name = paste("../../Results/Simulation/AreaSpeciesResidualHisto_", div, ".pdf", sep="")
+file_name = paste("../../Results/Simulation2/AreaSpeciesResidualHisto_", div, ".pdf", sep="")
 pdf(file_name)
 h6 <- hist(model2$residuals)
 print(h6)
 dev.off()
 
-file_name = paste("../../Results/Simulation/NicheSpeciesResidualHisto_", div, ".pdf", sep="")
+file_name = paste("../../Results/Simulation2/NicheSpeciesResidualHisto_", div, ".pdf", sep="")
 pdf(file_name)
 h7 <- hist(model3$residuals)
 print(h7)
@@ -483,14 +519,14 @@ dev.off()
 
 #Looking for stary sky residuals 
 #######LET'S PLOT THE MODEL TO CHECK THE DISTRIBUTION OF OUR RESIDUALS####
-file_name = paste("../../Results/Simulation/AreaSpeciesLmPlot_", div, ".pdf", sep="")
+file_name = paste("../../Results/Simulation2/AreaSpeciesLmPlot_", div, ".pdf", sep="")
 pdf(file_name)
 par(mfrow=c(2,2))
 m2 <- plot(model2)
 print(m2)
 dev.off()
 
-file_name = paste("../../Results/Simulation/NicheSpeciesLmPlot_", div, ".pdf", sep="")
+file_name = paste("../../Results/Simulation2/NicheSpeciesLmPlot_", div, ".pdf", sep="")
 pdf(file_name)
 par(mfrow=c(2,2))
 m3 <- plot(model3)
@@ -510,7 +546,7 @@ h6 <- hist(SolmanMean$mean_sp)
 h7 <- hist(SolmanMean$z.area)
 h8 <- hist(SolmanMean$z.K_num)
 
-file_name = paste("../../Results/Simulation/HistoForMultivariateAnalysis_", div, ".pdf", sep="")
+file_name = paste("../../Results/Simulation2/HistoForMultivariateAnalysis_", div, ".pdf", sep="")
 pdf(file_name)
 plot(h6)
 plot(h7)
@@ -530,11 +566,11 @@ model4 <- lm(mean_sp ~ z.K_num + z.area + z.migration, data = SolmanMean)
 Niche_Area_MigrationR <- summary(model4)$r.squared
 df4 <- tidy(model4)
 if (df4$p.value[[1]] < 0.001) {
-  Niche_Area_MigrationP <- c("< 0.001")
-} else if (df4$p.value[[1]] <- 0.05) {
-  Niche_Area_MigrationP <- c("< 0.05")
+  Niche_Area_MigrationP <- c("$<$ 0.001")
+} else if (df4$p.value[[1]] < 0.05) {
+  Niche_Area_MigrationP <- c("$<$ 0.05")
 } else {
-  Niche_Area_MigrationP <- c("> 0.05")
+  Niche_Area_MigrationP <- c("$>$ 0.05")
 }
 df4$rSquared <- rep(Niche_Area_MigrationR, 2)
 df4$Variate <- c("Niche_Area_Migration")
@@ -552,11 +588,11 @@ model5 <- lm(mean_sp ~ z.K_num + z.area, data = SolmanMean)
 Niche_AreaR <- summary(model5)$r.squared
 df5 <- tidy(model5)
 if (df5$p.value[[1]] < 0.001) {
-  Niche_AreaP <- c("< 0.001")
-} else if (df5$p.value[[1]] <- 0.05) {
-  Niche_AreaP <- c("< 0.05")
+  Niche_AreaP <- c("$<$ 0.001")
+} else if (df5$p.value[[1]] < 0.05) {
+  Niche_AreaP <- c("$<$ 0.05")
 } else {
-  Niche_AreaP <- c("> 0.05")
+  Niche_AreaP <- c("$>$ 0.05")
 }
 df5$rSquared <- rep(Niche_AreaR, 3)
 df5$Variate <- c("Niche_Area")
@@ -574,11 +610,11 @@ model6 <- lm(mean_sp ~ z.K_num, data = SolmanMean)
 NicheR <- summary(model6)$r.squared
 df6 <- tidy(model6)
 if (df6$p.value[[1]] < 0.001) {
-  NicheP <- c("< 0.001")
-} else if (df6$p.value[[1]] <- 0.05) {
-  NicheP <- c("< 0.05")
+  NicheP <- c("$<$ 0.001")
+} else if (df6$p.value[[1]] < 0.05) {
+  NicheP <- c("$<$ 0.05")
 } else {
-  NicheP <- c("> 0.05")
+  NicheP <- c("$>$ 0.05")
 }
 df6$rSquared <- rep(NicheR, 2)
 df6$Variate <- c("Niche")
@@ -593,7 +629,7 @@ df6[6][[1]] <- round(df6[6][[1]], digits = 3)
 
 dfs <- rbind(df4, df5, df6)
 
-write.csv(dfs, paste0("../../Results/Simulation/MultiAnalysis_", div, ".csv"))
+write.csv(dfs, paste0("../../Results/Simulation2/MultiAnalysis_", div, ".csv"))
 
 ##############################################################
 #########EXTENSION OF STEP TWELVE: MODEL VALIDATION###########
@@ -601,66 +637,35 @@ write.csv(dfs, paste0("../../Results/Simulation/MultiAnalysis_", div, ".csv"))
 
 #######LET'S PLOT THE MODEL TO CHECK THE DISTRIBUTION OF OUR RESIDUALS####
 
-file_name = paste("../../Results/Simulation/NicheAreaMigrationLmPlot_", div, ".pdf", sep="")
+file_name = paste("../../Results/Simulation2/NicheAreaMigrationLmPlot_", div, ".pdf", sep="")
 pdf(file_name)
 par(mfrow=c(2,2))
 m4 <- plot(model4)
 print(m4)
 dev.off()
 
-file_name = paste("../../Results/Simulation/NicheAreaLmPlot_", div, ".pdf", sep="")
+file_name = paste("../../Results/Simulation2/NicheAreaLmPlot_", div, ".pdf", sep="")
 pdf(file_name)
 par(mfrow=c(2,2))
 m5 <- plot(model5)
 print(m5)
 dev.off()
 
-file_name = paste("../../Results/Simulation/NicheLmPlot_", div, ".pdf", sep="")
+file_name = paste("../../Results/Simulation2/NicheLmPlot_", div, ".pdf", sep="")
 pdf(file_name)
 par(mfrow=c(2,2))
 m6 <- plot(model6)
 print(m6)
 dev.off()
 
-#####################################################################
-#######STEP THIRTEEN: CHECK THE REPEATABILITY OF THE SIMULATION######
-#####################################################################
 
-#Start by running a linear model of island species against simulation number as a factor
-model7 <- lm(island_species ~ as.factor(sim_number), data = SolmanData)
-
-a <- tidy(anova(model7))#Then do an anova of the model to see if there is more variance within simulations#or amoung them
-#we use the tidy function to get the results into a dataframe, makes them easier to access
-
-#We can then workout the repeatability statistic by getting the sum of squares of our sim number
-within_SS <- a$sumsq[1]
-among_SS <- a$sumsq[2]
-
-#note that if our simulations were different sizes we would have to work this out different - see stats notes
-repeatability = among_SS/(within_SS+among_SS)
-repeatability <- round(repeatability, digits = 3)
-
-write.csv(repeatability, paste0("../../Results/Simulation/repeatabilityscore_", div, ".csv"))
-
-# b <- SolmanData %>%
-#   group_by(sim_number) %>%
-#   summarise (count=length(sim_number)) %>%
-#   summarise (length(sim_number)) # 100
-# 
-# c <- SolmanData %>%
-#   group_by(sim_number) %>%
-#   summarise (count=length(sim_number)) %>%
-#   summarise (sum(count)) #denominator = 337500
-# 
-# d <- SolmanData %>%
-#   group_by(sim_number) %>%
-#   summarise (count=length(sim_number)) %>%
-#   summarise (sum(count^2)) #numerator = 1139062500
-# 
-# e <- (1/b)*(c-d/c)
-# 
-# f <- ((a$meansq[1] - a$meansq[2])/d)/(a$meansq[2]+(a$meansq[1]-a$meansq[2])/d)
 
 }
 
+totalmaxArea <- unlist(totalmaxArea)
+num_islands <- unlist(num_islands)
 
+div_df <- data.frame(totalmaxArea, num_islands)
+names(div_df) <- c("Maximum Island Area", "Number of Islands")
+
+write.csv(div_df, "../../Results/Simulation2/DividedDF.csv", row.names = FALSE)
