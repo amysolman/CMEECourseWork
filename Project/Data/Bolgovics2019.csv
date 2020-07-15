@@ -1,21 +1,44 @@
-﻿Year,Author,Title,Experiment/Investigation Number,Size of Island,Number of Speciess,Distance,Benthic diatom/Phytoplankton,Terrestrial/Aquatic,Lab/In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,1,0.01,15,na,Benthic diatom,Aquatic,In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,2,0.1,12,na,Benthic diatom,Aquatic,In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,3,0,17,na,Benthic diatom,Aquatic,In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,4,10,14,na,Benthic diatom,Aquatic,In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,5,100,9,na,Benthic diatom,Aquatic,In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,6,1000,20,na,Benthic diatom,Aquatic,In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,7,10000,19,na,Benthic diatom,Aquatic,In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,8,100000,20,na,Benthic diatom,Aquatic,In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,9,1000000,19,na,Benthic diatom,Aquatic,In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,10,10000000,19,na,Benthic diatom,Aquatic,In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,11,0.01,12,na,Phytoplankton,Aquatic,In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,12,0.1,13,na,Phytoplankton,Aquatic,In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,13,0,18,na,Phytoplankton,Aquatic,In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,14,10,15,na,Phytoplankton,Aquatic,In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,15,100,15,na,Phytoplankton,Aquatic,In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,16,1000,26,na,Phytoplankton,Aquatic,In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,17,10000,28,na,Phytoplankton,Aquatic,In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,18,100000,32,na,Phytoplankton,Aquatic,In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,19,1000000,24,na,Phytoplankton,Aquatic,In-Situ
-2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,20,10000000,20,na,Phytoplankton,Aquatic,In-Situ
+﻿Year,Author,Title,Experiment/Investigation Number,Size of Island,Number of Speciess,Distance,Benthic diatom/Phytoplankton,Terrestrial/Aquatic,Lab/In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,1,0.01,15,na,Benthic diatom,Aquatic,In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,2,0.1,12,na,Benthic diatom,Aquatic,In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,3,0,17,na,Benthic diatom,Aquatic,In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,4,10,14,na,Benthic diatom,Aquatic,In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,5,100,9,na,Benthic diatom,Aquatic,In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,6,1000,20,na,Benthic diatom,Aquatic,In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,7,10000,19,na,Benthic diatom,Aquatic,In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,8,100000,20,na,Benthic diatom,Aquatic,In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,9,1000000,19,na,Benthic diatom,Aquatic,In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,10,10000000,19,na,Benthic diatom,Aquatic,In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,11,0.01,12,na,Phytoplankton,Aquatic,In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,12,0.1,13,na,Phytoplankton,Aquatic,In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,13,0,18,na,Phytoplankton,Aquatic,In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,14,10,15,na,Phytoplankton,Aquatic,In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,15,100,15,na,Phytoplankton,Aquatic,In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,16,1000,26,na,Phytoplankton,Aquatic,In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,17,10000,28,na,Phytoplankton,Aquatic,In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,18,100000,32,na,Phytoplankton,Aquatic,In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,19,1000000,24,na,Phytoplankton,Aquatic,In-Situ,,,,
+2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,20,10000000,20,na,Phytoplankton,Aquatic,In-Situ,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,diatoms,0.1,0.01,15
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,diatoms,0.15,0.1,12
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,diatoms,0.5,1,17
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,diatoms,1.3,10,14
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,diatoms,1.5,100,9
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,diatoms,,1000,20
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,diatoms,,10000,19
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,diatoms,,100000,20
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,diatoms,,1000000,19
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,diatoms,,10000000,19
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,phytoplankton,,0.01,12
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,phytoplankton,,0.1,13
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,phytoplankton,,1,18
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,phytoplankton,,10,15
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,phytoplankton,,100,15
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,phytoplankton,,1000,26
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,phytoplankton,,10000,28
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,phytoplankton,,100000,32
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,phytoplankton,,1000000,24
+3,2019,Bolgovics et al,Groups of small lakes maintain larger microalgal diversity than largeones,,,,aqua,in_situ,natural,phytoplankton,,10000000,20

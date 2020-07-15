@@ -1,12 +1,26 @@
-﻿Year,Author,Title,Experiment/Investigation Number,Area (ha),Bacterial Richness,Bacterial Diversity,Altitude (m above sea level),Catchment ara (ha),Max depth (m),Lake (lake code),Terrestrial/Aquatic,Lab/In-Situ
-2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,1,0.42,8,1.47,3020,9.9,2,Rio Seco (RS),Aquatic,In-Situ
-2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,2,2.1,6,1.2,3050,23.5,7,Caldera (CA),Aquatic,In-Situ
-2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,3,0.19,6,0.89,3050,12.8,2.8,Aguas Verdes (AV),Aquatic,In-Situ
-2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,4,0.33,6,1.66,2880,50,2.5,Yeguas (YE),Aquatic,In-Situ
-2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,5,0.08,6,1.1,2950,25.1,1.3,Virgen Superior (VS),Aquatic,In-Situ
-2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,6,0.01,4,0.57,2940,31.2,0.8,Virgen Media (VM),Aquatic,In-Situ
-2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,7,0.34,9,1.98,3020,27.4,3.5,Laguna 2 (L2),Aquatic,In-Situ
-2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,8,0.19,5,1.13,2970,57.1,0.4,Laguna 4 (L4),Aquatic,In-Situ
-2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,9,0.18,9,1.98,2980,50.9,2,Laguna 5 (L5),Aquatic,In-Situ
-2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,10,0.53,7,1.24,2890,154.6,0.8,Laguna 7 (L7),Aquatic,In-Situ
-2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,11,0.67,8,1.44,2820,28.2,2,Penon Negro (PN),Aquatic,In-Situ
+﻿Year,Author,Title,Experiment/Investigation Number,Area (ha),Bacterial Richness,Bacterial Diversity,Altitude (m above sea level),Catchment ara (ha),Max depth (m),Lake (lake code),Terrestrial/Aquatic,Lab/In-Situ,,,,,,,,
+2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,1,0.42,8,1.47,3020,9.9,2,Rio Seco (RS),Aquatic,In-Situ,,,,,,,,
+2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,2,2.1,6,1.2,3050,23.5,7,Caldera (CA),Aquatic,In-Situ,,,,,,,,
+2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,3,0.19,6,0.89,3050,12.8,2.8,Aguas Verdes (AV),Aquatic,In-Situ,,,,,,,,
+2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,4,0.33,6,1.66,2880,50,2.5,Yeguas (YE),Aquatic,In-Situ,,,,,,,,
+2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,5,0.08,6,1.1,2950,25.1,1.3,Virgen Superior (VS),Aquatic,In-Situ,,,,,,,,
+2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,6,0.01,4,0.57,2940,31.2,0.8,Virgen Media (VM),Aquatic,In-Situ,,,,,,,,
+2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,7,0.34,9,1.98,3020,27.4,3.5,Laguna 2 (L2),Aquatic,In-Situ,,,,,,,,
+2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,8,0.19,5,1.13,2970,57.1,0.4,Laguna 4 (L4),Aquatic,In-Situ,,,,,,,,
+2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,9,0.18,9,1.98,2980,50.9,2,Laguna 5 (L5),Aquatic,In-Situ,,,,,,,,
+2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,10,0.53,7,1.24,2890,154.6,0.8,Laguna 7 (L7),Aquatic,In-Situ,,,,,,,,
+2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,11,0.67,8,1.44,2820,28.2,2,Penon Negro (PN),Aquatic,In-Situ,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+ID,year,author,title,obtained,area_metric,log_area,depth_volume_metric,sp_rich_metric,log_sp_rich,aqua_terra,fresh_saline,in_situ_lab,natural_modified,taxa,geographic_location,local_location,depth,area,sp_rich,comment
+28,2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,author,ha,no,m,OTUs,no,aqua,fresh,in_situ,natural,bacteria,spain,yeguas,2.5,0.33,6,check N is the right number
+28,2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,author,ha,no,m,OTUs,no,aqua,fresh,in_situ,natural,bacteria,spain,virgen_media,0.8,0.01,4,
+28,2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,author,ha,no,m,OTUs,no,aqua,fresh,in_situ,natural,bacteria,spain,virgen_superior,1.3,0.08,6,
+28,2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,author,ha,no,m,OTUs,no,aqua,fresh,in_situ,natural,bacteria,spain,auguas_verdes,2.8,0.19,6,
+28,2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,author,ha,no,m,OTUs,no,aqua,fresh,in_situ,natural,bacteria,spain,rio_sec,2,0.42,8,
+28,2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,author,ha,no,m,OTUs,no,aqua,fresh,in_situ,natural,bacteria,spain,caldera,7,2.1,6,
+28,2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,author,ha,no,m,OTUs,no,aqua,fresh,in_situ,natural,bacteria,spain,penon_negro,2,0.67,8,
+28,2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,author,ha,no,m,OTUs,no,aqua,fresh,in_situ,natural,bacteria,spain,siete_lagunas_7,0.8,0.53,7,
+28,2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,author,ha,no,m,OTUs,no,aqua,fresh,in_situ,natural,bacteria,spain,siete_lagunas_5,2,0.18,9,
+28,2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,author,ha,no,m,OTUs,no,aqua,fresh,in_situ,natural,bacteria,spain,siete_lagunas_4,0.5,0.19,5,
+28,2005,Reche et al,Does ecosytem size determine aquatic bacterial richness?,author,ha,no,m,OTUs,no,aqua,fresh,in_situ,natural,bacteria,spain,siete_lagunas_2,3.5,0.34,9,

@@ -1,0 +1,67 @@
+\documentclass[a4paper, twoside]{report}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{hyperref}
+\hypersetup{colorlinks=false}
+\usepackage{lscape} %to put things landscape
+\usepackage{subfigure}
+\usepackage{amsmath} %for some maths stuff! 
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{csvsimple}
+
+%%%%%This stuff is for generating tables%%%%
+\usepackage{booktabs} % For \toprule, \midrule and \bottomrule
+\usepackage{siunitx} % Formats the units and values
+\usepackage{pgfplotstable} % Generates table from .csv
+
+% Setup siunitx:
+\sisetup{
+  round-mode          = places, % Rounds numbers
+  round-precision     = 2, % to 2 places
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+\title{Microbes: Is everything everywhere? Quantifying the contribution of dispersal and niches to diversity maintenance in a microbial system.}
+\author{Amy Solman}
+% Update supervisor and other title stuff in title/title.tex
+
+\begin{document}
+\input{title.tex}
+
+\begin{abstract}
+Microbial communities play an essential role in terrestrial and aquatic ecosystem functioning. Despite their importance, relatively little is known about the impacts of habitat size, niche availability and immigration rate on microbial species richness and diversity. The theory of island biogeography predicts that species richness increases with island area, also known as the species-area relationship (SAR). Not all empirical evidence supports the SAR theory. Small islands often show no clear relationship between species richness and area, dubbed the small-island effect (SIE). Chisholm \textit{et al} \cite{chisholm2016maintenance} developed a unified theory of a biphasic SAR, where species richness transitions from a niche-structured regime to a colonisation-extinction regime as island area increases. This study attempts to show the presence of a biphasic island SAR in microbial communities by quantify the contributions of immigration and niches to diversity maintenance under experimental conditions.
+\end{abstract}
+
+\renewcommand{\abstractname}{Declaration}
+\begin{abstract}
+I decalre that this thesis has been written by myself. The data sources used in this thesis are listed in the Supplementary Materials section.
+\end{abstract}
+
+\renewcommand{\abstractname}{Acknowledgements}
+\begin{abstract}
+Thank you to my supervisors, Ryan, James and Tom. Thank you to all of the scientists that took the time to share their data with me. Thank you to my mother, my partner and my friends for giving me unending support outside of this project. I couldn't have done it without you.
+\end{abstract}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\input{introduction.tex}
+\input{methods.tex}
+\input{results.tex}
+\input{discussion.tex}
+\input{conclusion.tex}
+\input{supplementary.tex}
+
+\bibliographystyle{unsrt}
+\bibliography{bibliography}
+\addcontentsline{toc}{chapter}{Bibliography}
+
+\end{document}
