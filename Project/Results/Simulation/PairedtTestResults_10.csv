@@ -1,2 +1,0 @@
-"Mean Difference","t-value","p-value","df","conf. low","conf. high","method","alternative"
--0.63,-111.71,"$<$ 0.001",235999,-0.64,-0.61,"Paired t-test","two.sided"

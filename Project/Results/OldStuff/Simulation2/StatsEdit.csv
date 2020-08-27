@@ -1,5 +1,0 @@
-"Mean","Range","Variance","Standard.Deviation","Standard.Error","maxArea","ModelOrSim"
-16.053,"1 - 68",109.53,10.466,0.012,400,"SolmanSim"
-17.599,"1 - 64.89",138.939,11.787,0.013,400,"ChisholmMod"
-5.49,"1 - 20",24.902,4.99,0.014,20,"SolmanSim"
-5.588,"1 - 20",24.201,4.919,0.014,20,"ChisholmMod"

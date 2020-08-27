@@ -1,2 +1,0 @@
-"Mean Difference","Solman_Sim Mean","Chisholm_Model Mean","t-value","p-value","df","conf. low","conf. high","method","alternative"
--0.61,4.86,5.47,-44.93,"$<$ 0.001",311801.94,-0.64,-0.58,"Welch Two Sample t-test","two.sided"

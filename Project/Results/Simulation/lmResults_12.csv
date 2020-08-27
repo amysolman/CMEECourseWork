@@ -1,5 +1,0 @@
-"","Coefficients","Estimate","Standard Error","t-value","p.value","R-Squared","Variate"
-"1","(Intercept)",4.986,0.06,83.121,"$<$ 0.001",0.201,"Area"
-"2","z.area",1.326,0.06,22.104,"$<$ 0.001",0.201,"Area"
-"3","(Intercept)",4.986,0.017,289.532,"$<$ 0.001",0.934,"Niches"
-"4","z.K_num",2.857,0.017,165.844,"$<$ 0.001",0.934,"Niches"

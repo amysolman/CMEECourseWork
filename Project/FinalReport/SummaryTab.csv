@@ -1,0 +1,14 @@
+Taxa,Habitat Type,Occurences
+algae,lacustrine,10
+algae,riverine,3
+archaea,lacustrine,1
+bacteria,lacustrine,9
+bacteria,machine,4
+bacteria,terrestrial,4
+fungi,lacustrine,4
+fungi,plant,5
+fungi,terrestrial,4
+pathogen,terrestrial,4
+protozoa,lacustrine,7
+protozoa,riverine,1
+protozoa,terrestrial,1
