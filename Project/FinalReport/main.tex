@@ -22,6 +22,7 @@
 \usepackage{subfig} % for getting 4 figures looking nice
 \usepackage{setspace} %for spacing
 \usepackage{listings} %for my R code
+\usepackage{tikz} %for doing little circles in line with text
 %\onehalfspacing %one and a half line spacing
 \setstretch{1.5}
 \titleformat{\chapter}[display]
@@ -53,8 +54,8 @@
 \begin{abstract}
 \textbf{Concept:} The concept for this work came from Prof. Thomas Bell and Prof. Ryan Chisholm.\\
 \noindent \textbf{Data:} All data for this analysis was collected by myself from the literature as listed in the Supplementary Materials section.\\
-\noindent \textbf{Simulation:} All simulation code was written by myself, excluding Function 2: coalescence\_test provided by Dr. James Rosindell.\\
-\noindent \textbf{Model:} The Classic, Depth and Perimeter models, as well as critical area formulas, was supplied by Prof. Ryan Chisholm.\\
+\noindent \textbf{Simulation:} All simulation code was written by myself, excluding function 2: coalescence\_test (simulation scripts) provided by Dr. James Rosindell.\\
+\noindent \textbf{Model:} The Classic, Depth and Perimeter models, as well as critical area formulas, were supplied by Prof. Ryan Chisholm.\\
 \noindent \textbf{Analysis:} I declare that all analysis was carried out by myself.\\
 \noindent \textbf{Report:} I declare that the report was written by myself.\\
 \\ \\ \\
@@ -67,15 +68,15 @@
 \begin{abstract}
 1. Microbial communities play an essential role in biogeochemical processes and ecosystem functioning. Despite their importance, relatively little is known about the mechanisms driving spatial scaling within these communities. \\
 
-\noindent 2. The Theory of Island Biogeography predicts that species richness increases with island area through stochastic colonisation-extinction processes. It has been widely use to describe macro-organism spatial patterns, but there has been little application to microbial communities.\\
+\noindent 2. The Theory of Island Biogeography predicts that species richness increases with island area through stochastic colonisation-extinction processes. It has been widely use to describe macroorganism spatial patterns, with little application to microbial communities.\\
 
 \noindent 3. Despite the popularity of this theory, small islands often show no clear relationship between species richness and area. Chisholm \textit{et al.,} have addressed this by developing a unified theory of species-area relationships that transitions from a niche-structured regime at smaller spatial scales to stochastic mechanisms at larger spatial scales.\\
 
 \noindent 4. This work modifies the Chisholm model to address microbial communities in a range of habitats. Through model fitting I assess to what extent microorganisms are subject to deterministic or stochastic processes. I also explore how the transition between regimes differs among habitat types and taxonomic groups. \\
 
-\noindent 5. The model gave good fits to the data. Multiple regression analysis showed significant evidence that taxonomic group explained variance in the critical area of transition between deterministic and stochastic regimes. Less motile taxonomic groups exhibited higher critical areas of transition, supporting my hypothesis. Habitat type was non-significant in predicting critical area.\\
+\noindent 5. The models gave good fits to the data. Multiple regression analysis showed significant evidence that taxonomic group explained variance in the critical area of transition between regimes. Less motile groups exhibited higher critical areas supporting my hypothesis. Habitat type was non-significant in predicting critical area.\\
 
-\noindent 6. A proportion of the datasets exhibited a biphasic species-area relationship. Broadly the critical area hypotheses of lower transition areas for more motile taxa was supported by the data.These results can assist in predicting the spatial scaling of microbial diversity, with application to climate change modelling. \\
+\noindent 6. A proportion of the datasets exhibited a biphasic species-area relationship. Broadly the critical area hypotheses of lower transition areas for more motile taxa was supported by the data. These results can assist in predicting the spatial scaling of microbial diversity, with application to climate change modelling. \\
 
 \noindent \textbf{Keywords:} species-area relationships, taxa-area relationships, microbial biogeography, small-island effect, niche structure, colonisation-extinction balance, island biogeography
 \end{abstract}

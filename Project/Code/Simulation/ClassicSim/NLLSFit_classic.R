@@ -118,9 +118,6 @@ RSqResults <- list()
 for (j in 1:10){
   Data <- read.csv(paste0("../../../Data/MeanAnalyticClassic", j, ".csv"))
   
-  #remove first and last rows 
-  Data <- Data[-c(9,10),]
-  
   #1) Do the model fitting and extract the parameter estimates 
   fit_Results <- NLLSfits(Data = Data) #do the fitting and store all results for K
   best_fit_results <- fit_Results[which.max(fit_Results$RSq),] #extract the best results
@@ -219,7 +216,7 @@ E_K <- mean(K_results$Estimated)
 True <- c(T_theta, T_m0, T_K)
 Estimated <- c(E_theta, E_m0, E_K)
 my_df <- data.frame(Parameters, True, Estimated)
-my_df$Difference <- my_df$True - my_df$Estimated
+my_df$Difference <- my_df$Estimated - my_df$True
 my_df$True <- round(my_df$True, digits = 3)
 my_df$Estimated <- round(my_df$Estimated, digits = 3)
 my_df$Difference <- round(my_df$Difference, digits = 3)

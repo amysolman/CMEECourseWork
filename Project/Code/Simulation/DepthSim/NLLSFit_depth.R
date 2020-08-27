@@ -215,7 +215,7 @@ E_K <- mean(K_results$Estimated)
 True <- c(T_theta, T_m0, T_K)
 Estimated <- c(E_theta, E_m0, E_K)
 my_df <- data.frame(Parameters, True, Estimated)
-my_df$Difference <- my_df$True - my_df$Estimated
+my_df$Difference <- my_df$Estimated - my_df$True
 my_df$True <- round(my_df$True, digits = 3)
 my_df$Estimated <- round(my_df$Estimated, digits = 3)
 my_df$Difference <- round(my_df$Difference, digits = 3)
